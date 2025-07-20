@@ -82,7 +82,7 @@ const Navigation = () => {
 
   return (
     <nav className="fixed top-0 w-full z-50 transition-all duration-300">
-      <div className="container mx-auto px-6 py-4">
+      <div className="container mx-auto px-4 md:px-6 py-3 md:py-4">
         <div className="flex items-center justify-center">
           {/* Centered Logo and Navigation Container */}
           <div className="hidden md:flex items-center space-x-8">
@@ -141,16 +141,18 @@ const Navigation = () => {
           </div>
           
           {/* Mobile Logo and Menu */}
-          <div className="md:hidden flex items-center justify-between w-full">
-            <Logo 
-              size={56} 
-              className="hover:scale-105 transition-transform duration-300 cursor-pointer" 
-              onClick={handleLogoClick}
-            />
+          <div className="md:hidden flex items-center justify-between w-full max-w-sm mx-auto">
+            <div className="flex-shrink-0">
+              <Logo 
+                size={48} 
+                className="hover:scale-105 transition-transform duration-300 cursor-pointer" 
+                onClick={handleLogoClick}
+              />
+            </div>
             <Button
               variant="ghost"
               size="icon"
-              className="bg-white/80 backdrop-blur-xl border border-gray-200/50 rounded-full shadow-lg"
+              className="bg-white/90 backdrop-blur-xl border border-gray-200/50 rounded-full shadow-lg flex-shrink-0 ml-4"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen ? (

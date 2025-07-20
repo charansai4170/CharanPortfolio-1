@@ -267,7 +267,7 @@ const TimelineExperience = () => {
 
   return (
     <section id="experience" className="py-20 bg-white">
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-4 md:px-6">
         <motion.div
           ref={containerRef}
           initial="hidden"
@@ -282,27 +282,27 @@ const TimelineExperience = () => {
         >
           {/* Section Header */}
           <motion.div 
-            className="text-center mb-16"
+            className="text-center mb-12 md:mb-16"
             variants={{
               hidden: { opacity: 0, y: 30 },
               visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
             }}
           >
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Professional Experience
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto px-4">
               A journey through diverse roles in software engineering, data analytics, and machine learning
             </p>
           </motion.div>
 
           {/* Timeline */}
           <div className="relative">
-            {/* Timeline Line */}
-            <div className="absolute left-8 md:left-1/2 transform md:-translate-x-px top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 via-sky-400 to-emerald-400"></div>
+            {/* Timeline Line - Mobile: Left side, Desktop: Center */}
+            <div className="absolute left-6 md:left-1/2 transform md:-translate-x-px top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 via-sky-400 to-emerald-400"></div>
 
             {/* Experience Items */}
-            <div className="space-y-12">
+            <div className="space-y-8 md:space-y-12">
               {experiences.map((experience, index) => {
                 const typeConfig = getTypeConfig(experience.type);
                 const isLeft = index % 2 === 0;
@@ -310,11 +310,11 @@ const TimelineExperience = () => {
                 return (
                   <motion.div
                     key={experience.id}
-                    className={`relative flex items-center ${
+                    className={`relative flex items-start ${
                       isLeft 
                         ? 'md:flex-row-reverse md:text-right' 
                         : 'md:flex-row md:text-left'
-                    } flex-col md:flex-row`}
+                    }`}
                     variants={{
                       hidden: { 
                         opacity: 0, 
@@ -335,18 +335,20 @@ const TimelineExperience = () => {
                     }}
                   >
                     {/* Timeline Node */}
-                    <div className="absolute left-8 md:left-1/2 transform -translate-x-1/2 z-10">
+                    <div className="absolute left-6 md:left-1/2 transform -translate-x-1/2 z-10 -mt-1">
                       <div 
-                        className="w-12 h-12 rounded-full border-4 border-white shadow-lg flex items-center justify-center text-white"
+                        className="w-10 h-10 md:w-12 md:h-12 rounded-full border-4 border-white shadow-lg flex items-center justify-center text-white"
                         style={{ backgroundColor: typeConfig.color }}
                       >
-                        {typeConfig.icon}
+                        <div className="scale-75 md:scale-100">
+                          {typeConfig.icon}
+                        </div>
                       </div>
                     </div>
 
-                    {/* Content Card */}
+                    {/* Content Card - Mobile: Full width with left margin, Desktop: Half width */}
                     <div className={`
-                      w-full md:w-5/12 ml-16 md:ml-0
+                      w-full md:w-5/12 pl-16 md:pl-0
                       ${isLeft ? 'md:mr-auto md:pr-8' : 'md:ml-auto md:pl-8'}
                     `}>
                       <ExperienceCard 

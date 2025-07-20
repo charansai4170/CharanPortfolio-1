@@ -163,14 +163,14 @@ const Home = () => {
       <Navigation />
 
           {/* Hero Section */}
-      <section id="home" className="min-h-screen flex items-center relative overflow-hidden bg-white">
-        <div className="container mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className={`${isVisible ? "fade-in-up" : "opacity-0"}`}>
-              <h1 className="text-4xl md:text-6xl font-bold text-text mb-6 leading-tight">
+      <section id="home" className="min-h-screen flex items-center relative overflow-hidden bg-white pt-20 md:pt-0">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
+            <div className={`${isVisible ? "fade-in-up" : "opacity-0"} text-center lg:text-left`}>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-text mb-4 md:mb-6 leading-tight">
                 Charan Thota
               </h1>
-              <h2 className="text-2xl md:text-3xl font-semibold mb-6 h-12 flex items-center">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4 md:mb-6 h-10 md:h-12 flex items-center justify-center lg:justify-start">
                 <span className="gradient-text-animated">{currentText}</span>
                 {currentIndex < 5 && (
                   <>
@@ -181,21 +181,21 @@ const Home = () => {
                 )}
                 {currentIndex >= 5 && <span className="cursor-blink ml-1">|</span>}
               </h2>
-              <p className="text-gray-600 text-lg leading-relaxed mb-8 max-w-lg">
+              <p className="text-gray-600 text-base md:text-lg leading-relaxed mb-6 md:mb-8 max-w-lg mx-auto lg:mx-0">
                 Results-driven engineer with 2.5+ years building scalable, AI-driven platforms and cloud-native applications. 
                 Expertise in Python, AWS, LLMs, and DevOps tools with focus on intelligent systems for healthcare and enterprise domains.
               </p>
-              <div className="flex flex-wrap gap-4 mb-8">
-                <Button className="bg-primary-custom hover:bg-primary-custom/90 text-white">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 md:mb-8 items-center lg:items-start">
+                <Button className="bg-primary-custom hover:bg-primary-custom/90 text-white w-full sm:w-auto">
                   <Download className="h-4 w-4 mr-2" />
                   Download Resume
                 </Button>
-                <Button variant="outline" className="border-primary-custom text-primary-custom hover:bg-primary-custom hover:text-white">
+                <Button variant="outline" className="border-primary-custom text-primary-custom hover:bg-primary-custom hover:text-white w-full sm:w-auto">
                   <Mail className="h-4 w-4 mr-2" />
                   Get In Touch
                 </Button>
               </div>
-              <div className="flex space-x-6">
+              <div className="flex space-x-6 justify-center lg:justify-start">
                 <Button variant="ghost" size="icon" className="text-gray-400 hover:text-primary-custom">
                   <Linkedin className="h-5 w-5" />
                 </Button>
@@ -312,8 +312,8 @@ const Home = () => {
               </div>
             </div>
             
-            <div className="relative">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+            <div className="relative mt-8 lg:mt-0">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl max-w-md mx-auto lg:max-w-none">
                 <img 
                   src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=600&fit=crop&crop=face" 
                   alt="Charan Thota"
@@ -321,8 +321,8 @@ const Home = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary-custom/20 to-transparent"></div>
               </div>
-              <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-gradient-to-r from-primary-custom to-accent-custom rounded-full flex items-center justify-center shadow-xl animate-pulse">
-                <span className="text-white text-2xl">🚀</span>
+              <div className="absolute -bottom-4 -right-4 lg:-bottom-6 lg:-right-6 w-16 h-16 lg:w-24 lg:h-24 bg-gradient-to-r from-primary-custom to-accent-custom rounded-full flex items-center justify-center shadow-xl animate-pulse">
+                <span className="text-white text-xl lg:text-2xl">🚀</span>
               </div>
             </div>
           </div>
@@ -333,18 +333,18 @@ const Home = () => {
       <TimelineExperience />
 
       {/* Skills Section */}
-      <section id="skills" className="py-20 bg-gray-50">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
+      <section id="skills" className="py-16 md:py-20 bg-gray-50">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="text-center mb-12 md:mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-text mb-4">Technical Expertise</h2>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+            <p className="text-gray-600 text-base md:text-lg max-w-2xl mx-auto px-4">
               Comprehensive skill set spanning full-stack development, machine learning, and cloud technologies
             </p>
           </div>
 
           {/* Side-by-Side Table View */}
           <div className="max-w-7xl mx-auto">
-            <div className="grid lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
               
               {/* Programming Languages Column */}
               <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
@@ -444,7 +444,7 @@ const Home = () => {
             </div>
 
             {/* Additional Tools Row */}
-            <div className="grid lg:grid-cols-3 gap-8 mt-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mt-6 md:mt-8">
               
               {/* Databases Column */}
               <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
