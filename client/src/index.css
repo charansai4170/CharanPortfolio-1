@@ -440,14 +440,21 @@ nav .container {
 .typewriter-text {
   display: inline-flex;
   align-items: center;
-  background-size: 200% 200%;
-  animation: gradient-shift 3s ease infinite;
+}
+
+.gradient-text-animated {
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff9ff3, #54a0ff);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: rainbow-shift 3s ease infinite;
 }
 
 .cursor-blink {
   animation: blink 1s infinite;
   margin: 0 2px;
-  color: hsl(215, 74%, 58%);
+  color: #4ecdc4;
 }
 
 @keyframes blink {
@@ -455,7 +462,7 @@ nav .container {
   51%, 100% { opacity: 0; }
 }
 
-@keyframes gradient-shift {
+@keyframes rainbow-shift {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }

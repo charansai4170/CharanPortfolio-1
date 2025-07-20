@@ -39,11 +39,12 @@ const Home = () => {
       
       function typeWriter() {
         const targetText = isSpecialCase ? specialCase : prefixes[currentIndex];
+        const engineerSuffix = isSpecialCase ? "" : " Engineer";
         
         if (!isDeleting) {
           // Typing
           currentText = targetText.substring(0, currentText.length + 1);
-          typewriterElement.textContent = currentText;
+          typewriterElement.innerHTML = `<span class="gradient-text-animated">${currentText}</span><span class="text-text">${engineerSuffix}</span>`;
           
           if (currentText === targetText) {
             // Finished typing, pause then start deleting
@@ -56,7 +57,7 @@ const Home = () => {
         } else {
           // Deleting
           currentText = targetText.substring(0, currentText.length - 1);
-          typewriterElement.textContent = currentText;
+          typewriterElement.innerHTML = `<span class="gradient-text-animated">${currentText}</span><span class="text-text">${engineerSuffix}</span>`;
           
           if (currentText === "") {
             // Finished deleting
@@ -168,10 +169,9 @@ const Home = () => {
                 Charan Thota
               </h1>
               <h2 className="text-2xl md:text-3xl font-semibold mb-6 h-12">
-                <span className="typewriter-text bg-gradient-to-r from-primary-custom via-accent-custom to-primary-custom bg-clip-text text-transparent">
+                <span className="typewriter-text">
                   <span id="typewriter-prefix"></span>
                   <span className="cursor-blink">|</span>
-                  <span className="text-text"> Engineer</span>
                 </span>
               </h2>
               <p className="text-gray-600 text-lg leading-relaxed mb-8 max-w-lg">
