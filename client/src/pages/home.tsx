@@ -128,7 +128,36 @@ const Home = () => {
         <div className="container mx-auto px-6 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className={`${isVisible ? "fade-in-up" : "opacity-0"}`}>
-              <div className="text-primary-custom text-lg font-medium mb-4">👋 Hello, I'm</div>
+              <div className="mb-8 w-48 mx-auto lg:mx-0">
+                <div style={{
+                  position: 'relative',
+                  width: '100%',
+                  height: 0,
+                  paddingTop: '100%',
+                  paddingBottom: 0,
+                  boxShadow: '0 2px 8px 0 rgba(63,69,81,0.16)',
+                  overflow: 'hidden',
+                  borderRadius: '8px',
+                  willChange: 'transform'
+                }}>
+                  <iframe 
+                    loading="lazy" 
+                    style={{
+                      position: 'absolute',
+                      width: '100%',
+                      height: '100%',
+                      top: 0,
+                      left: 0,
+                      border: 'none',
+                      padding: 0,
+                      margin: 0
+                    }}
+                    src="https://www.canva.com/design/DAGtrExVUlI/-KAUc08Ihfh18TuSHn7Jdw/view?embed" 
+                    allowFullScreen
+                    allow="fullscreen"
+                  />
+                </div>
+              </div>
               <h1 className="text-4xl md:text-6xl font-bold text-text mb-6 leading-tight">
                 Charan Thota
               </h1>
