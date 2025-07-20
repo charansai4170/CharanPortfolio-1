@@ -435,3 +435,28 @@ nav .container {
     opacity: 1;
   }
 }
+
+/* Typewriter Animation Styles */
+.typewriter-text {
+  display: inline-flex;
+  align-items: center;
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+
+.cursor-blink {
+  animation: blink 1s infinite;
+  margin: 0 2px;
+  color: hsl(215, 74%, 58%);
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
