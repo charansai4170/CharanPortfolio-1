@@ -342,189 +342,199 @@ const Home = () => {
             </p>
           </div>
 
-          {/* Vertical Tech Stack Display */}
-          <div className="max-w-4xl mx-auto mb-20">
-            {/* Programming Languages */}
-            <div className="mb-16">
-              <div className="text-center mb-8">
-                <div className="inline-block bg-gradient-to-r from-blue-600 to-indigo-600 px-8 py-4 rounded-full shadow-lg transform transition-all duration-300 hover:scale-105">
-                  <h3 className="text-2xl font-bold text-white tracking-wide">Programming Languages</h3>
+          {/* Side-by-Side Table View */}
+          <div className="max-w-7xl mx-auto">
+            <div className="grid lg:grid-cols-3 gap-8">
+              
+              {/* Programming Languages Column */}
+              <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+                <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-4">
+                  <h3 className="text-xl font-bold text-white text-center">Programming Languages</h3>
+                </div>
+                <div className="p-4 space-y-3">
+                  {[
+                    { name: "Python", logo: PythonLogo },
+                    { name: "JavaScript", logo: JavaScriptLogo }, 
+                    { name: "TypeScript", logo: TypeScriptLogo },
+                    { name: "Java", logo: () => (<div className="w-full h-full bg-orange-600 rounded-lg flex items-center justify-center text-white text-lg font-bold">J</div>) },
+                    { name: "C++", logo: () => (<div className="w-full h-full bg-blue-700 rounded-lg flex items-center justify-center text-white text-sm font-bold">C++</div>) },
+                    { name: "SQL", logo: () => (<div className="w-full h-full bg-green-600 rounded-lg flex items-center justify-center text-white text-sm font-bold">SQL</div>) }
+                  ].map((tool, index) => (
+                    <div
+                      key={tool.name}
+                      className="group flex items-center p-4 bg-gray-50 hover:bg-white rounded-xl border border-gray-100 hover:border-blue-200 hover:shadow-md transition-all duration-300 transform hover:-translate-y-1"
+                      style={{ animationDelay: `${index * 100}ms` }}
+                    >
+                      <div className="flex-shrink-0 w-10 h-10 mr-4 flex items-center justify-center">
+                        <tool.logo />
+                      </div>
+                      <div className="flex-grow">
+                        <h4 className="text-lg font-semibold text-gray-800 group-hover:text-blue-600 transition-colors duration-300">
+                          {tool.name}
+                        </h4>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
-              <div className="flex flex-col space-y-4">
-                {[
-                  { name: "Python", logo: PythonLogo },
-                  { name: "JavaScript", logo: JavaScriptLogo }, 
-                  { name: "TypeScript", logo: TypeScriptLogo },
-                  { name: "Java", logo: () => (<div className="w-full h-full bg-orange-600 rounded-lg flex items-center justify-center text-white text-2xl font-bold">J</div>) },
-                  { name: "C++", logo: () => (<div className="w-full h-full bg-blue-700 rounded-lg flex items-center justify-center text-white text-lg font-bold">C++</div>) },
-                  { name: "SQL", logo: () => (<div className="w-full h-full bg-green-600 rounded-lg flex items-center justify-center text-white text-lg font-bold">SQL</div>) }
-                ].map((tool, index) => (
-                  <div
-                    key={tool.name}
-                    className="group flex items-center p-6 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-[1.02] max-w-md mx-auto w-full"
-                    style={{ animationDelay: `${index * 100}ms` }}
-                  >
-                    <div className="flex-shrink-0 w-16 h-16 mr-6 flex items-center justify-center">
-                      <tool.logo />
-                    </div>
-                    <div className="flex-grow">
-                      <h4 className="text-xl font-semibold text-gray-800 group-hover:text-blue-600 transition-colors duration-300">
-                        {tool.name}
-                      </h4>
-                    </div>
-                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 opacity-0 group-hover:opacity-5 transition-opacity duration-300 -z-10"></div>
-                  </div>
-                ))}
-              </div>
-            </div>
 
-            {/* Cloud & DevOps */}
-            <div className="mb-16">
-              <div className="text-center mb-8">
-                <div className="inline-block bg-gradient-to-r from-orange-500 to-red-500 px-8 py-4 rounded-full shadow-lg transform transition-all duration-300 hover:scale-105">
-                  <h3 className="text-2xl font-bold text-white tracking-wide">Cloud & DevOps</h3>
+              {/* Cloud & DevOps Column */}
+              <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+                <div className="bg-gradient-to-r from-orange-500 to-red-500 px-6 py-4">
+                  <h3 className="text-xl font-bold text-white text-center">Cloud & DevOps</h3>
+                </div>
+                <div className="p-4 space-y-3">
+                  {[
+                    { name: "AWS", logo: () => (<div className="w-full h-full bg-orange-500 rounded-lg flex items-center justify-center text-white text-sm font-bold">AWS</div>) },
+                    { name: "Docker", logo: () => (<div className="w-full h-full bg-blue-500 rounded-lg flex items-center justify-center text-white text-lg">🐳</div>) },
+                    { name: "Kubernetes", logo: () => (<div className="w-full h-full bg-blue-600 rounded-lg flex items-center justify-center text-white text-sm font-bold">K8s</div>) },
+                    { name: "Jenkins", logo: () => (<div className="w-full h-full bg-blue-800 rounded-lg flex items-center justify-center text-white text-sm font-bold">J</div>) },
+                    { name: "Terraform", logo: () => (<div className="w-full h-full bg-purple-600 rounded-lg flex items-center justify-center text-white text-sm font-bold">TF</div>) },
+                    { name: "Git", logo: () => (<div className="w-full h-full bg-red-600 rounded-lg flex items-center justify-center text-white text-sm font-bold">Git</div>) }
+                  ].map((tool, index) => (
+                    <div
+                      key={tool.name}
+                      className="group flex items-center p-4 bg-gray-50 hover:bg-white rounded-xl border border-gray-100 hover:border-orange-200 hover:shadow-md transition-all duration-300 transform hover:-translate-y-1"
+                      style={{ animationDelay: `${index * 100}ms` }}
+                    >
+                      <div className="flex-shrink-0 w-10 h-10 mr-4 flex items-center justify-center">
+                        <tool.logo />
+                      </div>
+                      <div className="flex-grow">
+                        <h4 className="text-lg font-semibold text-gray-800 group-hover:text-orange-600 transition-colors duration-300">
+                          {tool.name}
+                        </h4>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
-              <div className="flex flex-col space-y-4">
-                {[
-                  { name: "AWS", logo: () => (<div className="w-full h-full bg-orange-500 rounded-lg flex items-center justify-center text-white text-lg font-bold">AWS</div>) },
-                  { name: "Docker", logo: () => (<div className="w-full h-full bg-blue-500 rounded-lg flex items-center justify-center text-white text-2xl">🐳</div>) },
-                  { name: "Kubernetes", logo: () => (<div className="w-full h-full bg-blue-600 rounded-lg flex items-center justify-center text-white text-lg font-bold">K8s</div>) },
-                  { name: "Jenkins", logo: () => (<div className="w-full h-full bg-blue-800 rounded-lg flex items-center justify-center text-white text-lg font-bold">J</div>) },
-                  { name: "Terraform", logo: () => (<div className="w-full h-full bg-purple-600 rounded-lg flex items-center justify-center text-white text-lg font-bold">TF</div>) },
-                  { name: "Git", logo: () => (<div className="w-full h-full bg-red-600 rounded-lg flex items-center justify-center text-white text-lg font-bold">Git</div>) }
-                ].map((tool, index) => (
-                  <div
-                    key={tool.name}
-                    className="group flex items-center p-6 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-[1.02] max-w-md mx-auto w-full"
-                    style={{ animationDelay: `${index * 100}ms` }}
-                  >
-                    <div className="flex-shrink-0 w-16 h-16 mr-6 flex items-center justify-center">
-                      <tool.logo />
-                    </div>
-                    <div className="flex-grow">
-                      <h4 className="text-xl font-semibold text-gray-800 group-hover:text-orange-600 transition-colors duration-300">
-                        {tool.name}
-                      </h4>
-                    </div>
-                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-orange-500 to-red-500 opacity-0 group-hover:opacity-5 transition-opacity duration-300 -z-10"></div>
-                  </div>
-                ))}
-              </div>
-            </div>
 
-            {/* Machine Learning & AI */}
-            <div className="mb-16">
-              <div className="text-center mb-8">
-                <div className="inline-block bg-gradient-to-r from-green-500 to-teal-500 px-8 py-4 rounded-full shadow-lg transform transition-all duration-300 hover:scale-105">
-                  <h3 className="text-2xl font-bold text-white tracking-wide">Machine Learning & AI</h3>
+              {/* Machine Learning & AI Column */}
+              <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+                <div className="bg-gradient-to-r from-green-500 to-teal-500 px-6 py-4">
+                  <h3 className="text-xl font-bold text-white text-center">Machine Learning & AI</h3>
+                </div>
+                <div className="p-4 space-y-3">
+                  {[
+                    { name: "TensorFlow", logo: () => (<div className="w-full h-full bg-orange-500 rounded-lg flex items-center justify-center text-white text-sm font-bold">TF</div>) },
+                    { name: "PyTorch", logo: () => (<div className="w-full h-full bg-red-600 rounded-lg flex items-center justify-center text-white text-lg">🔥</div>) },
+                    { name: "Scikit-learn", logo: () => (<div className="w-full h-full bg-blue-600 rounded-lg flex items-center justify-center text-white text-xs font-bold">SK</div>) },
+                    { name: "Pandas", logo: () => (<div className="w-full h-full bg-blue-800 rounded-lg flex items-center justify-center text-white text-lg">🐼</div>) },
+                    { name: "OpenAI", logo: () => (<div className="w-full h-full bg-green-600 rounded-lg flex items-center justify-center text-white text-sm font-bold">AI</div>) },
+                    { name: "Hugging Face", logo: () => (<div className="w-full h-full bg-yellow-500 rounded-lg flex items-center justify-center text-white text-lg">🤗</div>) }
+                  ].map((tool, index) => (
+                    <div
+                      key={tool.name}
+                      className="group flex items-center p-4 bg-gray-50 hover:bg-white rounded-xl border border-gray-100 hover:border-green-200 hover:shadow-md transition-all duration-300 transform hover:-translate-y-1"
+                      style={{ animationDelay: `${index * 100}ms` }}
+                    >
+                      <div className="flex-shrink-0 w-10 h-10 mr-4 flex items-center justify-center">
+                        <tool.logo />
+                      </div>
+                      <div className="flex-grow">
+                        <h4 className="text-lg font-semibold text-gray-800 group-hover:text-green-600 transition-colors duration-300">
+                          {tool.name}
+                        </h4>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
-              <div className="flex flex-col space-y-4">
-                {[
-                  { name: "TensorFlow", logo: () => (<div className="w-full h-full bg-orange-500 rounded-lg flex items-center justify-center text-white text-lg font-bold">TF</div>) },
-                  { name: "PyTorch", logo: () => (<div className="w-full h-full bg-red-600 rounded-lg flex items-center justify-center text-white text-2xl">🔥</div>) },
-                  { name: "Scikit-learn", logo: () => (<div className="w-full h-full bg-blue-600 rounded-lg flex items-center justify-center text-white text-sm font-bold">SK</div>) },
-                  { name: "Pandas", logo: () => (<div className="w-full h-full bg-blue-800 rounded-lg flex items-center justify-center text-white text-2xl">🐼</div>) },
-                  { name: "OpenAI", logo: () => (<div className="w-full h-full bg-green-600 rounded-lg flex items-center justify-center text-white text-lg font-bold">AI</div>) },
-                  { name: "Hugging Face", logo: () => (<div className="w-full h-full bg-yellow-500 rounded-lg flex items-center justify-center text-white text-2xl">🤗</div>) }
-                ].map((tool, index) => (
-                  <div
-                    key={tool.name}
-                    className="group flex items-center p-6 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-[1.02] max-w-md mx-auto w-full"
-                    style={{ animationDelay: `${index * 100}ms` }}
-                  >
-                    <div className="flex-shrink-0 w-16 h-16 mr-6 flex items-center justify-center">
-                      <tool.logo />
+            </div>
+
+            {/* Additional Tools Row */}
+            <div className="grid lg:grid-cols-3 gap-8 mt-8">
+              
+              {/* Databases Column */}
+              <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+                <div className="bg-gradient-to-r from-purple-600 to-pink-600 px-6 py-4">
+                  <h3 className="text-xl font-bold text-white text-center">Databases & Storage</h3>
+                </div>
+                <div className="p-4 space-y-3">
+                  {[
+                    { name: "PostgreSQL", logo: () => (<div className="w-full h-full bg-blue-800 rounded-lg flex items-center justify-center text-white text-lg">🐘</div>) },
+                    { name: "MongoDB", logo: () => (<div className="w-full h-full bg-green-700 rounded-lg flex items-center justify-center text-white text-lg">🍃</div>) },
+                    { name: "Redis", logo: () => (<div className="w-full h-full bg-red-600 rounded-lg flex items-center justify-center text-white text-sm font-bold">Redis</div>) },
+                    { name: "DynamoDB", logo: () => (<div className="w-full h-full bg-orange-600 rounded-lg flex items-center justify-center text-white text-xs font-bold">DB</div>) }
+                  ].map((tool, index) => (
+                    <div
+                      key={tool.name}
+                      className="group flex items-center p-4 bg-gray-50 hover:bg-white rounded-xl border border-gray-100 hover:border-purple-200 hover:shadow-md transition-all duration-300 transform hover:-translate-y-1"
+                      style={{ animationDelay: `${index * 100}ms` }}
+                    >
+                      <div className="flex-shrink-0 w-10 h-10 mr-4 flex items-center justify-center">
+                        <tool.logo />
+                      </div>
+                      <div className="flex-grow">
+                        <h4 className="text-lg font-semibold text-gray-800 group-hover:text-purple-600 transition-colors duration-300">
+                          {tool.name}
+                        </h4>
+                      </div>
                     </div>
-                    <div className="flex-grow">
-                      <h4 className="text-xl font-semibold text-gray-800 group-hover:text-green-600 transition-colors duration-300">
-                        {tool.name}
-                      </h4>
-                    </div>
-                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-green-500 to-teal-500 opacity-0 group-hover:opacity-5 transition-opacity duration-300 -z-10"></div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
-          </div>
 
-          {/* Core Skills Summary */}
-          <div className="mt-20">
-            <div className="text-center mb-12">
-              <h3 className="text-2xl font-bold text-text mb-4">Core Competencies</h3>
-            </div>
-            
-            <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-              {/* Programming Skills */}
-              <Card className="relative overflow-hidden border border-gray-100 bg-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                <CardContent className="p-6">
-                  <div className="flex items-center mb-4">
-                    <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-3 rounded-xl mr-3">
-                      <div className="text-white text-xl">💻</div>
+              {/* Web Technologies Column */}
+              <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+                <div className="bg-gradient-to-r from-cyan-600 to-blue-600 px-6 py-4">
+                  <h3 className="text-xl font-bold text-white text-center">Web Technologies</h3>
+                </div>
+                <div className="p-4 space-y-3">
+                  {[
+                    { name: "React", logo: () => (<div className="w-full h-full bg-blue-500 rounded-lg flex items-center justify-center text-white text-lg">⚛️</div>) },
+                    { name: "Node.js", logo: () => (<div className="w-full h-full bg-green-600 rounded-lg flex items-center justify-center text-white text-lg">💚</div>) },
+                    { name: "Express", logo: () => (<div className="w-full h-full bg-gray-700 rounded-lg flex items-center justify-center text-white text-xs font-bold">EXP</div>) },
+                    { name: "REST API", logo: () => (<div className="w-full h-full bg-blue-700 rounded-lg flex items-center justify-center text-white text-xs font-bold">API</div>) }
+                  ].map((tool, index) => (
+                    <div
+                      key={tool.name}
+                      className="group flex items-center p-4 bg-gray-50 hover:bg-white rounded-xl border border-gray-100 hover:border-cyan-200 hover:shadow-md transition-all duration-300 transform hover:-translate-y-1"
+                      style={{ animationDelay: `${index * 100}ms` }}
+                    >
+                      <div className="flex-shrink-0 w-10 h-10 mr-4 flex items-center justify-center">
+                        <tool.logo />
+                      </div>
+                      <div className="flex-grow">
+                        <h4 className="text-lg font-semibold text-gray-800 group-hover:text-cyan-600 transition-colors duration-300">
+                          {tool.name}
+                        </h4>
+                      </div>
                     </div>
-                    <h4 className="text-lg font-bold text-text">Programming</h4>
-                  </div>
-                  <div className="space-y-3">
-                    {skills.programming.map((skill, index) => (
-                      <SkillBar
-                        key={skill.name}
-                        skill={skill.name}
-                        percentage={skill.level}
-                        color="bg-gradient-to-r from-blue-600 to-purple-600"
-                        delay={index * 200}
-                      />
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
+                  ))}
+                </div>
+              </div>
 
-              {/* Cloud Skills */}
-              <Card className="relative overflow-hidden border border-gray-100 bg-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                <CardContent className="p-6">
-                  <div className="flex items-center mb-4">
-                    <div className="bg-gradient-to-r from-orange-600 to-red-600 p-3 rounded-xl mr-3">
-                      <div className="text-white text-xl">☁️</div>
+              {/* Business Intelligence Column */}
+              <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+                <div className="bg-gradient-to-r from-amber-600 to-orange-600 px-6 py-4">
+                  <h3 className="text-xl font-bold text-white text-center">Business Intelligence</h3>
+                </div>
+                <div className="p-4 space-y-3">
+                  {[
+                    { name: "Power BI", logo: () => (<div className="w-full h-full bg-yellow-500 rounded-lg flex items-center justify-center text-white text-xs font-bold">PBI</div>) },
+                    { name: "Tableau", logo: () => (<div className="w-full h-full bg-blue-600 rounded-lg flex items-center justify-center text-white text-xs font-bold">TAB</div>) },
+                    { name: "Excel", logo: () => (<div className="w-full h-full bg-green-600 rounded-lg flex items-center justify-center text-white text-xs font-bold">XLS</div>) },
+                    { name: "Streamlit", logo: () => (<div className="w-full h-full bg-red-500 rounded-lg flex items-center justify-center text-white text-xs font-bold">ST</div>) }
+                  ].map((tool, index) => (
+                    <div
+                      key={tool.name}
+                      className="group flex items-center p-4 bg-gray-50 hover:bg-white rounded-xl border border-gray-100 hover:border-amber-200 hover:shadow-md transition-all duration-300 transform hover:-translate-y-1"
+                      style={{ animationDelay: `${index * 100}ms` }}
+                    >
+                      <div className="flex-shrink-0 w-10 h-10 mr-4 flex items-center justify-center">
+                        <tool.logo />
+                      </div>
+                      <div className="flex-grow">
+                        <h4 className="text-lg font-semibold text-gray-800 group-hover:text-amber-600 transition-colors duration-300">
+                          {tool.name}
+                        </h4>
+                      </div>
                     </div>
-                    <h4 className="text-lg font-bold text-text">Cloud & DevOps</h4>
-                  </div>
-                  <div className="space-y-3">
-                    {skills.cloud.map((skill, index) => (
-                      <SkillBar
-                        key={skill.name}
-                        skill={skill.name}
-                        percentage={skill.level}
-                        color="bg-gradient-to-r from-orange-600 to-red-600"
-                        delay={index * 200}
-                      />
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* ML Skills */}
-              <Card className="relative overflow-hidden border border-gray-100 bg-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                <CardContent className="p-6">
-                  <div className="flex items-center mb-4">
-                    <div className="bg-gradient-to-r from-green-600 to-teal-600 p-3 rounded-xl mr-3">
-                      <div className="text-white text-xl">🧠</div>
-                    </div>
-                    <h4 className="text-lg font-bold text-text">Machine Learning</h4>
-                  </div>
-                  <div className="space-y-3">
-                    {skills.ml.map((skill, index) => (
-                      <SkillBar
-                        key={skill.name}
-                        skill={skill.name}
-                        percentage={skill.level}
-                        color="bg-gradient-to-r from-green-600 to-teal-600"
-                        delay={index * 200}
-                      />
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
 
