@@ -4,7 +4,7 @@ import Navigation from "@/components/Navigation";
 import Hero3D from "@/components/Hero3D";
 import ScrollDriftElements from "@/components/ScrollDriftElements";
 import SkillBar from "@/components/SkillBar";
-import ExperienceTimeline from "@/components/ExperienceTimeline";
+import ExperienceCard from "@/components/ExperienceCard";
 import ProjectCard from "@/components/ProjectCard";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -37,7 +37,42 @@ const Home = () => {
     ],
   };
 
-
+  const experiences = [
+    {
+      title: "Software Developer",
+      company: "Mettles Solution LLC - CMS Client",
+      location: "Remote",
+      duration: "Oct 2024 - Present",
+      responsibilities: [
+        "Developed AI-powered medical document review system for CMS-compliant analysis using OCR and ML models",
+        "Built scalable RESTful APIs with Flask, Docker, Kubernetes, and AWS services (S3, SQS, SNS, CloudWatch)",
+        "Conducted security checks using SonarQube and OWASP, resolving 100-150 code smells and bugs",
+        "Created AI tool for Review Contractors to track submissions and visualize document review statuses",
+      ],
+      isCurrentRole: true,
+    },
+    {
+      title: "Software Engineer",
+      company: "Varenya Inc",
+      location: "Remote",
+      duration: "Jun 2024 - Sept 2024",
+      responsibilities: [
+        "Analyzed 10M+ patient records using SQL and Python, improving operational efficiency by 15%",
+        "Built predictive models achieving 75% accuracy in readmission forecasting, reducing costs by $5M",
+        "Developed machine learning models improving readmission prediction accuracy by 20%",
+      ],
+    },
+    {
+      title: "Business Intelligence Analyst",
+      company: "Free Float LLC - Northeastern University",
+      location: "Boston, MA",
+      duration: "Apr 2023 - Jul 2023",
+      responsibilities: [
+        "Developed predictive model for board of directors performance with 88% accuracy",
+        "Conducted comprehensive research on director performance traits and board effectiveness",
+      ],
+    },
+  ];
 
   const projects = [
     {
@@ -231,9 +266,24 @@ const Home = () => {
       </section>
 
       {/* Experience Section */}
-      <section id="experience" className="py-20 bg-gradient-to-b from-slate-900 to-slate-800">
+      <section id="experience" className="py-20 bg-neutral-custom">
         <div className="container mx-auto px-6">
-          <ExperienceTimeline />
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-text mb-4">Professional Experience</h2>
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+              A journey through impactful roles in software engineering, machine learning, and data analytics
+            </p>
+          </div>
+          
+          <div className="max-w-4xl mx-auto">
+            {experiences.map((experience, index) => (
+              <ExperienceCard
+                key={index}
+                {...experience}
+                delay={index * 200}
+              />
+            ))}
+          </div>
         </div>
       </section>
 
