@@ -7,7 +7,6 @@ import SkillBar from "@/components/SkillBar";
 import TimelineExperience from "@/components/TimelineExperience";
 import ProjectCard from "@/components/ProjectCard";
 import AchievementsVisualization from "@/components/AchievementsVisualization";
-import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -86,19 +85,6 @@ const Home = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Simple navigation bar for testing */}
-      <div className="fixed top-4 left-4 z-50 flex space-x-4">
-        <Link href="/" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors">
-          Home
-        </Link>
-        <Link href="/about" className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition-colors">
-          About
-        </Link>
-        <Link href="/contact" className="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600 transition-colors">
-          Contact
-        </Link>
-      </div>
-
       <Navigation />
       <ScrollDriftElements />
 
