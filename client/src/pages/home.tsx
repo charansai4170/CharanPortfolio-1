@@ -18,67 +18,78 @@ const Home = () => {
   useEffect(() => {
     setIsVisible(true);
 
-    // Typewriter animation
-    const prefixes = ["Software", "Machine Learning", "DevOps", "Cloud", "Data"];
-    const specialCase = "Data Scientist";
-    let currentIndex = 0;
-    let currentText = "";
-    let isDeleting = false;
-    let isSpecialCase = false;
+    // Typewriter animation with better element checking
+    const startTypewriter = () => {
+      const prefixes = ["Software", "Machine Learning", "DevOps", "Cloud", "Data"];
+      const specialCase = "Data Scientist";
+      let currentIndex = 0;
+      let currentText = "";
+      let isDeleting = false;
+      let isSpecialCase = false;
 
-    const typewriterElement = document.getElementById('typewriter-prefix');
-    
-    function typeWriter() {
-      if (!typewriterElement) return;
-
-      const targetText = isSpecialCase ? specialCase : prefixes[currentIndex];
+      const typewriterElement = document.getElementById('typewriter-prefix');
       
-      if (!isDeleting) {
-        // Typing
-        currentText = targetText.substring(0, currentText.length + 1);
-        typewriterElement.textContent = currentText;
-        
-        if (currentText === targetText) {
-          // Finished typing, pause then start deleting
-          setTimeout(() => {
-            isDeleting = true;
-            typeWriter();
-          }, 1500); // Pause duration
-          return;
-        }
-      } else {
-        // Deleting
-        currentText = targetText.substring(0, currentText.length - 1);
-        typewriterElement.textContent = currentText;
-        
-        if (currentText === "") {
-          // Finished deleting
-          isDeleting = false;
-          
-          if (isSpecialCase) {
-            // Reset to beginning after "Data Scientist"
-            isSpecialCase = false;
-            currentIndex = 0;
-          } else if (currentIndex === prefixes.length - 1) {
-            // After "Data", show "Data Scientist"
-            isSpecialCase = true;
-          } else {
-            // Move to next prefix
-            currentIndex++;
-          }
-          
-          setTimeout(typeWriter, 500); // Pause before next word
-          return;
-        }
+      if (!typewriterElement) {
+        console.log('Typewriter element not found, retrying...');
+        setTimeout(startTypewriter, 100);
+        return;
       }
-      
-      // Continue typing/deleting
-      const speed = isDeleting ? 50 : 100; // Deleting is faster
-      setTimeout(typeWriter, speed);
-    }
 
-    // Start the animation after a brief delay
-    setTimeout(typeWriter, 1000);
+      console.log('Typewriter element found, starting animation');
+      
+      function typeWriter() {
+        const targetText = isSpecialCase ? specialCase : prefixes[currentIndex];
+        
+        if (!isDeleting) {
+          // Typing
+          currentText = targetText.substring(0, currentText.length + 1);
+          typewriterElement.textContent = currentText;
+          
+          if (currentText === targetText) {
+            // Finished typing, pause then start deleting
+            setTimeout(() => {
+              isDeleting = true;
+              typeWriter();
+            }, 1500); // Pause duration
+            return;
+          }
+        } else {
+          // Deleting
+          currentText = targetText.substring(0, currentText.length - 1);
+          typewriterElement.textContent = currentText;
+          
+          if (currentText === "") {
+            // Finished deleting
+            isDeleting = false;
+            
+            if (isSpecialCase) {
+              // Reset to beginning after "Data Scientist"
+              isSpecialCase = false;
+              currentIndex = 0;
+            } else if (currentIndex === prefixes.length - 1) {
+              // After "Data", show "Data Scientist"
+              isSpecialCase = true;
+            } else {
+              // Move to next prefix
+              currentIndex++;
+            }
+            
+            setTimeout(typeWriter, 500); // Pause before next word
+            return;
+          }
+        }
+        
+        // Continue typing/deleting
+        const speed = isDeleting ? 50 : 100; // Deleting is faster
+        setTimeout(typeWriter, speed);
+      }
+
+      // Start the animation
+      typeWriter();
+    };
+
+    // Start the typewriter with a delay
+    setTimeout(startTypewriter, 1000);
   }, []);
 
   const skills = {
