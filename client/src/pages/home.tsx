@@ -18,11 +18,11 @@ const Home = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
+  
+  const prefixes = ["Software", "Machine Learning", "DevOps", "Cloud", "Data"];
 
   useEffect(() => {
     setIsVisible(true);
-
-    const prefixes = ["Software", "Machine Learning", "DevOps", "Cloud", "Data"];
     const specialCase = "Data Scientist";
 
     let timeout;
@@ -30,31 +30,31 @@ const Home = () => {
     const typeEffect = () => {
       // Determine if we're showing the special case (Data Scientist)
       const isSpecialCase = currentIndex >= prefixes.length;
-      const currentWord = isSpecialCase ? specialCase : `${prefixes[currentIndex]} Engineer`;
+      const targetPrefix = isSpecialCase ? specialCase : prefixes[currentIndex];
       
       if (isPaused) {
         timeout = setTimeout(() => {
           setIsPaused(false);
           setIsDeleting(true);
-        }, 800); // Shorter pause
+        }, 600); // Faster pause
         return;
       }
 
       if (!isDeleting) {
-        // Typing
-        if (currentText.length < currentWord.length) {
-          setCurrentText(currentWord.substring(0, currentText.length + 1));
-          timeout = setTimeout(typeEffect, 60); // Faster typing
+        // Typing only the prefix part
+        if (currentText.length < targetPrefix.length) {
+          setCurrentText(targetPrefix.substring(0, currentText.length + 1));
+          timeout = setTimeout(typeEffect, 40); // Much faster typing
         } else {
           // Finished typing, pause
           setIsPaused(true);
           timeout = setTimeout(typeEffect, 10);
         }
       } else {
-        // Deleting
+        // Deleting only the prefix part (keeping "Engineer" constant)
         if (currentText.length > 0) {
-          setCurrentText(currentWord.substring(0, currentText.length - 1));
-          timeout = setTimeout(typeEffect, 30); // Faster deleting
+          setCurrentText(targetPrefix.substring(0, currentText.length - 1));
+          timeout = setTimeout(typeEffect, 20); // Much faster deleting
         } else {
           // Finished deleting, move to next word
           setIsDeleting(false);
@@ -65,13 +65,13 @@ const Home = () => {
             // Move to next prefix, or to special case after "Data"
             setCurrentIndex((prev) => prev + 1);
           }
-          timeout = setTimeout(typeEffect, 200); // Shorter pause between words
+          timeout = setTimeout(typeEffect, 150); // Faster pause between words
         }
       }
     };
 
     // Start animation after component mounts
-    timeout = setTimeout(typeEffect, 500);
+    timeout = setTimeout(typeEffect, 300);
 
     return () => clearTimeout(timeout);
   }, [currentText, currentIndex, isDeleting, isPaused]);
@@ -153,6 +153,7 @@ const Home = () => {
               </h1>
               <h2 className="text-2xl md:text-3xl font-semibold mb-6 h-12 flex items-center">
                 <span className="gradient-text-animated">{currentText}</span>
+                {currentIndex < 5 && <span className="text-text"> Engineer</span>}
                 <span className="cursor-blink ml-1">|</span>
               </h2>
               <p className="text-gray-600 text-lg leading-relaxed mb-8 max-w-lg">
