@@ -407,7 +407,10 @@ const Navigation = () => {
                         className="mb-1"
                       >
                         <motion.button
-                          onClick={() => scrollToSection(item.section)}
+                          onClick={() => {
+                            scrollToSection(item.section);
+                            setIsMobileMenuOpen(false);
+                          }}
                           whileHover={{ 
                             scale: 1.02,
                             x: 3
@@ -457,41 +460,12 @@ const Navigation = () => {
                     );
                   })}
                 </div>
-
-
               </motion.div>
             </>
           )}
         </AnimatePresence>
 
-        {/* Mobile Navigation Menu */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden mt-4 mx-6">
-            <div className="bg-white/90 backdrop-blur-xl border border-gray-200/50 rounded-2xl p-4 shadow-lg">
-              <div className="flex flex-col space-y-2">
-                {navigationItems.map((item) => {
-                  const IconComponent = item.icon;
-                  const isActive = activeNavItem === item.section;
-                  
-                  return (
-                    <button
-                      key={item.section}
-                      onClick={() => scrollToSection(item.section)}
-                      className={`flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 font-medium text-left ${
-                        isActive 
-                          ? 'text-primary-custom bg-primary-custom/10' 
-                          : 'text-gray-600 hover:text-primary-custom hover:bg-gray-50'
-                      }`}
-                    >
-                      <IconComponent className="h-4 w-4" />
-                      <span>{item.label}</span>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        )}
+
       </div>
     </nav>
   );
