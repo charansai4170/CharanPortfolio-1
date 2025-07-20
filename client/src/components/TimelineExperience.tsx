@@ -266,7 +266,7 @@ const TimelineExperience = () => {
   };
 
   return (
-    <section id="experience" className="py-20 bg-gradient-to-br from-gray-50 to-white">
+    <section id="experience" className="py-20 bg-white">
       <div className="container mx-auto px-6">
         <motion.div
           ref={containerRef}

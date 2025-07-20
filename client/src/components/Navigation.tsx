@@ -65,12 +65,12 @@ const Navigation = () => {
   };
 
   const navigationItems = [
-    { label: "Home", section: "home", icon: Home },
-    { label: "About", section: "about", icon: User },
-    { label: "Experience", section: "experience", icon: Briefcase },
-    { label: "Projects", section: "projects", icon: FolderOpen },
-    { label: "Skills", section: "skills", icon: Settings },
-    { label: "Contact", section: "contact", icon: Mail },
+    { label: "Home", section: "home", icon: Home, route: "/" },
+    { label: "About", section: "about", icon: User, route: "#about" },
+    { label: "Experience", section: "experience", icon: Briefcase, route: "#experience" },
+    { label: "Projects", section: "projects", icon: FolderOpen, route: "#projects" },
+    { label: "Skills", section: "skills", icon: Settings, route: "#skills" },
+    { label: "Contact", section: "contact", icon: Mail, route: "#contact" },
   ];
 
   return (

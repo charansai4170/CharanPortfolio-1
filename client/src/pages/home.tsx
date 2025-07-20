@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { Download, Mail, Phone, MapPin, Linkedin, Github, Award, GraduationCap, Send } from "lucide-react";
 import Navigation from "@/components/Navigation";
-import Hero3D from "@/components/Hero3D";
-import ScrollDriftElements from "@/components/ScrollDriftElements";
+
 import SkillBar from "@/components/SkillBar";
 import TimelineExperience from "@/components/TimelineExperience";
 import ProjectCard from "@/components/ProjectCard";
@@ -86,12 +85,10 @@ const Home = () => {
   return (
     <div className="min-h-screen">
       <Navigation />
-      <ScrollDriftElements />
 
           {/* Hero Section */}
-      <section id="home" className="min-h-screen flex items-center tech-grid relative overflow-hidden">
-        <Hero3D />
-        <div className="container mx-auto px-6 relative z-10">
+      <section id="home" className="min-h-screen flex items-center relative overflow-hidden bg-white">
+        <div className="container mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className={`${isVisible ? "fade-in-up" : "opacity-0"}`}>
               <h1 className="text-4xl md:text-6xl font-bold text-text mb-6 leading-tight">
@@ -105,7 +102,7 @@ const Home = () => {
                 Expertise in Python, AWS, LLMs, and DevOps tools with focus on intelligent systems for healthcare and enterprise domains.
               </p>
               <div className="flex flex-wrap gap-4 mb-8">
-                <Button className="bg-primary-custom hover:bg-primary-custom/90 text-white glow-animation">
+                <Button className="bg-primary-custom hover:bg-primary-custom/90 text-white">
                   <Download className="h-4 w-4 mr-2" />
                   Download Resume
                 </Button>
@@ -173,7 +170,7 @@ const Home = () => {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 bg-white/80 backdrop-blur-sm">
+      <section id="about" className="py-20 bg-gray-50">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-text mb-4">About <span className="gradient-text">Me</span></h2>
@@ -235,7 +232,7 @@ const Home = () => {
       <TimelineExperience />
 
       {/* Skills Section */}
-      <section id="skills" className="py-20 bg-white/80 backdrop-blur-sm">
+      <section id="skills" className="py-20 bg-white">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-text mb-4">Technical Expertise</h2>
@@ -379,7 +376,7 @@ const Home = () => {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-20 bg-neutral-custom/80 backdrop-blur-sm">
+      <section id="projects" className="py-20 bg-gray-50">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-text mb-4">Featured Projects</h2>
@@ -401,7 +398,7 @@ const Home = () => {
       </section>
 
       {/* Education & Certifications */}
-      <section className="py-20 bg-white/80 backdrop-blur-sm">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-text mb-4">Education & Certifications</h2>
@@ -465,9 +462,8 @@ const Home = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 bg-secondary-custom/80 backdrop-blur-sm text-white relative overflow-hidden">
-        <div className="absolute inset-0 tech-grid opacity-10"></div>
-        <div className="container mx-auto px-6 relative z-10">
+      <section id="contact" className="py-20 bg-gray-900 text-white relative">
+        <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Let's Build Something Amazing</h2>
             <p className="text-gray-300 text-lg max-w-2xl mx-auto">
@@ -523,7 +519,7 @@ const Home = () => {
             </div>
 
             {/* Contact Form */}
-            <Card className="bg-white/5 backdrop-blur-sm border-white/10">
+            <Card className="bg-gray-800 border-gray-700">
               <CardContent className="p-8">
                 <form className="space-y-6">
                   <div>

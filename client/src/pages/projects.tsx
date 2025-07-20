@@ -28,7 +28,7 @@ export default function Projects() {
   ];
 
   return (
-      <div className="min-h-screen py-20">
+      <div className="min-h-screen py-20 bg-white">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h1 className="text-4xl md:text-6xl font-bold text-text mb-6">Projects</h1>
@@ -39,7 +39,7 @@ export default function Projects() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project, index) => (
-              <Card key={index} className="bg-white/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <Card key={index} className="bg-white border shadow-lg hover:shadow-xl transition-shadow duration-300">
                 <CardContent className="p-8">
                   <div className="mb-4">
                     <Badge variant="secondary" className="mb-2">
@@ -82,7 +82,7 @@ export default function Projects() {
           </div>
 
           <div className="mt-16 text-center">
-            <Card className="bg-white/90 backdrop-blur-sm border-0 shadow-xl max-w-2xl mx-auto">
+            <Card className="bg-white border shadow-xl max-w-2xl mx-auto">
               <CardContent className="p-8">
                 <h2 className="text-2xl font-bold mb-4">Want to see more?</h2>
                 <p className="text-gray-600 mb-6">

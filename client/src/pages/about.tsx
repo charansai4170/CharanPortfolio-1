@@ -2,7 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { User, Award, Code } from "lucide-react";
 export default function About() {
   return (
-      <div className="min-h-screen py-20">
+      <div className="min-h-screen py-20 bg-white">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h1 className="text-4xl md:text-6xl font-bold text-text mb-6">About Me</h1>
@@ -12,7 +12,7 @@ export default function About() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 mb-16">
-            <Card className="bg-white/80 backdrop-blur-sm border-0 shadow-lg">
+            <Card className="bg-white border shadow-lg">
               <CardContent className="p-8 text-center">
                 <User className="h-12 w-12 text-primary-custom mx-auto mb-4" />
                 <h3 className="text-xl font-bold mb-2">Background</h3>
@@ -20,7 +20,7 @@ export default function About() {
               </CardContent>
             </Card>
 
-            <Card className="bg-white/80 backdrop-blur-sm border-0 shadow-lg">
+            <Card className="bg-white border shadow-lg">
               <CardContent className="p-8 text-center">
                 <Award className="h-12 w-12 text-primary-custom mx-auto mb-4" />
                 <h3 className="text-xl font-bold mb-2">Expertise</h3>
@@ -28,7 +28,7 @@ export default function About() {
               </CardContent>
             </Card>
 
-            <Card className="bg-white/80 backdrop-blur-sm border-0 shadow-lg">
+            <Card className="bg-white border shadow-lg">
               <CardContent className="p-8 text-center">
                 <Code className="h-12 w-12 text-primary-custom mx-auto mb-4" />
                 <h3 className="text-xl font-bold mb-2">Technologies</h3>
@@ -38,7 +38,7 @@ export default function About() {
           </div>
 
           <div className="max-w-4xl mx-auto">
-            <Card className="bg-white/90 backdrop-blur-sm border-0 shadow-xl">
+            <Card className="bg-white border shadow-xl">
               <CardContent className="p-12">
                 <h2 className="text-3xl font-bold mb-6 text-center">My Journey</h2>
                 <div className="prose prose-lg max-w-none">

@@ -76,13 +76,6 @@
     background-clip: text;
   }
 
-  .tech-grid {
-    background-image: 
-      linear-gradient(rgba(37, 99, 235, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(37, 99, 235, 0.03) 1px, transparent 1px);
-    background-size: 20px 20px;
-  }
-
   .card-hover {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
@@ -96,16 +89,9 @@
     transition: width 2s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .floating-animation {
-    animation: float 6s ease-in-out infinite;
-  }
-
-  .glow-animation {
-    animation: glow 2s ease-in-out infinite alternate;
-  }
-
   .fade-in-up {
-    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
