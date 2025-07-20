@@ -362,22 +362,22 @@ const Navigation = () => {
                 dragConstraints={{ left: 0, right: 0 }}
                 dragElastic={0.2}
                 onPanEnd={handlePanEnd}
-                className="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white/95 backdrop-blur-xl border-l border-gray-200/50 shadow-2xl z-50"
+                className="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white/20 backdrop-blur-2xl border-l border-white/10 shadow-2xl z-50"
                 onTouchStart={handleTouchStart}
                 onTouchMove={handleTouchMove}
                 onTouchEnd={handleTouchEnd}
               >
                 {/* Menu Header */}
-                <div className="flex items-center justify-between p-6 border-b border-gray-100">
+                <div className="flex items-center justify-between p-6 border-b border-white/10">
                   <div className="flex items-center space-x-3">
                     <Logo size={40} />
-                    <span className="text-lg font-semibold text-gray-800">Menu</span>
+                    <span className="text-lg font-semibold text-gray-900">Menu</span>
                   </div>
                   <Button
                     variant="ghost"
                     size="icon"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="rounded-full hover:bg-gray-100 touch-target"
+                    className="rounded-full hover:bg-white/20 touch-target text-gray-900 hover:text-gray-700"
                     style={{ minWidth: '44px', minHeight: '44px' }}
                   >
                     <X className="h-5 w-5" />
@@ -405,8 +405,8 @@ const Navigation = () => {
                         className={`
                           w-full flex items-center space-x-4 px-6 py-4 text-left transition-all duration-200 touch-target
                           ${isActive 
-                            ? 'bg-primary-custom/10 border-r-4 border-primary-custom text-primary-custom' 
-                            : 'text-gray-700 hover:bg-gray-50 hover:text-primary-custom'
+                            ? 'bg-white/20 border-r-4 border-primary-custom text-primary-custom' 
+                            : 'text-gray-900 hover:bg-white/10 hover:text-primary-custom'
                           }
                         `}
                         style={{ minHeight: '56px' }}
@@ -415,7 +415,7 @@ const Navigation = () => {
                           p-2 rounded-full transition-colors duration-200
                           ${isActive 
                             ? 'bg-primary-custom text-white' 
-                            : 'bg-gray-100 text-gray-600 group-hover:bg-primary-custom/20'
+                            : 'bg-white/20 text-gray-700 group-hover:bg-primary-custom/20'
                           }
                         `}>
                           <IconComponent className="h-5 w-5" />
@@ -437,12 +437,7 @@ const Navigation = () => {
                   })}
                 </div>
 
-                {/* Bottom Section */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 border-t border-gray-100 bg-white/50">
-                  <p className="text-sm text-gray-500 text-center">
-                    Swipe left to close menu
-                  </p>
-                </div>
+
               </motion.div>
             </>
           )}
