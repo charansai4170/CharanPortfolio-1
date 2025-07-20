@@ -8,11 +8,15 @@ import WhimsicalLoader from "@/components/WhimsicalLoader";
 import InteractiveGradientBackground from "@/components/InteractiveGradientBackground";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
+import About from "@/pages/about";
+import Projects from "@/pages/projects";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/about" component={About} />
+      <Route path="/projects" component={Projects} />
       <Route component={NotFound} />
     </Switch>
   );

@@ -177,7 +177,7 @@ const InteractiveGradientBackground = ({
     <div className="relative min-h-screen overflow-hidden">
       {/* Animated base gradient */}
       <motion.div
-        className="fixed inset-0 z-0"
+        className="fixed inset-0 z-[-1]"
         animate={{
           background: [
             'linear-gradient(135deg, #3b82f6 0%, #0ea5e9 25%, #06b6d4 50%, #10b981 100%)',
@@ -197,7 +197,7 @@ const InteractiveGradientBackground = ({
 
       {/* Mouse-following radial gradient */}
       <motion.div
-        className="fixed inset-0 z-0 pointer-events-none"
+        className="fixed inset-0 z-[-1] pointer-events-none"
         style={{
           background: `radial-gradient(circle 400px at ${mousePosition.x * 100}% ${mousePosition.y * 100}%, rgba(59, 130, 246, 0.8) 0%, rgba(14, 165, 233, 0.4) 30%, transparent 70%)`,
           opacity: 0.8
@@ -214,7 +214,7 @@ const InteractiveGradientBackground = ({
 
       {/* Interactive gradient overlay */}
       <motion.div
-        className="fixed inset-0 z-0 transition-all duration-500"
+        className="fixed inset-0 z-[-1] transition-all duration-500"
         style={{
           background: createGradient(),
           opacity: 0.3
@@ -222,7 +222,7 @@ const InteractiveGradientBackground = ({
       />
 
       {/* Floating particles */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
+      <div className="fixed inset-0 z-[-1] pointer-events-none">
         {particles.map((particle) => (
           <motion.div
             key={particle.id}
@@ -257,7 +257,7 @@ const InteractiveGradientBackground = ({
 
       {/* Mesh gradient overlay - lighter */}
       <div 
-        className="fixed inset-0 z-0 opacity-10"
+        className="fixed inset-0 z-[-1] opacity-10"
         style={{
           background: `
             radial-gradient(circle at 20% 80%, rgba(219, 234, 254, 0.2) 0%, transparent 50%),

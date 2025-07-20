@@ -173,7 +173,7 @@ const Home = () => {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 bg-white">
+      <section id="about" className="py-20 bg-white/80 backdrop-blur-sm">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-text mb-4">About <span className="gradient-text">Me</span></h2>
@@ -235,7 +235,7 @@ const Home = () => {
       <TimelineExperience />
 
       {/* Skills Section */}
-      <section id="skills" className="py-20 bg-white">
+      <section id="skills" className="py-20 bg-white/80 backdrop-blur-sm">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-text mb-4">Technical Expertise</h2>
@@ -379,7 +379,7 @@ const Home = () => {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-20 bg-neutral-custom">
+      <section id="projects" className="py-20 bg-neutral-custom/80 backdrop-blur-sm">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-text mb-4">Featured Projects</h2>
@@ -401,7 +401,7 @@ const Home = () => {
       </section>
 
       {/* Education & Certifications */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white/80 backdrop-blur-sm">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-text mb-4">Education & Certifications</h2>
@@ -465,7 +465,7 @@ const Home = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 bg-secondary-custom text-white relative overflow-hidden">
+      <section id="contact" className="py-20 bg-secondary-custom/80 backdrop-blur-sm text-white relative overflow-hidden">
         <div className="absolute inset-0 tech-grid opacity-10"></div>
         <div className="container mx-auto px-6 relative z-10">
           <div className="text-center mb-16">
