@@ -67,8 +67,14 @@ const Navigation = () => {
   };
 
   const handleLogoClick = () => {
-    // Use the same scrollToSection function as navigation items
-    scrollToSection('home');
+    // Scroll to absolute top of page instead of home section
+    window.scrollTo({ 
+      top: 0, 
+      left: 0, 
+      behavior: 'smooth' 
+    });
+    setActiveNavItem('home');
+    setIsMobileMenuOpen(false);
     // Optional: Add a small delay then refresh if needed
     setTimeout(() => {
       window.location.reload();
