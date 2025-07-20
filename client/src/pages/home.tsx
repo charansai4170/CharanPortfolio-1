@@ -94,87 +94,24 @@ const Home = () => {
     ],
   };
 
-  // Interactive tool icons with animations
-  const toolCategories = [
-    {
-      title: "Programming Languages",
-      color: "from-blue-600 to-purple-600",
-      bgColor: "from-blue-50 to-purple-50",
-      tools: [
-        { name: "Python", icon: "🐍", description: "Data Science & Backend" },
-        { name: "JavaScript", icon: "⚡", description: "Full Stack Development" },
-        { name: "TypeScript", icon: "📘", description: "Type-safe Development" },
-        { name: "Java", icon: "☕", description: "Enterprise Applications" },
-        { name: "C++", icon: "⚙️", description: "System Programming" },
-        { name: "SQL", icon: "🗃️", description: "Database Management" }
-      ]
-    },
-    {
-      title: "Cloud & DevOps",
-      color: "from-orange-600 to-red-600",
-      bgColor: "from-orange-50 to-red-50",
-      tools: [
-        { name: "AWS", icon: "☁️", description: "Cloud Infrastructure" },
-        { name: "Docker", icon: "🐳", description: "Containerization" },
-        { name: "Kubernetes", icon: "⚓", description: "Orchestration" },
-        { name: "Jenkins", icon: "🔧", description: "CI/CD Pipeline" },
-        { name: "Terraform", icon: "🏗️", description: "Infrastructure as Code" },
-        { name: "Git", icon: "📝", description: "Version Control" }
-      ]
-    },
-    {
-      title: "Machine Learning & AI",
-      color: "from-green-600 to-teal-600",
-      bgColor: "from-green-50 to-teal-50",
-      tools: [
-        { name: "TensorFlow", icon: "🧠", description: "Deep Learning" },
-        { name: "PyTorch", icon: "🔥", description: "Neural Networks" },
-        { name: "Scikit-learn", icon: "📊", description: "Machine Learning" },
-        { name: "Pandas", icon: "🐼", description: "Data Analysis" },
-        { name: "OpenAI API", icon: "🤖", description: "Large Language Models" },
-        { name: "Hugging Face", icon: "🤗", description: "NLP Models" }
-      ]
-    },
-    {
-      title: "Databases & Storage",
-      color: "from-purple-600 to-pink-600",
-      bgColor: "from-purple-50 to-pink-50",
-      tools: [
-        { name: "PostgreSQL", icon: "🐘", description: "Relational Database" },
-        { name: "MongoDB", icon: "🍃", description: "NoSQL Database" },
-        { name: "Redis", icon: "🔴", description: "In-memory Cache" },
-        { name: "DynamoDB", icon: "⚡", description: "Serverless Database" },
-        { name: "FAISS", icon: "🔍", description: "Vector Search" },
-        { name: "Pinecone", icon: "🌲", description: "Vector Database" }
-      ]
-    },
-    {
-      title: "Web Technologies",
-      color: "from-cyan-600 to-blue-600",
-      bgColor: "from-cyan-50 to-blue-50",
-      tools: [
-        { name: "React", icon: "⚛️", description: "Frontend Library" },
-        { name: "Node.js", icon: "💚", description: "Backend Runtime" },
-        { name: "Express", icon: "🚀", description: "Web Framework" },
-        { name: "REST API", icon: "🌐", description: "API Architecture" },
-        { name: "GraphQL", icon: "📈", description: "Query Language" },
-        { name: "Streamlit", icon: "📊", description: "Data Apps" }
-      ]
-    },
-    {
-      title: "Business Intelligence",
-      color: "from-amber-600 to-orange-600",
-      bgColor: "from-amber-50 to-orange-50",
-      tools: [
-        { name: "Power BI", icon: "📊", description: "Microsoft BI Tool" },
-        { name: "Tableau", icon: "📈", description: "Data Visualization" },
-        { name: "Excel", icon: "📑", description: "Data Analysis" },
-        { name: "Looker", icon: "👀", description: "Business Intelligence" },
-        { name: "Apache Spark", icon: "⚡", description: "Big Data Processing" },
-        { name: "Databricks", icon: "🧱", description: "Unified Analytics" }
-      ]
-    }
-  ];
+  // Logo Components as inline SVGs
+  const PythonLogo = () => (
+    <svg viewBox="0 0 24 24" className="w-full h-full">
+      <path fill="#3776ab" d="M14.25.18l.9.2.73.26.59.3.45.32.34.34.25.34.16.33.1.3.04.26.02.2-.01.13V8.5l-.05.63-.13.55-.21.46-.26.38-.3.31-.33.25-.35.19-.35.14-.33.1-.3.07-.26.04-.21.02H8.77l-.69.05-.59.14-.5.22-.41.27-.33.32-.27.35-.2.36-.15.37-.1.35-.07.32-.04.27-.02.21v3.06H3.17l-.21-.03-.28-.07-.32-.12-.35-.18-.36-.26-.36-.36-.35-.46-.32-.59-.28-.73-.21-.88-.14-1.05-.05-1.23.06-1.22.16-1.04.24-.87.32-.71.36-.57.4-.44.42-.33.42-.24.4-.16.36-.1.32-.05.24-.01h.16l.06.01h8.16v-.83H6.18l-.01-2.75-.02-.37.05-.34.11-.31.17-.28.25-.26.31-.23.38-.2.44-.18.51-.15.58-.12.64-.1.71-.06.77-.04.84-.02 1.27.05zm-6.3 1.98l-.23.33-.08.41.08.41.23.34.33.22.41.09.41-.09.33-.22.23-.34.08-.41-.08-.41-.23-.33-.33-.22-.41-.09-.41.09zm13.09 3.95l.28.06.32.12.35.18.36.27.36.35.35.47.32.59.28.73.21.88.14 1.04.05 1.23-.06 1.23-.16 1.04-.24.86-.32.71-.36.57-.4.45-.42.33-.42.24-.4.16-.36.09-.32.05-.24.02-.16-.01h-8.22v.82h5.84l.01 2.76.02.36-.05.34-.11.31-.17.29-.25.25-.31.24-.38.2-.44.17-.51.15-.58.13-.64.09-.71.07-.77.04-.84.01-1.27-.04-1.07-.14-.9-.2-.73-.25-.59-.3-.45-.33-.34-.34-.25-.34-.16-.33-.1-.3-.04-.25-.02-.2.01-.13v-5.34l.05-.64.13-.54.21-.46.26-.38.3-.32.33-.24.35-.2.35-.14.33-.1.3-.06.26-.04.21-.02.13-.01h5.84l.69-.05.59-.14.5-.21.41-.28.33-.32.27-.35.2-.36.15-.36.1-.35.07-.32.04-.28.02-.21V6.07h2.09l.14.01zm-6.47 14.25l-.23.33-.08.41.08.41.23.33.33.23.41.08.41-.08.33-.23.23-.33.08-.41-.08-.41-.23-.33-.33-.23-.41-.08-.41.08z"/>
+    </svg>
+  );
+
+  const JavaScriptLogo = () => (
+    <svg viewBox="0 0 24 24" className="w-full h-full">
+      <path fill="#f7df1e" d="M0 0h24v24H0V0zm22.034 18.276c-.175-1.095-.888-2.015-3.003-2.873-.736-.345-1.554-.585-1.797-1.14-.091-.33-.105-.51-.046-.705.15-.646.915-.84 1.515-.66.39.12.75.42.976.9 1.034-.676 1.034-.676 1.755-1.125-.27-.42-.404-.601-.586-.78-.63-.705-1.469-1.065-2.834-1.034l-.705.089c-.676.165-1.32.525-1.71 1.005-1.14 1.291-.811 3.541.569 4.471 1.365 1.02 3.361 1.244 3.616 2.205.24 1.17-.87 1.545-1.966 1.41-.811-.18-1.26-.586-1.755-1.336l-1.83 1.051c.21.48.45.689.81 1.109 1.74 1.756 6.09 1.666 6.871-1.004.029-.09.24-.705.074-1.65l.046.067zm-8.983-7.245h-2.248c0 1.938-.009 3.864-.009 5.805 0 1.232.063 2.363-.138 2.711-.33.689-1.18.601-1.566.48-.396-.196-.597-.466-.83-.855-.063-.105-.11-.196-.127-.196l-1.825 1.125c.305.63.75 1.172 1.324 1.517.855.51 2.004.675 3.207.405.783-.226 1.458-.691 1.811-1.411.51-.93.402-2.07.397-3.346.012-2.054 0-4.109 0-6.179l.004-.056z"/>
+    </svg>
+  );
+
+  const TypeScriptLogo = () => (
+    <svg viewBox="0 0 24 24" className="w-full h-full">
+      <path fill="#3178c6" d="M1.125 0C.502 0 0 .502 0 1.125v21.75C0 23.498.502 24 1.125 24h21.75c.623 0 1.125-.502 1.125-1.125V1.125C24 .502 23.498 0 22.875 0zm17.363 9.75c.612 0 1.154.037 1.627.111a6.38 6.38 0 0 1 1.306.34v2.458a3.95 3.95 0 0 0-.643-.361 5.093 5.093 0 0 0-.717-.26 5.453 5.453 0 0 0-1.426-.2c-.3 0-.573.028-.819.086a2.1 2.1 0 0 0-.623.242c-.17.104-.3.229-.393.374a.888.888 0 0 0-.14.49c0 .196.053.373.156.529.104.156.252.304.443.444s.423.276.696.41c.273.135.582.274.926.416.47.197.892.407 1.266.628.374.222.695.473.963.753.268.279.472.598.614.957.142.359.213.776.213 1.253 0 .657-.125 1.218-.373 1.682a3.676 3.676 0 0 1-.982 1.187 4.492 4.492 0 0 1-1.416.696c-.565.155-1.14.233-1.724.233a8.24 8.24 0 0 1-1.652-.165 7.14 7.14 0 0 1-1.579-.461v-2.153c.532.328 1.097.583 1.693.766a5.39 5.39 0 0 0 1.79.275c.322 0 .615-.038.878-.116.264-.077.491-.196.681-.358.19-.162.337-.364.438-.606.1-.242.152-.522.152-.84 0-.294-.1-.553-.3-.776a2.677 2.677 0 0 0-.774-.618 7.03 7.03 0 0 0-1.085-.477 19.087 19.087 0 0 1-1.353-.578 10.24 10.24 0 0 1-1.172-.618 3.266 3.266 0 0 1-.858-.83c-.241-.32-.361-.696-.361-1.13 0-.669.148-1.22.445-1.654a3.033 3.033 0 0 1 1.162-1.022 5.097 5.097 0 0 1 1.578-.537 9.031 9.031 0 0 1 1.68-.15zm-5.204 0c.705 0 1.26.157 1.671.47.411.313.617.732.617 1.257 0 .394-.087.742-.26 1.044a2.53 2.53 0 0 1-.678.773 3.466 3.466 0 0 1-.955.49 3.831 3.831 0 0 1-1.104.16H9.847v2.854h2.628c.365 0 .718-.038 1.058-.115a2.55 2.55 0 0 0 .889-.358c.26-.166.467-.389.62-.668.152-.279.228-.634.228-1.066 0-.432-.076-.787-.228-1.066a1.543 1.543 0 0 0-.62-.668 2.55 2.55 0 0 0-.889-.358 5.662 5.662 0 0 0-1.058-.115H9.847V9.75h2.628zm-7.51 5.016h2.628v7.234H5.774z"/>
+    </svg>
+  );
 
 
 
@@ -405,51 +342,112 @@ const Home = () => {
             </p>
           </div>
 
-          {/* Interactive Tool Categories */}
-          <div className="space-y-12 max-w-7xl mx-auto">
-            {toolCategories.map((category, categoryIndex) => (
-              <div 
-                key={category.title}
-                className="group relative"
-                style={{ animationDelay: `${categoryIndex * 200}ms` }}
-              >
-                {/* Category Header */}
-                <div className="text-center mb-8">
-                  <div className={`inline-block bg-gradient-to-r ${category.color} px-6 py-2 rounded-full mb-4 transform transition-all duration-300 group-hover:scale-105`}>
-                    <h3 className="text-xl font-bold text-white">{category.title}</h3>
-                  </div>
+          {/* Vertical Tech Stack Display */}
+          <div className="max-w-4xl mx-auto mb-20">
+            {/* Programming Languages */}
+            <div className="mb-16">
+              <div className="text-center mb-8">
+                <div className="inline-block bg-gradient-to-r from-blue-600 to-indigo-600 px-8 py-4 rounded-full shadow-lg transform transition-all duration-300 hover:scale-105">
+                  <h3 className="text-2xl font-bold text-white tracking-wide">Programming Languages</h3>
                 </div>
-
-                {/* Tools Grid */}
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-                  {category.tools.map((tool, toolIndex) => (
-                    <div
-                      key={tool.name}
-                      className={`group/tool relative bg-white rounded-2xl p-4 border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:-translate-y-2 hover:scale-105 bg-gradient-to-br ${category.bgColor}`}
-                      style={{ animationDelay: `${toolIndex * 100}ms` }}
-                    >
-                      {/* Tool Icon and Name */}
-                      <div className="text-center">
-                        <div className="text-4xl mb-3 transform transition-transform duration-300 group-hover/tool:scale-110 group-hover/tool:animate-bounce">
-                          {tool.icon}
-                        </div>
-                        <h4 className="font-semibold text-gray-800 text-sm mb-1">{tool.name}</h4>
-                        <p className="text-xs text-gray-600 leading-tight">{tool.description}</p>
-                      </div>
-
-                      {/* Hover Effects */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-2xl opacity-0 group-hover/tool:opacity-100 transition-opacity duration-300"></div>
-                      
-                      {/* Animated Border */}
-                      <div className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${category.color} opacity-0 group-hover/tool:opacity-100 transition-opacity duration-300 -z-10 blur-sm`}></div>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Category Background Effect */}
-                <div className={`absolute inset-0 bg-gradient-to-r ${category.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500 rounded-3xl -z-10`}></div>
               </div>
-            ))}
+              <div className="flex flex-col space-y-4">
+                {[
+                  { name: "Python", logo: PythonLogo },
+                  { name: "JavaScript", logo: JavaScriptLogo }, 
+                  { name: "TypeScript", logo: TypeScriptLogo },
+                  { name: "Java", logo: () => (<div className="w-full h-full bg-orange-600 rounded-lg flex items-center justify-center text-white text-2xl font-bold">J</div>) },
+                  { name: "C++", logo: () => (<div className="w-full h-full bg-blue-700 rounded-lg flex items-center justify-center text-white text-lg font-bold">C++</div>) },
+                  { name: "SQL", logo: () => (<div className="w-full h-full bg-green-600 rounded-lg flex items-center justify-center text-white text-lg font-bold">SQL</div>) }
+                ].map((tool, index) => (
+                  <div
+                    key={tool.name}
+                    className="group flex items-center p-6 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-[1.02] max-w-md mx-auto w-full"
+                    style={{ animationDelay: `${index * 100}ms` }}
+                  >
+                    <div className="flex-shrink-0 w-16 h-16 mr-6 flex items-center justify-center">
+                      <tool.logo />
+                    </div>
+                    <div className="flex-grow">
+                      <h4 className="text-xl font-semibold text-gray-800 group-hover:text-blue-600 transition-colors duration-300">
+                        {tool.name}
+                      </h4>
+                    </div>
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 opacity-0 group-hover:opacity-5 transition-opacity duration-300 -z-10"></div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Cloud & DevOps */}
+            <div className="mb-16">
+              <div className="text-center mb-8">
+                <div className="inline-block bg-gradient-to-r from-orange-500 to-red-500 px-8 py-4 rounded-full shadow-lg transform transition-all duration-300 hover:scale-105">
+                  <h3 className="text-2xl font-bold text-white tracking-wide">Cloud & DevOps</h3>
+                </div>
+              </div>
+              <div className="flex flex-col space-y-4">
+                {[
+                  { name: "AWS", logo: () => (<div className="w-full h-full bg-orange-500 rounded-lg flex items-center justify-center text-white text-lg font-bold">AWS</div>) },
+                  { name: "Docker", logo: () => (<div className="w-full h-full bg-blue-500 rounded-lg flex items-center justify-center text-white text-2xl">🐳</div>) },
+                  { name: "Kubernetes", logo: () => (<div className="w-full h-full bg-blue-600 rounded-lg flex items-center justify-center text-white text-lg font-bold">K8s</div>) },
+                  { name: "Jenkins", logo: () => (<div className="w-full h-full bg-blue-800 rounded-lg flex items-center justify-center text-white text-lg font-bold">J</div>) },
+                  { name: "Terraform", logo: () => (<div className="w-full h-full bg-purple-600 rounded-lg flex items-center justify-center text-white text-lg font-bold">TF</div>) },
+                  { name: "Git", logo: () => (<div className="w-full h-full bg-red-600 rounded-lg flex items-center justify-center text-white text-lg font-bold">Git</div>) }
+                ].map((tool, index) => (
+                  <div
+                    key={tool.name}
+                    className="group flex items-center p-6 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-[1.02] max-w-md mx-auto w-full"
+                    style={{ animationDelay: `${index * 100}ms` }}
+                  >
+                    <div className="flex-shrink-0 w-16 h-16 mr-6 flex items-center justify-center">
+                      <tool.logo />
+                    </div>
+                    <div className="flex-grow">
+                      <h4 className="text-xl font-semibold text-gray-800 group-hover:text-orange-600 transition-colors duration-300">
+                        {tool.name}
+                      </h4>
+                    </div>
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-orange-500 to-red-500 opacity-0 group-hover:opacity-5 transition-opacity duration-300 -z-10"></div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Machine Learning & AI */}
+            <div className="mb-16">
+              <div className="text-center mb-8">
+                <div className="inline-block bg-gradient-to-r from-green-500 to-teal-500 px-8 py-4 rounded-full shadow-lg transform transition-all duration-300 hover:scale-105">
+                  <h3 className="text-2xl font-bold text-white tracking-wide">Machine Learning & AI</h3>
+                </div>
+              </div>
+              <div className="flex flex-col space-y-4">
+                {[
+                  { name: "TensorFlow", logo: () => (<div className="w-full h-full bg-orange-500 rounded-lg flex items-center justify-center text-white text-lg font-bold">TF</div>) },
+                  { name: "PyTorch", logo: () => (<div className="w-full h-full bg-red-600 rounded-lg flex items-center justify-center text-white text-2xl">🔥</div>) },
+                  { name: "Scikit-learn", logo: () => (<div className="w-full h-full bg-blue-600 rounded-lg flex items-center justify-center text-white text-sm font-bold">SK</div>) },
+                  { name: "Pandas", logo: () => (<div className="w-full h-full bg-blue-800 rounded-lg flex items-center justify-center text-white text-2xl">🐼</div>) },
+                  { name: "OpenAI", logo: () => (<div className="w-full h-full bg-green-600 rounded-lg flex items-center justify-center text-white text-lg font-bold">AI</div>) },
+                  { name: "Hugging Face", logo: () => (<div className="w-full h-full bg-yellow-500 rounded-lg flex items-center justify-center text-white text-2xl">🤗</div>) }
+                ].map((tool, index) => (
+                  <div
+                    key={tool.name}
+                    className="group flex items-center p-6 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-[1.02] max-w-md mx-auto w-full"
+                    style={{ animationDelay: `${index * 100}ms` }}
+                  >
+                    <div className="flex-shrink-0 w-16 h-16 mr-6 flex items-center justify-center">
+                      <tool.logo />
+                    </div>
+                    <div className="flex-grow">
+                      <h4 className="text-xl font-semibold text-gray-800 group-hover:text-green-600 transition-colors duration-300">
+                        {tool.name}
+                      </h4>
+                    </div>
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-green-500 to-teal-500 opacity-0 group-hover:opacity-5 transition-opacity duration-300 -z-10"></div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
 
           {/* Core Skills Summary */}
