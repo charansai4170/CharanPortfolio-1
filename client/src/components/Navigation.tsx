@@ -76,17 +76,17 @@ const Navigation = () => {
 
   return (
     <nav className="fixed top-0 w-full z-50 transition-all duration-300">
-      <div className="container mx-auto px-6 py-6">
-        <div className="flex justify-center items-center">
+      <div className="container mx-auto px-6 py-4">
+        <div className="flex items-center justify-between">
           {/* Logo */}
-          <div className="absolute left-6 hidden md:block">
-            <Logo size={52} className="hover:scale-110 transition-transform duration-300" />
+          <div className="hidden md:block mr-8">
+            <Logo size={72} className="hover:scale-105 transition-transform duration-300" />
           </div>
           
           {/* Pill-shaped Navigation Container */}
           <div 
             ref={navRef} 
-            className="hidden md:flex items-center bg-white/80 backdrop-blur-xl border border-gray-200/50 rounded-full px-2 py-2 shadow-lg relative"
+            className="hidden md:flex items-center bg-white/80 backdrop-blur-xl border border-gray-200/50 rounded-full px-2 py-2 shadow-lg relative mx-auto"
             style={{
               boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.2)'
             }}
@@ -127,9 +127,12 @@ const Navigation = () => {
             })}
           </div>
 
+          {/* Empty spacer for mobile layout balance */}
+          <div className="flex-1"></div>
+          
           {/* Mobile Logo and Menu */}
           <div className="md:hidden flex items-center justify-between w-full">
-            <Logo size={40} className="hover:scale-110 transition-transform duration-300" />
+            <Logo size={56} className="hover:scale-105 transition-transform duration-300" />
             <Button
               variant="ghost"
               size="icon"
