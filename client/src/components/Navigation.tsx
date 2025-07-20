@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "wouter";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Home, User, Briefcase, FolderOpen, Settings, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeNavItem, setActiveNavItem] = useState("");
+  const [activeNavItem, setActiveNavItem] = useState("about");
   const navRef = useRef<HTMLDivElement>(null);
   const [hoverPosition, setHoverPosition] = useState({ x: 0, width: 0, opacity: 0 });
 
@@ -47,87 +47,102 @@ const Navigation = () => {
   };
 
   const navigationItems = [
-    { label: "Home", section: "home" },
-    { label: "Experience", section: "experience" },
-    { label: "Skills", section: "skills" },
-    { label: "Projects", section: "projects" },
-    { label: "Contact", section: "contact" },
+    { label: "Home", section: "home", icon: Home },
+    { label: "About", section: "about", icon: User },
+    { label: "Experience", section: "experience", icon: Briefcase },
+    { label: "Projects", section: "projects", icon: FolderOpen },
+    { label: "Skills", section: "skills", icon: Settings },
+    { label: "Contact", section: "contact", icon: Mail },
   ];
 
   return (
-    <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-white/90 backdrop-blur-md border-b border-gray-100 shadow-sm"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="container mx-auto px-6 py-4">
-        <div className="flex justify-between items-center">
-          <div
-            className="text-xl font-bold gradient-text cursor-pointer"
-            onClick={() => scrollToSection("home")}
+    <nav className="fixed top-0 w-full z-50 transition-all duration-300">
+      <div className="container mx-auto px-6 py-6">
+        <div className="flex justify-center items-center">
+          {/* Pill-shaped Navigation Container */}
+          <div 
+            ref={navRef} 
+            className="hidden md:flex items-center bg-white/80 backdrop-blur-xl border border-gray-200/50 rounded-full px-2 py-2 shadow-lg relative"
+            style={{
+              boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.2)'
+            }}
           >
-            Charan Thota
-          </div>
-
-          {/* Desktop Navigation */}
-          <div ref={navRef} className="hidden md:flex space-x-8 relative">
             {/* Dynamic hover background */}
             <div
-              className="absolute top-0 h-full nav-hover-highlight rounded-lg transition-all duration-300 ease-out pointer-events-none border border-primary-custom/20"
+              className="absolute bg-primary-custom rounded-full transition-all duration-300 ease-out pointer-events-none"
               style={{
-                left: `${hoverPosition.x}px`,
-                width: `${hoverPosition.width}px`,
-                opacity: hoverPosition.opacity,
-                transform: `translateY(-2px)`,
-                boxShadow: hoverPosition.opacity > 0 ? '0 4px 20px rgba(37, 99, 235, 0.2), 0 0 30px rgba(37, 99, 235, 0.1)' : 'none'
+                left: `${hoverPosition.x + 8}px`,
+                width: `${hoverPosition.width - 16}px`,
+                height: '36px',
+                top: '8px',
+                opacity: hoverPosition.opacity * 0.15,
+                transform: hoverPosition.opacity > 0 ? 'scale(1)' : 'scale(0.8)',
               }}
             />
             
-            {navigationItems.map((item) => (
-              <button
-                key={item.section}
-                onClick={() => scrollToSection(item.section)}
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-                className={`relative px-4 py-2 text-text hover:text-primary-custom transition-all duration-300 font-medium z-10 ${
-                  activeNavItem === item.section ? 'text-primary-custom' : ''
-                }`}
-              >
-                {item.label}
-              </button>
-            ))}
+            {navigationItems.map((item, index) => {
+              const IconComponent = item.icon;
+              const isActive = activeNavItem === item.section || (item.section === "about" && activeNavItem === "");
+              
+              return (
+                <button
+                  key={item.section}
+                  onClick={() => scrollToSection(item.section)}
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                  className={`relative flex items-center space-x-2 px-4 py-2 rounded-full transition-all duration-300 font-medium z-10 ${
+                    isActive 
+                      ? 'text-primary-custom bg-primary-custom/10' 
+                      : 'text-gray-600 hover:text-primary-custom hover:bg-gray-50'
+                  }`}
+                >
+                  <IconComponent className="h-4 w-4" />
+                  <span className="text-sm">{item.label}</span>
+                </button>
+              );
+            })}
           </div>
 
           {/* Mobile Menu Button */}
           <Button
             variant="ghost"
             size="icon"
-            className="md:hidden"
+            className="md:hidden bg-white/80 backdrop-blur-xl border border-gray-200/50 rounded-full shadow-lg"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? (
-              <X className="h-6 w-6" />
+              <X className="h-5 w-5 text-gray-600" />
             ) : (
-              <Menu className="h-6 w-6" />
+              <Menu className="h-5 w-5 text-gray-600" />
             )}
           </Button>
         </div>
 
         {/* Mobile Navigation Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 border-t border-gray-100">
-            <div className="flex flex-col space-y-3 pt-4">
-              {navigationItems.map((item) => (
-                <button
-                  key={item.section}
-                  onClick={() => scrollToSection(item.section)}
-                  className="text-left text-text hover:text-primary-custom transition-colors font-medium py-2"
-                >
-                  {item.label}
-                </button>
-              ))}
+          <div className="md:hidden mt-4 mx-6">
+            <div className="bg-white/90 backdrop-blur-xl border border-gray-200/50 rounded-2xl p-4 shadow-lg">
+              <div className="flex flex-col space-y-2">
+                {navigationItems.map((item) => {
+                  const IconComponent = item.icon;
+                  const isActive = activeNavItem === item.section || (item.section === "about" && activeNavItem === "");
+                  
+                  return (
+                    <button
+                      key={item.section}
+                      onClick={() => scrollToSection(item.section)}
+                      className={`flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 font-medium text-left ${
+                        isActive 
+                          ? 'text-primary-custom bg-primary-custom/10' 
+                          : 'text-gray-600 hover:text-primary-custom hover:bg-gray-50'
+                      }`}
+                    >
+                      <IconComponent className="h-4 w-4" />
+                      <span>{item.label}</span>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           </div>
         )}

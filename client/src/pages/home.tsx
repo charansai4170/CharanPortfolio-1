@@ -207,6 +207,65 @@ const Home = () => {
         </div>
       </section>
 
+      {/* About Section */}
+      <section id="about" className="py-20 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-text mb-4">About <span className="gradient-text">Me</span></h2>
+            <div className="w-20 h-1 bg-gradient-to-r from-primary-custom to-accent-custom mx-auto rounded-full"></div>
+          </div>
+          
+          <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+            <div className="space-y-6">
+              <p className="text-gray-600 text-lg leading-relaxed">
+                Results-driven Software and Machine Learning Engineer with <span className="text-primary-custom font-semibold">2.5+ years of experience</span> building scalable, AI-driven platforms and cloud-native applications. I specialize in designing intelligent systems that transform complex business challenges into innovative solutions.
+              </p>
+              
+              <p className="text-gray-600 text-lg leading-relaxed">
+                My expertise spans <span className="text-primary-custom font-semibold">Python, SQL, AWS, LLMs, and DevOps tools</span>, with a strong focus on developing end-to-end solutions involving OCR, vector databases, predictive modeling, and RAG-based chatbots.
+              </p>
+              
+              <p className="text-gray-600 text-lg leading-relaxed">
+                I've successfully worked across the stack—backend APIs, automation workflows, and frontend interfaces—delivering measurable impact including <span className="text-primary-custom font-semibold">$5M cost reductions</span> and <span className="text-primary-custom font-semibold">15% operational efficiency improvements</span>.
+              </p>
+              
+              <div className="grid grid-cols-2 gap-6 pt-6">
+                <div className="text-center p-4 bg-neutral-custom rounded-xl">
+                  <div className="text-2xl font-bold text-primary-custom">2.5+</div>
+                  <div className="text-sm text-gray-600">Years Experience</div>
+                </div>
+                <div className="text-center p-4 bg-neutral-custom rounded-xl">
+                  <div className="text-2xl font-bold text-primary-custom">10M+</div>
+                  <div className="text-sm text-gray-600">Records Analyzed</div>
+                </div>
+                <div className="text-center p-4 bg-neutral-custom rounded-xl">
+                  <div className="text-2xl font-bold text-primary-custom">$5M</div>
+                  <div className="text-sm text-gray-600">Cost Reduction</div>
+                </div>
+                <div className="text-center p-4 bg-neutral-custom rounded-xl">
+                  <div className="text-2xl font-bold text-primary-custom">90%+</div>
+                  <div className="text-sm text-gray-600">ML Accuracy</div>
+                </div>
+              </div>
+            </div>
+            
+            <div className="relative">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                <img 
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=600&fit=crop&crop=face" 
+                  alt="Charan Thota"
+                  className="w-full h-auto object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary-custom/20 to-transparent"></div>
+              </div>
+              <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-gradient-to-r from-primary-custom to-accent-custom rounded-full flex items-center justify-center shadow-xl animate-pulse">
+                <span className="text-white text-2xl">🚀</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Experience Section */}
       <section id="experience" className="py-20 bg-neutral-custom">
         <div className="container mx-auto px-6">
