@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "wouter";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -6,6 +6,9 @@ import { Button } from "@/components/ui/button";
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeNavItem, setActiveNavItem] = useState("");
+  const navRef = useRef<HTMLDivElement>(null);
+  const [hoverPosition, setHoverPosition] = useState({ x: 0, width: 0, opacity: 0 });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,7 +24,26 @@ const Navigation = () => {
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
       setIsMobileMenuOpen(false);
+      setActiveNavItem(sectionId);
     }
+  };
+
+  const handleMouseEnter = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const target = event.currentTarget;
+    const rect = target.getBoundingClientRect();
+    const navRect = navRef.current?.getBoundingClientRect();
+    
+    if (navRect) {
+      setHoverPosition({
+        x: rect.left - navRect.left,
+        width: rect.width,
+        opacity: 1
+      });
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setHoverPosition(prev => ({ ...prev, opacity: 0 }));
   };
 
   const navigationItems = [
@@ -50,12 +72,28 @@ const Navigation = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-8">
+          <div ref={navRef} className="hidden md:flex space-x-8 relative">
+            {/* Dynamic hover background */}
+            <div
+              className="absolute top-0 h-full nav-hover-highlight rounded-lg transition-all duration-300 ease-out pointer-events-none border border-primary-custom/20"
+              style={{
+                left: `${hoverPosition.x}px`,
+                width: `${hoverPosition.width}px`,
+                opacity: hoverPosition.opacity,
+                transform: `translateY(-2px)`,
+                boxShadow: hoverPosition.opacity > 0 ? '0 4px 20px rgba(37, 99, 235, 0.2), 0 0 30px rgba(37, 99, 235, 0.1)' : 'none'
+              }}
+            />
+            
             {navigationItems.map((item) => (
               <button
                 key={item.section}
                 onClick={() => scrollToSection(item.section)}
-                className="text-text hover:text-primary-custom transition-colors font-medium"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+                className={`relative px-4 py-2 text-text hover:text-primary-custom transition-all duration-300 font-medium z-10 ${
+                  activeNavItem === item.section ? 'text-primary-custom' : ''
+                }`}
               >
                 {item.label}
               </button>

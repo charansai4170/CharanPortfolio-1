@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Download, Mail, Phone, MapPin, Linkedin, Github, Award, GraduationCap, Send } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Hero3D from "@/components/Hero3D";
+import ScrollDriftElements from "@/components/ScrollDriftElements";
 import SkillBar from "@/components/SkillBar";
 import ExperienceCard from "@/components/ExperienceCard";
 import ProjectCard from "@/components/ProjectCard";
@@ -119,6 +120,7 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
+      <ScrollDriftElements />
 
       {/* Hero Section */}
       <section id="home" className="min-h-screen flex items-center tech-grid relative overflow-hidden">
