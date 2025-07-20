@@ -173,25 +173,6 @@ const Home = () => {
                   </div>
                 </div>
               </div>
-              
-              <div className="grid grid-cols-2 gap-6 pt-6">
-                <div className="text-center p-4 bg-neutral-custom rounded-xl">
-                  <div className="text-2xl font-bold text-primary-custom">2.5+</div>
-                  <div className="text-sm text-gray-600">Years Experience</div>
-                </div>
-                <div className="text-center p-4 bg-neutral-custom rounded-xl">
-                  <div className="text-2xl font-bold text-primary-custom">10M+</div>
-                  <div className="text-sm text-gray-600">Records Analyzed</div>
-                </div>
-                <div className="text-center p-4 bg-neutral-custom rounded-xl">
-                  <div className="text-2xl font-bold text-primary-custom">$5M</div>
-                  <div className="text-sm text-gray-600">Cost Reduction</div>
-                </div>
-                <div className="text-center p-4 bg-neutral-custom rounded-xl">
-                  <div className="text-2xl font-bold text-primary-custom">90%+</div>
-                  <div className="text-sm text-gray-600">ML Accuracy</div>
-                </div>
-              </div>
             </div>
             
             <div className="relative">
