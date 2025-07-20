@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from "react";
-import { Link } from "wouter";
 import { Menu, X, Home, User, Briefcase, FolderOpen, Settings, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Logo from "./Logo";
