@@ -2,7 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Github } from "lucide-react";
-import InteractiveGradientBackground from "@/components/InteractiveGradientBackground";
+import Navigation from "@/components/Navigation";
 
 export default function Projects() {
   const projects = [
@@ -30,11 +30,12 @@ export default function Projects() {
   ];
 
   return (
-    <InteractiveGradientBackground>
-      <div className="min-h-screen py-20">
+    <div className="min-h-screen">
+      <Navigation />
+      <div className="pt-24 pb-20">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-6xl font-bold text-text mb-6">Projects</h1>
+            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">Projects</h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Explore my latest work in AI, machine learning, and cloud technologies
             </p>
@@ -100,6 +101,6 @@ export default function Projects() {
           </div>
         </div>
       </div>
-    </InteractiveGradientBackground>
+    </div>
   );
 }

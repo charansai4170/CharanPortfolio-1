@@ -17,14 +17,14 @@ The application follows a monorepo structure with clear separation between clien
 - **Database**: PostgreSQL with Drizzle ORM
 - **Styling**: Tailwind CSS with shadcn/ui component library
 - **State Management**: TanStack Query for server state management
-- **Routing**: Wouter for client-side routing
+- **Routing**: React Router DOM for client-side routing
 
 ## Key Components
 
 ### Frontend Architecture
 - **Component Library**: Extensive use of Radix UI primitives through shadcn/ui
 - **Styling System**: Tailwind CSS with CSS variables for theming (light/dark mode support)
-- **3D Graphics**: React Three Fiber for 3D hero animations
+- **Background System**: Dynamic gradient background with mouse interaction effects
 - **State Management**: TanStack Query for API state, React hooks for local state
 - **Form Handling**: React Hook Form with Zod validation
 - **Build Tool**: Vite with React plugin and custom alias configuration
@@ -95,4 +95,23 @@ The application follows a monorepo structure with clear separation between clien
 - **Node.js**: ESM modules throughout the application
 - **Deployment**: Single artifact deployment with both frontend and backend
 
-The architecture prioritizes type safety, developer experience, and maintainability while providing a solid foundation for a professional portfolio website with potential for future enhancements like authentication, content management, or additional interactive features.
+## Recent Changes (July 20, 2025)
+
+### Major Architectural Updates
+- **Replaced Wouter with React Router DOM**: Complete migration to React Router with proper Link components for navigation
+- **New Background System**: Stripped all previous background animations and replaced with SimpleGradientBackground component featuring:
+  - Plain white base background
+  - Dynamic color-shifting gradient overlay that responds to mouse movement
+  - Smooth color transitions between blue, purple, and pink hues
+  - Interactive effects that change gradient direction and colors based on user interaction
+- **Navigation System Overhaul**: Updated Navigation component to use React Router's Link components with proper route highlighting
+- **Complete Page Structure**: Added Experience, Skills, and Contact pages with consistent design patterns
+- **Route Structure**: Implemented exact route structure requested (Home "/", About "/about", Experience "/experience", Projects "/projects", Skills "/skills", Contact "/contact")
+
+### Component Updates
+- All pages now use consistent white background with subtle gradient overlays
+- Removed InteractiveGradientBackground from individual pages in favor of global SimpleGradientBackground
+- Updated color classes from `text-text` to `text-gray-900` for consistency
+- Navigation now properly highlights active routes using React Router's useLocation hook
+
+The architecture prioritizes type safety, developer experience, and maintainability while providing a modern, interactive portfolio website with dynamic visual effects that respond to user interaction.
