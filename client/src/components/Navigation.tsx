@@ -67,37 +67,12 @@ const Navigation = () => {
   };
 
   const handleLogoClick = () => {
-    // If we're already on home page, just scroll to top and refresh
-    if (location === '/') {
-      // Scroll to home section first
-      const homeElement = document.getElementById('home');
-      if (homeElement) {
-        homeElement.scrollIntoView({ behavior: 'smooth' });
-      } else {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-      setActiveNavItem('home');
-      // Refresh to reset any state
-      setTimeout(() => {
-        window.location.reload();
-      }, 100);
-    } else {
-      // Navigate to home page first, then scroll and refresh
-      setLocation('/');
-      setTimeout(() => {
-        const homeElement = document.getElementById('home');
-        if (homeElement) {
-          homeElement.scrollIntoView({ behavior: 'smooth' });
-        } else {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-        setActiveNavItem('home');
-        // Refresh after navigation
-        setTimeout(() => {
-          window.location.reload();
-        }, 100);
-      }, 50);
-    }
+    // Use the same scrollToSection function as navigation items
+    scrollToSection('home');
+    // Optional: Add a small delay then refresh if needed
+    setTimeout(() => {
+      window.location.reload();
+    }, 500);
   };
 
   const navigationItems = [
