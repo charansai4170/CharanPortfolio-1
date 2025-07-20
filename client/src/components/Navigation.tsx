@@ -67,12 +67,25 @@ const Navigation = () => {
   };
 
   const handleLogoClick = () => {
-    // Scroll to absolute top of page instead of home section
-    window.scrollTo({ 
-      top: 0, 
-      left: 0, 
-      behavior: 'smooth' 
-    });
+    // Find the home element and scroll to it properly with offset for navigation
+    const homeElement = document.getElementById('home');
+    if (homeElement) {
+      const navHeight = 100; // Account for navigation bar height
+      const elementPosition = homeElement.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    } else {
+      // Fallback to scroll with navigation offset
+      window.scrollTo({ 
+        top: 80, 
+        left: 0, 
+        behavior: 'smooth' 
+      });
+    }
     setActiveNavItem('home');
     setIsMobileMenuOpen(false);
     // Optional: Add a small delay then refresh if needed
