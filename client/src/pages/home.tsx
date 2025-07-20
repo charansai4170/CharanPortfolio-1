@@ -14,84 +14,65 @@ import { Badge } from "@/components/ui/badge";
 
 const Home = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [currentText, setCurrentText] = useState("");
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
     setIsVisible(true);
 
-    // Typewriter animation with better element checking
-    const startTypewriter = () => {
-      const prefixes = ["Software", "Machine Learning", "DevOps", "Cloud", "Data"];
-      const specialCase = "Data Scientist";
-      let currentIndex = 0;
-      let currentText = "";
-      let isDeleting = false;
-      let isSpecialCase = false;
+    const words = [
+      "Software Engineer",
+      "Machine Learning Engineer", 
+      "DevOps Engineer",
+      "Cloud Engineer",
+      "Data Engineer",
+      "Data Scientist"
+    ];
 
-      const typewriterElement = document.getElementById('typewriter-prefix');
+    let timeout;
+
+    const typeEffect = () => {
+      const currentWord = words[currentIndex];
       
-      if (!typewriterElement) {
-        console.log('Typewriter element not found, retrying...');
-        setTimeout(startTypewriter, 100);
+      if (isPaused) {
+        timeout = setTimeout(() => {
+          setIsPaused(false);
+          setIsDeleting(true);
+        }, 2000);
         return;
       }
 
-      console.log('Typewriter element found, starting animation');
-      
-      function typeWriter() {
-        const targetText = isSpecialCase ? specialCase : prefixes[currentIndex];
-        const engineerSuffix = isSpecialCase ? "" : " Engineer";
-        
-        if (!isDeleting) {
-          // Typing
-          currentText = targetText.substring(0, currentText.length + 1);
-          typewriterElement.innerHTML = `<span class="gradient-text-animated">${currentText}</span><span class="text-text">${engineerSuffix}</span>`;
-          
-          if (currentText === targetText) {
-            // Finished typing, pause then start deleting
-            setTimeout(() => {
-              isDeleting = true;
-              typeWriter();
-            }, 1500); // Pause duration
-            return;
-          }
+      if (!isDeleting) {
+        // Typing
+        if (currentText.length < currentWord.length) {
+          setCurrentText(currentWord.substring(0, currentText.length + 1));
+          timeout = setTimeout(typeEffect, 100);
         } else {
-          // Deleting
-          currentText = targetText.substring(0, currentText.length - 1);
-          typewriterElement.innerHTML = `<span class="gradient-text-animated">${currentText}</span><span class="text-text">${engineerSuffix}</span>`;
-          
-          if (currentText === "") {
-            // Finished deleting
-            isDeleting = false;
-            
-            if (isSpecialCase) {
-              // Reset to beginning after "Data Scientist"
-              isSpecialCase = false;
-              currentIndex = 0;
-            } else if (currentIndex === prefixes.length - 1) {
-              // After "Data", show "Data Scientist"
-              isSpecialCase = true;
-            } else {
-              // Move to next prefix
-              currentIndex++;
-            }
-            
-            setTimeout(typeWriter, 500); // Pause before next word
-            return;
-          }
+          // Finished typing, pause
+          setIsPaused(true);
+          timeout = setTimeout(typeEffect, 10);
         }
-        
-        // Continue typing/deleting
-        const speed = isDeleting ? 50 : 100; // Deleting is faster
-        setTimeout(typeWriter, speed);
+      } else {
+        // Deleting
+        if (currentText.length > 0) {
+          setCurrentText(currentWord.substring(0, currentText.length - 1));
+          timeout = setTimeout(typeEffect, 50);
+        } else {
+          // Finished deleting, move to next word
+          setIsDeleting(false);
+          setCurrentIndex((prev) => (prev + 1) % words.length);
+          timeout = setTimeout(typeEffect, 300);
+        }
       }
-
-      // Start the animation
-      typeWriter();
     };
 
-    // Start the typewriter with a delay
-    setTimeout(startTypewriter, 1000);
-  }, []);
+    // Start animation after component mounts
+    timeout = setTimeout(typeEffect, 1000);
+
+    return () => clearTimeout(timeout);
+  }, [currentText, currentIndex, isDeleting, isPaused]);
 
   const skills = {
     programming: [
@@ -168,11 +149,9 @@ const Home = () => {
               <h1 className="text-4xl md:text-6xl font-bold text-text mb-6 leading-tight">
                 Charan Thota
               </h1>
-              <h2 className="text-2xl md:text-3xl font-semibold mb-6 h-12">
-                <span className="typewriter-text">
-                  <span id="typewriter-prefix"></span>
-                  <span className="cursor-blink">|</span>
-                </span>
+              <h2 className="text-2xl md:text-3xl font-semibold mb-6 h-12 flex items-center">
+                <span className="gradient-text-animated">{currentText}</span>
+                <span className="cursor-blink ml-1">|</span>
               </h2>
               <p className="text-gray-600 text-lg leading-relaxed mb-8 max-w-lg">
                 Results-driven engineer with 2.5+ years building scalable, AI-driven platforms and cloud-native applications. 
