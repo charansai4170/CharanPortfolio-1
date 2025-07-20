@@ -362,22 +362,22 @@ const Navigation = () => {
                 dragConstraints={{ left: 0, right: 0 }}
                 dragElastic={0.2}
                 onPanEnd={handlePanEnd}
-                className="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white/20 backdrop-blur-2xl border-l border-white/10 shadow-2xl z-50"
+                className="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-black/5 backdrop-blur-sm border-l border-black/5 z-50"
                 onTouchStart={handleTouchStart}
                 onTouchMove={handleTouchMove}
                 onTouchEnd={handleTouchEnd}
               >
                 {/* Menu Header */}
-                <div className="flex items-center justify-between p-6 border-b border-white/10">
+                <div className="flex items-center justify-between p-4 border-b border-black/10">
                   <div className="flex items-center space-x-3">
-                    <Logo size={40} />
+                    <Logo size={36} />
                     <span className="text-lg font-semibold text-gray-900">Menu</span>
                   </div>
                   <Button
                     variant="ghost"
                     size="icon"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="rounded-full hover:bg-white/20 touch-target text-gray-900 hover:text-gray-700"
+                    className="rounded-full hover:bg-black/10 touch-target text-gray-900 hover:text-gray-700"
                     style={{ minWidth: '44px', minHeight: '44px' }}
                   >
                     <X className="h-5 w-5" />
@@ -385,54 +385,72 @@ const Navigation = () => {
                 </div>
 
                 {/* Navigation Items */}
-                <div className="py-6">
+                <div className="py-4 px-2">
                   {navigationItems.map((item, index) => {
                     const IconComponent = item.icon;
                     const isActive = activeNavItem === item.section;
                     
                     return (
-                      <motion.button
+                      <motion.div
                         key={item.section}
-                        initial={{ x: 50, opacity: 0 }}
-                        animate={{ x: 0, opacity: 1 }}
+                        initial={{ x: 30, opacity: 0, scale: 0.9 }}
+                        animate={{ x: 0, opacity: 1, scale: 1 }}
                         transition={{ 
-                          delay: index * 0.1,
+                          delay: index * 0.08,
                           type: "spring",
-                          damping: 20,
-                          stiffness: 300
+                          damping: 25,
+                          stiffness: 400
                         }}
-                        onClick={() => scrollToSection(item.section)}
-                        className={`
-                          w-full flex items-center space-x-4 px-6 py-4 text-left transition-all duration-200 touch-target
-                          ${isActive 
-                            ? 'bg-white/20 border-r-4 border-primary-custom text-primary-custom' 
-                            : 'text-gray-900 hover:bg-white/10 hover:text-primary-custom'
-                          }
-                        `}
-                        style={{ minHeight: '56px' }}
+                        className="mb-2"
                       >
-                        <div className={`
-                          p-2 rounded-full transition-colors duration-200
-                          ${isActive 
-                            ? 'bg-primary-custom text-white' 
-                            : 'bg-white/20 text-gray-700 group-hover:bg-primary-custom/20'
-                          }
-                        `}>
-                          <IconComponent className="h-5 w-5" />
-                        </div>
-                        <span className="text-lg font-medium">{item.label}</span>
-                        
-                        {/* Active indicator */}
-                        {isActive && (
-                          <motion.div
-                            layoutId="activeIndicator"
-                            className="ml-auto w-2 h-2 bg-primary-custom rounded-full"
-                            initial={{ scale: 0 }}
-                            animate={{ scale: 1 }}
-                            transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                          />
-                        )}
-                      </motion.button>
+                        <motion.button
+                          onClick={() => scrollToSection(item.section)}
+                          whileHover={{ 
+                            scale: 1.02,
+                            x: 5
+                          }}
+                          whileTap={{ 
+                            scale: 0.98,
+                            x: 8
+                          }}
+                          className={`
+                            w-full flex items-center justify-start space-x-4 px-4 py-3 text-left transition-all duration-200 touch-target rounded-xl
+                            ${isActive 
+                              ? 'bg-white/30 border-l-4 border-primary-custom text-primary-custom shadow-lg' 
+                              : 'text-gray-900 hover:bg-white/15 hover:text-primary-custom hover:shadow-md'
+                            }
+                          `}
+                          style={{ minHeight: '56px' }}
+                        >
+                          <motion.div 
+                            className={`
+                              p-2 rounded-full transition-all duration-200
+                              ${isActive 
+                                ? 'bg-primary-custom text-white shadow-lg' 
+                                : 'bg-white/25 text-gray-700'
+                              }
+                            `}
+                            whileHover={{ 
+                              scale: 1.1,
+                              rotate: isActive ? 0 : 5
+                            }}
+                          >
+                            <IconComponent className="h-5 w-5" />
+                          </motion.div>
+                          <span className="text-lg font-medium flex-1 text-left">{item.label}</span>
+                          
+                          {/* Active indicator */}
+                          {isActive && (
+                            <motion.div
+                              layoutId="mobileActiveIndicator"
+                              className="w-2 h-2 bg-primary-custom rounded-full"
+                              initial={{ scale: 0 }}
+                              animate={{ scale: 1 }}
+                              transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                            />
+                          )}
+                        </motion.button>
+                      </motion.div>
                     );
                   })}
                 </div>
