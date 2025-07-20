@@ -80,7 +80,7 @@ const Navigation = () => {
         <div className="flex justify-center items-center">
           {/* Logo */}
           <div className="absolute left-6 hidden md:block">
-            <Logo size={36} className="hover:scale-110 transition-transform duration-300" />
+            <Logo size={52} className="hover:scale-110 transition-transform duration-300" />
           </div>
           
           {/* Pill-shaped Navigation Container */}
@@ -129,7 +129,7 @@ const Navigation = () => {
 
           {/* Mobile Logo and Menu */}
           <div className="md:hidden flex items-center justify-between w-full">
-            <Logo size={32} className="hover:scale-110 transition-transform duration-300" />
+            <Logo size={40} className="hover:scale-110 transition-transform duration-300" />
             <Button
               variant="ghost"
               size="icon"
