@@ -206,7 +206,7 @@ const TimelineExperience = () => {
       <div
         ref={cardRef}
         className={`
-          relative p-6 rounded-2xl border-2 shadow-lg hover:shadow-xl transition-all duration-300 bg-white overflow-hidden cursor-pointer
+          relative p-6 rounded-2xl border-2 shadow-lg hover:shadow-2xl transition-all duration-500 bg-white overflow-hidden cursor-pointer hover:scale-[1.02]
           ${typeConfig.borderColor}
           ${experience.isCurrentRole ? 'ring-2 ring-blue-400 ring-opacity-50' : ''}
         `}
@@ -214,19 +214,36 @@ const TimelineExperience = () => {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        {/* Glare Effect */}
+        {/* Enhanced Glare Effect */}
         {isHovered && (
-          <div
-            className="absolute pointer-events-none rounded-full bg-white opacity-20 transition-opacity duration-300"
-            style={{
-              left: mousePosition.x - 100,
-              top: mousePosition.y - 100,
-              width: '200px',
-              height: '200px',
-              background: `radial-gradient(circle, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.3) 30%, transparent 70%)`,
-              filter: 'blur(20px)',
-            }}
-          />
+          <>
+            {/* Primary glare with accent color */}
+            <div
+              className="absolute pointer-events-none transition-all duration-300 ease-out"
+              style={{
+                left: mousePosition.x - 150,
+                top: mousePosition.y - 150,
+                width: '300px',
+                height: '300px',
+                background: `radial-gradient(circle, rgba(14, 165, 233, 0.4) 0%, rgba(14, 165, 233, 0.2) 25%, rgba(255,255,255,0.3) 40%, transparent 70%)`,
+                filter: 'blur(40px)',
+                borderRadius: '50%',
+              }}
+            />
+            {/* Secondary white shine */}
+            <div
+              className="absolute pointer-events-none transition-all duration-200 ease-out"
+              style={{
+                left: mousePosition.x - 75,
+                top: mousePosition.y - 75,
+                width: '150px',
+                height: '150px',
+                background: `radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.4) 30%, transparent 60%)`,
+                filter: 'blur(15px)',
+                borderRadius: '50%',
+              }}
+            />
+          </>
         )}
 
         {/* Current Role Indicator */}
@@ -285,6 +302,18 @@ const TimelineExperience = () => {
           className="absolute top-0 right-0 w-20 h-20 opacity-10 rounded-bl-full"
           style={{ backgroundColor: typeConfig.color }}
         />
+
+        {/* Subtle border shimmer on hover */}
+        {isHovered && (
+          <div 
+            className="absolute inset-0 rounded-2xl pointer-events-none transition-opacity duration-500"
+            style={{
+              background: `linear-gradient(45deg, transparent 30%, rgba(14, 165, 233, 0.3) 50%, transparent 70%)`,
+              backgroundSize: '200% 200%',
+              animation: 'shimmer-border 2s ease-in-out infinite',
+            }}
+          />
+        )}
       </div>
     );
   };
