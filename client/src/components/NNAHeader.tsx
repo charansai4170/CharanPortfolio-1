@@ -31,19 +31,39 @@ const CharanHeader = ({ onMenuClick, darkMode, onThemeToggle }: CharanHeaderProp
         >
           {/* Logo Icon */}
           <motion.div
-            className="w-8 h-8 flex items-center justify-center"
+            className="w-12 h-12 flex items-center justify-center relative"
             animate={logoHovered ? { 
-              rotate: [0, -15, 15, 0],
-              scale: [1, 1.1, 1]
+              rotate: [0, -10, 10, 0],
+              scale: [1, 1.15, 1]
             } : { rotate: 0, scale: 1 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.4 }}
           >
             <img 
               src={logoImage}
               alt="Charan Thota Logo"
               className="w-full h-full object-contain"
-              style={{ filter: logoHovered ? 'drop-shadow(0 0 10px rgba(255, 215, 0, 0.5))' : 'none' }}
+              style={{ 
+                filter: logoHovered 
+                  ? 'drop-shadow(0 0 15px rgba(255, 215, 0, 0.8)) drop-shadow(0 0 30px rgba(192, 192, 192, 0.4))' 
+                  : 'drop-shadow(0 0 8px rgba(255, 215, 0, 0.3))' 
+              }}
             />
+            {/* Enhanced Glare Effect on Hover */}
+            {logoHovered && (
+              <motion.div
+                className="absolute inset-0 pointer-events-none"
+                initial={{ x: -60, opacity: 0 }}
+                animate={{ x: 60, opacity: 1 }}
+                transition={{ duration: 0.6, ease: "easeInOut" }}
+                style={{
+                  background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.9) 50%, transparent 100%)',
+                  transform: 'skewX(-20deg)',
+                  width: '20px',
+                  height: '100%',
+                  borderRadius: '50%'
+                }}
+              />
+            )}
           </motion.div>
           
           {/* Charan Thota Text with Gradient */}

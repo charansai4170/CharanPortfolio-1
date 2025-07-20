@@ -67,48 +67,90 @@ const LogoAnimation = ({ onComplete }: LogoAnimationProps) => {
           <div className="flex flex-col items-center">
             {/* Logo Image */}
             <motion.div
-              className="w-32 h-32 mb-4 relative"
-              animate={animationPhase === 'particles' ? {
-                rotate: [0, 360],
-                scale: [1, 1.1, 1]
-              } : {}}
-              transition={{ duration: 2, ease: "easeInOut" }}
+              className="w-48 h-48 mb-6 relative"
+              animate={
+                animationPhase === 'logo' ? {
+                  scale: [0.5, 1.2, 1],
+                  rotate: [0, 180, 360],
+                  opacity: [0, 1, 1]
+                } : 
+                animationPhase === 'particles' ? {
+                  y: [0, -10, 0],
+                  scale: [1, 1.05, 1]
+                } : {}
+              }
+              transition={{ 
+                duration: animationPhase === 'logo' ? 1.5 : 3,
+                ease: "easeInOut",
+                repeat: animationPhase === 'particles' ? Infinity : 0
+              }}
             >
               <img 
                 src={logoImage}
                 alt="Charan Thota Logo"
                 className="w-full h-full object-contain"
                 style={{
-                  filter: 'drop-shadow(0 0 30px rgba(255, 215, 0, 0.8)) drop-shadow(0 0 60px rgba(192, 192, 192, 0.4))'
+                  filter: `
+                    drop-shadow(0 0 40px rgba(255, 215, 0, 0.9)) 
+                    drop-shadow(0 0 80px rgba(192, 192, 192, 0.6))
+                    drop-shadow(0 0 120px rgba(255, 215, 0, 0.3))
+                  `
                 }}
               />
               
-              {/* Glare Sweep Overlay on Logo */}
+              {/* Multiple Glare Effects */}
               {animationPhase === 'glare' && (
-                <motion.div
-                  className="absolute inset-0 pointer-events-none rounded-full overflow-hidden"
-                  initial={{ x: -150, opacity: 0 }}
-                  animate={{ x: 150, opacity: 1 }}
-                  transition={{ duration: 1, ease: "easeInOut" }}
-                  style={{
-                    background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.9) 50%, transparent 100%)',
-                    transform: 'skewX(-20deg)',
-                    width: '60px',
-                    height: '100%'
-                  }}
-                />
+                <>
+                  {/* Main Glare Sweep */}
+                  <motion.div
+                    className="absolute inset-0 pointer-events-none overflow-hidden"
+                    initial={{ x: -200, opacity: 0 }}
+                    animate={{ x: 200, opacity: [0, 1, 0] }}
+                    transition={{ duration: 1.2, ease: "easeInOut" }}
+                    style={{
+                      background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.95) 50%, transparent 100%)',
+                      transform: 'skewX(-25deg)',
+                      width: '80px',
+                      height: '100%'
+                    }}
+                  />
+                  {/* Secondary Glare */}
+                  <motion.div
+                    className="absolute inset-0 pointer-events-none overflow-hidden"
+                    initial={{ x: -180, opacity: 0 }}
+                    animate={{ x: 180, opacity: [0, 0.6, 0] }}
+                    transition={{ duration: 1, ease: "easeInOut", delay: 0.3 }}
+                    style={{
+                      background: 'linear-gradient(90deg, transparent 0%, rgba(255,215,0,0.7) 50%, transparent 100%)',
+                      transform: 'skewX(-15deg)',
+                      width: '40px',
+                      height: '100%'
+                    }}
+                  />
+                </>
               )}
             </motion.div>
             
             {/* Main Name */}
             <motion.div
-              className="text-4xl font-bold text-center mb-2"
+              className="text-5xl font-bold text-center mb-3"
+              initial={{ opacity: 0, y: 30 }}
+              animate={animationPhase !== 'loading' ? { 
+                opacity: 1, 
+                y: 0,
+                scale: [1, 1.05, 1]
+              } : {}}
+              transition={{ 
+                duration: 0.8, 
+                delay: 0.5,
+                scale: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+              }}
               style={{
                 background: 'linear-gradient(135deg, #FFD700 0%, #FFA500 25%, #FFD700 50%, #B8860B 75%, #DAA520 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
-                filter: 'drop-shadow(0 0 20px rgba(255, 215, 0, 0.6))',
+                filter: 'drop-shadow(0 0 25px rgba(255, 215, 0, 0.8))',
                 fontFamily: 'Inter, sans-serif'
               }}
             >
@@ -117,13 +159,19 @@ const LogoAnimation = ({ onComplete }: LogoAnimationProps) => {
             
             {/* Subtitle */}
             <motion.div
-              className="text-sm tracking-widest text-center"
+              className="text-base tracking-wider text-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={animationPhase !== 'loading' ? { 
+                opacity: 1, 
+                y: 0 
+              } : {}}
+              transition={{ duration: 0.6, delay: 0.8 }}
               style={{
                 background: 'linear-gradient(45deg, #F8F8FF 0%, #E6E6FA 25%, #C0C0C0 50%, #A9A9A9 75%, #808080 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
-                filter: 'drop-shadow(0 0 10px rgba(192, 192, 192, 0.4))',
+                filter: 'drop-shadow(0 0 15px rgba(192, 192, 192, 0.6))',
                 fontFamily: 'Inter, sans-serif'
               }}
             >
