@@ -28,13 +28,21 @@ const CharanHeader = ({ onMenuClick, darkMode, onThemeToggle }: CharanHeaderProp
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          {/* Lightning Bolt Icon */}
+          {/* Logo Icon */}
           <motion.div
-            className="text-yellow-400 text-2xl"
-            animate={logoHovered ? { rotate: [0, -15, 15, 0] } : { rotate: 0 }}
+            className="w-8 h-8 flex items-center justify-center"
+            animate={logoHovered ? { 
+              rotate: [0, -15, 15, 0],
+              scale: [1, 1.1, 1]
+            } : { rotate: 0, scale: 1 }}
             transition={{ duration: 0.3 }}
           >
-            ⚡
+            <img 
+              src="/logo.png"
+              alt="Charan Thota Logo"
+              className="w-full h-full object-contain"
+              style={{ filter: logoHovered ? 'drop-shadow(0 0 10px rgba(255, 215, 0, 0.5))' : 'none' }}
+            />
           </motion.div>
           
           {/* Charan Thota Text with Gradient */}

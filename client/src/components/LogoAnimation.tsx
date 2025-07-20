@@ -64,9 +64,44 @@ const LogoAnimation = ({ onComplete }: LogoAnimationProps) => {
         >
           {/* Logo with Charan Thota branding */}
           <div className="flex flex-col items-center">
-            {/* Main Logo */}
+            {/* Logo Image */}
             <motion.div
-              className="text-6xl font-bold text-center mb-2"
+              className="w-32 h-32 mb-4 relative"
+              animate={animationPhase === 'particles' ? {
+                rotate: [0, 360],
+                scale: [1, 1.1, 1]
+              } : {}}
+              transition={{ duration: 2, ease: "easeInOut" }}
+            >
+              <img 
+                src="/logo.png"
+                alt="Charan Thota Logo"
+                className="w-full h-full object-contain"
+                style={{
+                  filter: 'drop-shadow(0 0 30px rgba(255, 215, 0, 0.8)) drop-shadow(0 0 60px rgba(192, 192, 192, 0.4))'
+                }}
+              />
+              
+              {/* Glare Sweep Overlay on Logo */}
+              {animationPhase === 'glare' && (
+                <motion.div
+                  className="absolute inset-0 pointer-events-none rounded-full overflow-hidden"
+                  initial={{ x: -150, opacity: 0 }}
+                  animate={{ x: 150, opacity: 1 }}
+                  transition={{ duration: 1, ease: "easeInOut" }}
+                  style={{
+                    background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.9) 50%, transparent 100%)',
+                    transform: 'skewX(-20deg)',
+                    width: '60px',
+                    height: '100%'
+                  }}
+                />
+              )}
+            </motion.div>
+            
+            {/* Main Name */}
+            <motion.div
+              className="text-4xl font-bold text-center mb-2"
               style={{
                 background: 'linear-gradient(135deg, #FFD700 0%, #FFA500 25%, #FFD700 50%, #B8860B 75%, #DAA520 100%)',
                 WebkitBackgroundClip: 'text',
@@ -93,22 +128,6 @@ const LogoAnimation = ({ onComplete }: LogoAnimationProps) => {
             >
               SOFTWARE & ML ENGINEER
             </motion.div>
-
-            {/* Glare Sweep Overlay */}
-            {animationPhase === 'glare' && (
-              <motion.div
-                className="absolute inset-0 pointer-events-none"
-                initial={{ x: -300, opacity: 0 }}
-                animate={{ x: 300, opacity: 1 }}
-                transition={{ duration: 1, ease: "easeInOut" }}
-                style={{
-                  background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.8) 50%, transparent 100%)',
-                  transform: 'skewX(-20deg)',
-                  width: '60px',
-                  height: '100%'
-                }}
-              />
-            )}
           </div>
 
           {/* Particles Effect */}
