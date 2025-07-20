@@ -94,69 +94,6 @@
     transform: translateY(0);
   }
 
-  /* NNA Portfolio Animations */
-  .gold-glare {
-    background: linear-gradient(45deg, 
-      #FFD700 0%, 
-      #FFA500 25%, 
-      #FFD700 50%, 
-      #FF8C00 75%, 
-      #DAA520 100%
-    );
-    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6));
-  }
-
-  .silver-glare {
-    background: linear-gradient(45deg, 
-      #F8F8FF 0%, 
-      #E6E6FA 25%, 
-      #C0C0C0 50%, 
-      #A9A9A9 75%, 
-      #808080 100%
-    );
-    filter: drop-shadow(0 0 20px rgba(192, 192, 192, 0.6));
-  }
-
-  @keyframes gold-glare-sweep {
-    0% { transform: translateX(-200px) skewX(-20deg); opacity: 0; }
-    25% { opacity: 1; }
-    75% { opacity: 1; }
-    100% { transform: translateX(200px) skewX(-20deg); opacity: 0; }
-  }
-
-  @keyframes silver-glare-sweep {
-    0% { transform: translateX(-200px) skewX(-20deg); opacity: 0; }
-    25% { opacity: 1; }
-    75% { opacity: 1; }
-    100% { transform: translateX(200px) skewX(-20deg); opacity: 0; }
-  }
-
-  @keyframes logo-entrance {
-    0% {
-      opacity: 0;
-      transform: scale(0.8) rotateY(-90deg) translateZ(-100px);
-      filter: blur(10px);
-    }
-    25% {
-      opacity: 0.5;
-      transform: scale(1.1) rotateY(-45deg) translateZ(-50px);
-      filter: blur(5px);
-    }
-    50% {
-      opacity: 1;
-      transform: scale(1.05) rotateY(0deg) translateZ(0px);
-      filter: blur(0px);
-    }
-    75% {
-      opacity: 1;
-      transform: scale(1.02) rotateY(0deg) translateZ(10px);
-    }
-    100% {
-      opacity: 1;
-      transform: scale(1) rotateY(0deg) translateZ(0px);
-    }
-  }
-
   @keyframes suggestion-activate {
     0% { 
       transform: scale(1) translateY(0);

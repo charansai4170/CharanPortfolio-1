@@ -28,28 +28,40 @@ const NNAHeader = ({ onMenuClick, darkMode, onThemeToggle }: NNAHeaderProps) => 
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          {/* Lightning Bolt Icon */}
+          {/* Lightning Bolt Logo */}
           <motion.div
-            className="text-yellow-400 text-2xl"
-            animate={logoHovered ? { rotate: [0, -15, 15, 0] } : { rotate: 0 }}
-            transition={{ duration: 0.3 }}
+            className="relative p-2 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600"
+            whileHover={{ 
+              scale: 1.05,
+              boxShadow: "0 0 30px rgba(59, 130, 246, 0.5)"
+            }}
+            transition={{ duration: 0.2 }}
+            style={{
+              filter: "drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3))"
+            }}
           >
-            ⚡
+            <motion.div
+              className="text-white"
+              animate={logoHovered ? { rotate: [0, -10, 10, 0] } : { rotate: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              ⚡
+            </motion.div>
           </motion.div>
           
-          {/* NNA Text with Gradient */}
+          {/* Portfolio Title */}
           <motion.div
-            className="text-xl font-bold bg-gradient-to-r from-yellow-400 via-orange-500 to-yellow-400 bg-clip-text text-transparent"
+            className="text-xl font-bold bg-gradient-to-r from-blue-400 via-purple-500 to-blue-400 bg-clip-text text-transparent"
             animate={logoHovered ? {
               backgroundPosition: ['-200% 0', '200% 0']
             } : {}}
             transition={{ duration: 1.5, ease: "easeInOut" }}
             style={{ 
               backgroundSize: '200% 100%',
-              filter: logoHovered ? 'drop-shadow(0 0 10px rgba(255, 215, 0, 0.5))' : 'none'
+              filter: logoHovered ? 'drop-shadow(0 0 10px rgba(59, 130, 246, 0.5))' : 'none'
             }}
           >
-            NNA
+            Portfolio
           </motion.div>
         </motion.div>
 
