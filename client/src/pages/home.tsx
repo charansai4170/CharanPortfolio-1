@@ -94,6 +94,88 @@ const Home = () => {
     ],
   };
 
+  // Interactive tool icons with animations
+  const toolCategories = [
+    {
+      title: "Programming Languages",
+      color: "from-blue-600 to-purple-600",
+      bgColor: "from-blue-50 to-purple-50",
+      tools: [
+        { name: "Python", icon: "🐍", description: "Data Science & Backend" },
+        { name: "JavaScript", icon: "⚡", description: "Full Stack Development" },
+        { name: "TypeScript", icon: "📘", description: "Type-safe Development" },
+        { name: "Java", icon: "☕", description: "Enterprise Applications" },
+        { name: "C++", icon: "⚙️", description: "System Programming" },
+        { name: "SQL", icon: "🗃️", description: "Database Management" }
+      ]
+    },
+    {
+      title: "Cloud & DevOps",
+      color: "from-orange-600 to-red-600",
+      bgColor: "from-orange-50 to-red-50",
+      tools: [
+        { name: "AWS", icon: "☁️", description: "Cloud Infrastructure" },
+        { name: "Docker", icon: "🐳", description: "Containerization" },
+        { name: "Kubernetes", icon: "⚓", description: "Orchestration" },
+        { name: "Jenkins", icon: "🔧", description: "CI/CD Pipeline" },
+        { name: "Terraform", icon: "🏗️", description: "Infrastructure as Code" },
+        { name: "Git", icon: "📝", description: "Version Control" }
+      ]
+    },
+    {
+      title: "Machine Learning & AI",
+      color: "from-green-600 to-teal-600",
+      bgColor: "from-green-50 to-teal-50",
+      tools: [
+        { name: "TensorFlow", icon: "🧠", description: "Deep Learning" },
+        { name: "PyTorch", icon: "🔥", description: "Neural Networks" },
+        { name: "Scikit-learn", icon: "📊", description: "Machine Learning" },
+        { name: "Pandas", icon: "🐼", description: "Data Analysis" },
+        { name: "OpenAI API", icon: "🤖", description: "Large Language Models" },
+        { name: "Hugging Face", icon: "🤗", description: "NLP Models" }
+      ]
+    },
+    {
+      title: "Databases & Storage",
+      color: "from-purple-600 to-pink-600",
+      bgColor: "from-purple-50 to-pink-50",
+      tools: [
+        { name: "PostgreSQL", icon: "🐘", description: "Relational Database" },
+        { name: "MongoDB", icon: "🍃", description: "NoSQL Database" },
+        { name: "Redis", icon: "🔴", description: "In-memory Cache" },
+        { name: "DynamoDB", icon: "⚡", description: "Serverless Database" },
+        { name: "FAISS", icon: "🔍", description: "Vector Search" },
+        { name: "Pinecone", icon: "🌲", description: "Vector Database" }
+      ]
+    },
+    {
+      title: "Web Technologies",
+      color: "from-cyan-600 to-blue-600",
+      bgColor: "from-cyan-50 to-blue-50",
+      tools: [
+        { name: "React", icon: "⚛️", description: "Frontend Library" },
+        { name: "Node.js", icon: "💚", description: "Backend Runtime" },
+        { name: "Express", icon: "🚀", description: "Web Framework" },
+        { name: "REST API", icon: "🌐", description: "API Architecture" },
+        { name: "GraphQL", icon: "📈", description: "Query Language" },
+        { name: "Streamlit", icon: "📊", description: "Data Apps" }
+      ]
+    },
+    {
+      title: "Business Intelligence",
+      color: "from-amber-600 to-orange-600",
+      bgColor: "from-amber-50 to-orange-50",
+      tools: [
+        { name: "Power BI", icon: "📊", description: "Microsoft BI Tool" },
+        { name: "Tableau", icon: "📈", description: "Data Visualization" },
+        { name: "Excel", icon: "📑", description: "Data Analysis" },
+        { name: "Looker", icon: "👀", description: "Business Intelligence" },
+        { name: "Apache Spark", icon: "⚡", description: "Big Data Processing" },
+        { name: "Databricks", icon: "🧱", description: "Unified Analytics" }
+      ]
+    }
+  ];
+
 
 
   const projects = [
@@ -323,136 +405,129 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {/* Programming Languages */}
-            <Card className="tech-card-3d glass-card bg-neutral-custom border border-gray-100 relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary-custom/5 to-accent-custom/5"></div>
-              <CardContent className="p-6 relative z-10">
-                <div className="flex items-center mb-6">
-                  <div className="bg-gradient-to-r from-primary-custom to-primary-custom/80 p-3 rounded-xl mr-3 animate-morph">
-                    <div className="text-white text-xl">💻</div>
+          {/* Interactive Tool Categories */}
+          <div className="space-y-12 max-w-7xl mx-auto">
+            {toolCategories.map((category, categoryIndex) => (
+              <div 
+                key={category.title}
+                className="group relative"
+                style={{ animationDelay: `${categoryIndex * 200}ms` }}
+              >
+                {/* Category Header */}
+                <div className="text-center mb-8">
+                  <div className={`inline-block bg-gradient-to-r ${category.color} px-6 py-2 rounded-full mb-4 transform transition-all duration-300 group-hover:scale-105`}>
+                    <h3 className="text-xl font-bold text-white">{category.title}</h3>
                   </div>
-                  <h3 className="text-xl font-bold text-text">Programming</h3>
                 </div>
-                <div className="space-y-4">
-                  {skills.programming.map((skill, index) => (
-                    <SkillBar
-                      key={skill.name}
-                      skill={skill.name}
-                      percentage={skill.level}
-                      color="bg-gradient-to-r from-primary-custom to-primary-custom/80"
-                      delay={index * 200}
-                    />
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
 
-            {/* Cloud & DevOps */}
-            <Card className="tech-card-3d glass-card bg-neutral-custom border border-gray-100 relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-accent-custom/5 to-primary-custom/5"></div>
-              <CardContent className="p-6 relative z-10">
-                <div className="flex items-center mb-6">
-                  <div className="bg-gradient-to-r from-accent-custom to-accent-custom/80 p-3 rounded-xl mr-3 animate-morph" style={{ animationDelay: '1s' }}>
-                    <div className="text-white text-xl">☁️</div>
-                  </div>
-                  <h3 className="text-xl font-bold text-text">Cloud & DevOps</h3>
-                </div>
-                <div className="space-y-4">
-                  {skills.cloud.map((skill, index) => (
-                    <SkillBar
-                      key={skill.name}
-                      skill={skill.name}
-                      percentage={skill.level}
-                      color="bg-gradient-to-r from-accent-custom to-accent-custom/80"
-                      delay={index * 200}
-                    />
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+                {/* Tools Grid */}
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                  {category.tools.map((tool, toolIndex) => (
+                    <div
+                      key={tool.name}
+                      className={`group/tool relative bg-white rounded-2xl p-4 border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:-translate-y-2 hover:scale-105 bg-gradient-to-br ${category.bgColor}`}
+                      style={{ animationDelay: `${toolIndex * 100}ms` }}
+                    >
+                      {/* Tool Icon and Name */}
+                      <div className="text-center">
+                        <div className="text-4xl mb-3 transform transition-transform duration-300 group-hover/tool:scale-110 group-hover/tool:animate-bounce">
+                          {tool.icon}
+                        </div>
+                        <h4 className="font-semibold text-gray-800 text-sm mb-1">{tool.name}</h4>
+                        <p className="text-xs text-gray-600 leading-tight">{tool.description}</p>
+                      </div>
 
-            {/* Machine Learning */}
-            <Card className="tech-card-3d glass-card bg-neutral-custom border border-gray-100 relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-600/5 to-primary-custom/5"></div>
-              <CardContent className="p-6 relative z-10">
-                <div className="flex items-center mb-6">
-                  <div className="bg-gradient-to-r from-purple-600 to-purple-500 p-3 rounded-xl mr-3 animate-morph" style={{ animationDelay: '2s' }}>
-                    <div className="text-white text-xl">🧠</div>
-                  </div>
-                  <h3 className="text-xl font-bold text-text">Machine Learning</h3>
-                </div>
-                <div className="space-y-4">
-                  {skills.ml.map((skill, index) => (
-                    <SkillBar
-                      key={skill.name}
-                      skill={skill.name}
-                      percentage={skill.level}
-                      color="bg-gradient-to-r from-purple-600 to-purple-500"
-                      delay={index * 200}
-                    />
+                      {/* Hover Effects */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-2xl opacity-0 group-hover/tool:opacity-100 transition-opacity duration-300"></div>
+                      
+                      {/* Animated Border */}
+                      <div className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${category.color} opacity-0 group-hover/tool:opacity-100 transition-opacity duration-300 -z-10 blur-sm`}></div>
+                    </div>
                   ))}
                 </div>
-              </CardContent>
-            </Card>
 
-            {/* Additional Skills Cards */}
-            <Card className="tech-card-3d glass-card bg-neutral-custom border border-gray-100 relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-green-600/5 to-emerald-500/5"></div>
-              <CardContent className="p-6 relative z-10">
-                <div className="flex items-center mb-4">
-                  <div className="bg-gradient-to-r from-green-600 to-emerald-500 p-3 rounded-xl mr-3 animate-morph" style={{ animationDelay: '3s' }}>
-                    <div className="text-white text-xl">🗄️</div>
-                  </div>
-                  <h3 className="text-xl font-bold text-text">Databases</h3>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {["MySQL", "PostgreSQL", "MongoDB", "Redis", "DynamoDB"].map((db) => (
-                    <Badge key={db} variant="secondary" className="bg-green-100 text-green-800 hover:bg-green-200 transition-all duration-300 hover:scale-105">
-                      {db}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+                {/* Category Background Effect */}
+                <div className={`absolute inset-0 bg-gradient-to-r ${category.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500 rounded-3xl -z-10`}></div>
+              </div>
+            ))}
+          </div>
 
-            <Card className="tech-card-3d glass-card bg-neutral-custom border border-gray-100 relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-orange-600/5 to-amber-500/5"></div>
-              <CardContent className="p-6 relative z-10">
-                <div className="flex items-center mb-4">
-                  <div className="bg-gradient-to-r from-orange-600 to-amber-500 p-3 rounded-xl mr-3 animate-morph" style={{ animationDelay: '4s' }}>
-                    <div className="text-white text-xl">🌐</div>
+          {/* Core Skills Summary */}
+          <div className="mt-20">
+            <div className="text-center mb-12">
+              <h3 className="text-2xl font-bold text-text mb-4">Core Competencies</h3>
+            </div>
+            
+            <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+              {/* Programming Skills */}
+              <Card className="relative overflow-hidden border border-gray-100 bg-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                <CardContent className="p-6">
+                  <div className="flex items-center mb-4">
+                    <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-3 rounded-xl mr-3">
+                      <div className="text-white text-xl">💻</div>
+                    </div>
+                    <h4 className="text-lg font-bold text-text">Programming</h4>
                   </div>
-                  <h3 className="text-xl font-bold text-text">Web Technologies</h3>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {["React", "Node.js", "Express", "REST APIs", "GraphQL"].map((tech) => (
-                    <Badge key={tech} variant="secondary" className="bg-orange-100 text-orange-800 hover:bg-orange-200 transition-all duration-300 hover:scale-105">
-                      {tech}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+                  <div className="space-y-3">
+                    {skills.programming.map((skill, index) => (
+                      <SkillBar
+                        key={skill.name}
+                        skill={skill.name}
+                        percentage={skill.level}
+                        color="bg-gradient-to-r from-blue-600 to-purple-600"
+                        delay={index * 200}
+                      />
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
 
-            <Card className="tech-card-3d glass-card bg-neutral-custom border border-gray-100 relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-gray-600/5 to-slate-500/5"></div>
-              <CardContent className="p-6 relative z-10">
-                <div className="flex items-center mb-4">
-                  <div className="bg-gradient-to-r from-gray-600 to-slate-500 p-3 rounded-xl mr-3 animate-morph" style={{ animationDelay: '5s' }}>
-                    <div className="text-white text-xl">🛠️</div>
+              {/* Cloud Skills */}
+              <Card className="relative overflow-hidden border border-gray-100 bg-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                <CardContent className="p-6">
+                  <div className="flex items-center mb-4">
+                    <div className="bg-gradient-to-r from-orange-600 to-red-600 p-3 rounded-xl mr-3">
+                      <div className="text-white text-xl">☁️</div>
+                    </div>
+                    <h4 className="text-lg font-bold text-text">Cloud & DevOps</h4>
                   </div>
-                  <h3 className="text-xl font-bold text-text">Tools & Frameworks</h3>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {["Git", "Terraform", "Streamlit", "Power BI", "Tableau"].map((tool) => (
-                    <Badge key={tool} variant="secondary" className="bg-gray-100 text-gray-800 hover:bg-gray-200 transition-all duration-300 hover:scale-105">
-                      {tool}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+                  <div className="space-y-3">
+                    {skills.cloud.map((skill, index) => (
+                      <SkillBar
+                        key={skill.name}
+                        skill={skill.name}
+                        percentage={skill.level}
+                        color="bg-gradient-to-r from-orange-600 to-red-600"
+                        delay={index * 200}
+                      />
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* ML Skills */}
+              <Card className="relative overflow-hidden border border-gray-100 bg-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                <CardContent className="p-6">
+                  <div className="flex items-center mb-4">
+                    <div className="bg-gradient-to-r from-green-600 to-teal-600 p-3 rounded-xl mr-3">
+                      <div className="text-white text-xl">🧠</div>
+                    </div>
+                    <h4 className="text-lg font-bold text-text">Machine Learning</h4>
+                  </div>
+                  <div className="space-y-3">
+                    {skills.ml.map((skill, index) => (
+                      <SkillBar
+                        key={skill.name}
+                        skill={skill.name}
+                        percentage={skill.level}
+                        color="bg-gradient-to-r from-green-600 to-teal-600"
+                        delay={index * 200}
+                      />
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </div>
 
           {/* Certifications at the end of Skills Section */}
