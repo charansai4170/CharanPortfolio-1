@@ -94,7 +94,7 @@ const Home = () => {
         <div className="container mx-auto px-6 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className={`${isVisible ? "fade-in-up" : "opacity-0"}`}>
-              <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+              <h1 className="text-4xl md:text-6xl font-bold text-text mb-6 leading-tight">
                 Charan Thota
               </h1>
               <h2 className="text-2xl md:text-3xl gradient-text font-semibold mb-6">

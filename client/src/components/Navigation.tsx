@@ -1,19 +1,33 @@
 import { useState, useEffect, useRef } from "react";
 import { Menu, X, Home, User, Briefcase, FolderOpen, Settings, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Link, useLocation } from "react-router-dom";
 import Logo from "./Logo";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeNavItem, setActiveNavItem] = useState("home");
   const navRef = useRef<HTMLDivElement>(null);
   const [hoverPosition, setHoverPosition] = useState({ x: 0, width: 0, opacity: 0 });
-  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
+      
+      // Update active section based on scroll position
+      const sections = ["home", "about", "experience", "projects", "skills", "contact"];
+      const currentSection = sections.find(section => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          return rect.top <= 100 && rect.bottom >= 100;
+        }
+        return false;
+      });
+      
+      if (currentSection && currentSection !== activeNavItem) {
+        setActiveNavItem(currentSection);
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -21,7 +35,16 @@ const Navigation = () => {
     handleScroll();
     
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [activeNavItem]);
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+      setIsMobileMenuOpen(false);
+      setActiveNavItem(sectionId);
+    }
+  };
 
   const handleMouseEnter = (event: React.MouseEvent<HTMLButtonElement>) => {
     const target = event.currentTarget;
@@ -42,17 +65,13 @@ const Navigation = () => {
   };
 
   const navigationItems = [
-    { label: "Home", to: "/", icon: Home },
-    { label: "About", to: "/about", icon: User },
-    { label: "Experience", to: "/experience", icon: Briefcase },
-    { label: "Projects", to: "/projects", icon: FolderOpen },
-    { label: "Skills", to: "/skills", icon: Settings },
-    { label: "Contact", to: "/contact", icon: Mail },
+    { label: "Home", section: "home", icon: Home },
+    { label: "About", section: "about", icon: User },
+    { label: "Experience", section: "experience", icon: Briefcase },
+    { label: "Projects", section: "projects", icon: FolderOpen },
+    { label: "Skills", section: "skills", icon: Settings },
+    { label: "Contact", section: "contact", icon: Mail },
   ];
-
-  const isActiveRoute = (path: string) => {
-    return location.pathname === path;
-  };
 
   return (
     <nav className="fixed top-0 w-full z-50 transition-all duration-300">
@@ -88,12 +107,12 @@ const Navigation = () => {
               
               {navigationItems.map((item, index) => {
                 const IconComponent = item.icon;
-                const isActive = isActiveRoute(item.to);
+                const isActive = activeNavItem === item.section;
                 
                 return (
-                  <Link
-                    key={item.to}
-                    to={item.to}
+                  <button
+                    key={item.section}
+                    onClick={() => scrollToSection(item.section)}
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                     className={`relative flex items-center space-x-2 px-4 py-2 rounded-full transition-all duration-300 font-medium z-10 ${
@@ -104,7 +123,7 @@ const Navigation = () => {
                   >
                     <IconComponent className="h-4 w-4" />
                     <span className="text-sm">{item.label}</span>
-                  </Link>
+                  </button>
                 );
               })}
             </div>
@@ -135,13 +154,12 @@ const Navigation = () => {
               <div className="flex flex-col space-y-2">
                 {navigationItems.map((item) => {
                   const IconComponent = item.icon;
-                  const isActive = isActiveRoute(item.to);
+                  const isActive = activeNavItem === item.section;
                   
                   return (
-                    <Link
-                      key={item.to}
-                      to={item.to}
-                      onClick={() => setIsMobileMenuOpen(false)}
+                    <button
+                      key={item.section}
+                      onClick={() => scrollToSection(item.section)}
                       className={`flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 font-medium text-left ${
                         isActive 
                           ? 'text-primary-custom bg-primary-custom/10' 
@@ -150,7 +168,7 @@ const Navigation = () => {
                     >
                       <IconComponent className="h-4 w-4" />
                       <span>{item.label}</span>
-                    </Link>
+                    </button>
                   );
                 })}
               </div>
