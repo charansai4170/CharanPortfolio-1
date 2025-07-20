@@ -2,6 +2,7 @@ import { motion, useInView, useAnimation } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import { MapPin, Calendar, Building, Briefcase, GraduationCap } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
+import ProfessionalBackground from '@/components/ProfessionalBackground';
 
 interface ExperienceItem {
   id: string;
@@ -266,8 +267,9 @@ const TimelineExperience = () => {
   };
 
   return (
-    <section id="experience" className="py-20 bg-white">
-      <div className="container mx-auto px-4 md:px-6">
+    <ProfessionalBackground variant="light" pattern="particles" className="py-20 bg-white">
+      <section id="experience" className="w-full">
+        <div className="container mx-auto px-4 md:px-6">
         <motion.div
           ref={containerRef}
           initial="hidden"
@@ -362,8 +364,9 @@ const TimelineExperience = () => {
             </div>
           </div>
         </motion.div>
-      </div>
-    </section>
+        </div>
+      </section>
+    </ProfessionalBackground>
   );
 };
 

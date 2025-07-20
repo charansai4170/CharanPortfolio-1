@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Download, Mail, Phone, MapPin, Linkedin, Github, Award, GraduationCap, Send } from "lucide-react";
 import Navigation from "@/components/Navigation";
+import ProfessionalBackground from "@/components/ProfessionalBackground";
 
 import SkillBar from "@/components/SkillBar";
 import TimelineExperience from "@/components/TimelineExperience";
@@ -163,8 +164,9 @@ const Home = () => {
       <Navigation />
 
           {/* Hero Section */}
-      <section id="home" className="min-h-screen flex items-center relative overflow-hidden bg-white pt-20 md:pt-0">
-        <div className="container mx-auto px-4 md:px-6">
+      <ProfessionalBackground variant="light" pattern="all" className="min-h-screen flex items-center pt-20 md:pt-0">
+        <section id="home" className="w-full">
+          <div className="container mx-auto px-4 md:px-6">
           <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
             <div className={`${isVisible ? "fade-in-up" : "opacity-0"} text-center lg:text-left`}>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-text mb-4 md:mb-6 leading-tight">
@@ -261,12 +263,14 @@ const Home = () => {
               </div>
             </div>
           </div>
-        </div>
-      </section>
+          </div>
+        </section>
+      </ProfessionalBackground>
 
       {/* About Section */}
-      <section id="about" className="py-20 bg-gray-50">
-        <div className="container mx-auto px-6">
+      <ProfessionalBackground variant="light" pattern="grid" className="py-20 bg-gray-50">
+        <section id="about" className="w-full">
+          <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-text mb-4">About <span className="gradient-text">Me</span></h2>
             <div className="w-20 h-1 bg-gradient-to-r from-primary-custom to-accent-custom mx-auto rounded-full"></div>
@@ -326,15 +330,17 @@ const Home = () => {
               </div>
             </div>
           </div>
-        </div>
-      </section>
+          </div>
+        </section>
+      </ProfessionalBackground>
 
       {/* Experience Section */}
       <TimelineExperience />
 
       {/* Skills Section */}
-      <section id="skills" className="py-16 md:py-20 bg-gray-50">
-        <div className="container mx-auto px-4 md:px-6">
+      <ProfessionalBackground variant="light" pattern="dots" className="py-16 md:py-20 bg-gray-50">
+        <section id="skills" className="w-full">
+          <div className="container mx-auto px-4 md:px-6">
           <div className="text-center mb-12 md:mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-text mb-4">Technical Expertise</h2>
             <p className="text-gray-600 text-base md:text-lg max-w-2xl mx-auto px-4">
@@ -557,12 +563,14 @@ const Home = () => {
               ))}
             </div>
           </div>
-        </div>
-      </section>
+          </div>
+        </section>
+      </ProfessionalBackground>
 
       {/* Projects Section */}
-      <section id="projects" className="py-20 bg-white">
-        <div className="container mx-auto px-6">
+      <ProfessionalBackground variant="light" pattern="geometric" className="py-20 bg-white">
+        <section id="projects" className="w-full">
+          <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-text mb-4">Featured Projects</h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
@@ -579,12 +587,14 @@ const Home = () => {
               />
             ))}
           </div>
-        </div>
-      </section>
+          </div>
+        </section>
+      </ProfessionalBackground>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 bg-gray-900 text-white relative">
-        <div className="container mx-auto px-6">
+      <ProfessionalBackground variant="dark" pattern="all" className="py-20 bg-gray-900 text-white">
+        <section id="contact" className="w-full">
+          <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Let's Build Something Amazing</h2>
             <p className="text-gray-300 text-lg max-w-2xl mx-auto">
@@ -674,10 +684,9 @@ const Home = () => {
               </CardContent>
             </Card>
           </div>
-        </div>
-      </section>
-
-
+          </div>
+        </section>
+      </ProfessionalBackground>
 
       {/* Footer */}
       <footer className="bg-text text-white py-8">
