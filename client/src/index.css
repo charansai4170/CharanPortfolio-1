@@ -95,6 +95,67 @@
   }
 }
 
+:root {
+  --primary-custom: #6366F1;
+  --safe-area-inset-top: env(safe-area-inset-top, 0px);
+  --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-area-inset-left: env(safe-area-inset-left, 0px);
+  --safe-area-inset-right: env(safe-area-inset-right, 0px);
+}
+
+/* Touch-friendly component styles */
+.touch-target {
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* Mobile response units optimization */
+@media (max-width: 375px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+@media (min-width: 376px) and (max-width: 414px) {
+  .container {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+}
+
+@media (min-width: 415px) and (max-width: 768px) {
+  .container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+/* Intelligent spacing for high aspect ratio devices */
+@media (max-width: 768px) and (min-aspect-ratio: 2/1) {
+  .container {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+}
+
+/* Enhanced touch interactions */
+@media (hover: none) and (pointer: coarse) {
+  .touch-target {
+    min-width: 48px;
+    min-height: 48px;
+  }
+  
+  button, a, [role="button"] {
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
+
 @layer utilities {
   .text-primary-custom {
     color: hsl(215, 74%, 58%);

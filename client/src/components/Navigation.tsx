@@ -3,6 +3,7 @@ import { Menu, X, Home, User, Briefcase, FolderOpen, Settings, Mail } from "luci
 import { Button } from "@/components/ui/button";
 import Logo from "./Logo";
 import { useLocation } from "wouter";
+import { motion, AnimatePresence, PanInfo } from "framer-motion";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -11,6 +12,9 @@ const Navigation = () => {
   const navRef = useRef<HTMLDivElement>(null);
   const [hoverPosition, setHoverPosition] = useState({ x: 0, width: 0, opacity: 0 });
   const [location, setLocation] = useLocation();
+  const [touchStart, setTouchStart] = useState<{ x: number; y: number } | null>(null);
+  const [dragProgress, setDragProgress] = useState(0);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -71,6 +75,161 @@ const Navigation = () => {
     scrollToSection('home');
   };
 
+  // Touch gesture handlers
+  const handleTouchStart = (e: React.TouchEvent) => {
+    const touch = e.touches[0];
+    setTouchStart({ x: touch.clientX, y: touch.clientY });
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!touchStart) return;
+    
+    const touch = e.touches[0];
+    const deltaX = touch.clientX - touchStart.x;
+    const deltaY = touch.clientY - touchStart.y;
+    
+    // Only handle horizontal swipes (ignore vertical scrolling)
+    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 20) {
+      e.preventDefault();
+      
+      // Calculate drag progress for menu animation
+      const progress = Math.min(Math.max(deltaX / 200, 0), 1);
+      setDragProgress(progress);
+      
+      // Open menu on right swipe
+      if (deltaX > 50 && !isMobileMenuOpen) {
+        setIsMobileMenuOpen(true);
+        setTouchStart(null);
+      }
+      // Close menu on left swipe
+      else if (deltaX < -50 && isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+        setTouchStart(null);
+      }
+    }
+  };
+
+  const handleTouchEnd = () => {
+    setTouchStart(null);
+    setDragProgress(0);
+  };
+
+  const handlePanEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+    // Close menu if swiped left or dragged down significantly
+    if (info.offset.x < -100 || info.offset.y > 100) {
+      setIsMobileMenuOpen(false);
+    }
+  };
+
+  // Add touch event listeners for gesture support
+  useEffect(() => {
+    const handleDocumentTouch = (e: TouchEvent) => {
+      // Close menu when touching outside
+      if (isMobileMenuOpen && menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        const touch = e.touches[0];
+        if (touch) {
+          const rect = menuRef.current.getBoundingClientRect();
+          if (touch.clientX < rect.left || touch.clientX > rect.right) {
+            setIsMobileMenuOpen(false);
+          }
+        }
+      }
+    };
+
+    if (isMobileMenuOpen) {
+      document.addEventListener('touchstart', handleDocumentTouch);
+    }
+
+    return () => {
+      document.removeEventListener('touchstart', handleDocumentTouch);
+    };
+  }, [isMobileMenuOpen]);
+
+  // Intelligent spacing algorithm for mobile components
+  const getAdaptiveLogoSize = () => {
+    if (typeof window === 'undefined') return 48;
+    
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    const pixelRatio = window.devicePixelRatio || 1;
+    
+    // Calculate optimal size based on screen dimensions and pixel density
+    let baseSize;
+    
+    // iPhone SE and small phones (320-375px)
+    if (width <= 375) {
+      baseSize = 40;
+    }
+    // Standard mobile phones (376-414px) 
+    else if (width <= 414) {
+      baseSize = 44;
+    }
+    // Large phones and small tablets (415-768px)
+    else if (width <= 768) {
+      baseSize = 48;
+    }
+    // Tablets and larger (769px+)
+    else {
+      baseSize = 72;
+    }
+    
+    // Adjust for high-DPI displays
+    if (pixelRatio > 2) {
+      baseSize = Math.round(baseSize * 0.9);
+    } else if (pixelRatio > 1.5) {
+      baseSize = Math.round(baseSize * 0.95);
+    }
+    
+    // Consider safe area for devices with notches
+    const safeAreaTop = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--safe-area-inset-top') || '0');
+    if (safeAreaTop > 20) {
+      baseSize = Math.round(baseSize * 0.95);
+    }
+    
+    return Math.max(baseSize, 32); // Minimum size for touch accessibility
+  };
+
+  const getIntelligentSpacing = () => {
+    if (typeof window === 'undefined') return { px: 4, py: 3 };
+    
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    
+    // Calculate spacing based on screen real estate
+    let px, py;
+    
+    // Compact phones - minimize horizontal padding
+    if (width <= 375) {
+      px = 4; // 16px
+      py = 3; // 12px
+    }
+    // Standard phones - balanced spacing
+    else if (width <= 414) {
+      px = 5; // 20px  
+      py = 3; // 12px
+    }
+    // Large phones - comfortable spacing
+    else if (width <= 768) {
+      px = 6; // 24px
+      py = 4; // 16px
+    }
+    // Tablets and desktop - generous spacing
+    else {
+      px = 6; // 24px
+      py = 4; // 16px
+    }
+    
+    // Adjust for very tall screens (reduce vertical padding)
+    const aspectRatio = height / width;
+    if (aspectRatio > 2.1) {
+      py = Math.max(py - 1, 2);
+    }
+    
+    return { px, py };
+  };
+
+  const spacing = getIntelligentSpacing();
+
   const navigationItems = [
     { label: "Home", section: "home", icon: Home, route: "/" },
     { label: "About", section: "about", icon: User, route: "#about" },
@@ -82,7 +241,15 @@ const Navigation = () => {
 
   return (
     <nav className="fixed top-0 w-full z-50 transition-all duration-300">
-      <div className="container mx-auto px-4 md:px-6 py-3 md:py-4">
+      <div 
+        className="container mx-auto"
+        style={{ 
+          paddingLeft: `${spacing.px * 4}px`, 
+          paddingRight: `${spacing.px * 4}px`,
+          paddingTop: `${spacing.py * 4}px`,
+          paddingBottom: `${spacing.py * 4}px`
+        }}
+      >
         <div className="flex items-center justify-center">
           {/* Centered Logo and Navigation Container */}
           <div className="hidden md:flex items-center space-x-8">
@@ -140,11 +307,11 @@ const Navigation = () => {
             </div>
           </div>
           
-          {/* Mobile Logo and Menu */}
-          <div className="md:hidden flex items-center justify-between w-full max-w-sm mx-auto">
-            <div className="flex-shrink-0">
+          {/* Mobile Logo and Menu with Intelligent Spacing */}
+          <div className="md:hidden flex items-center justify-between w-full">
+            <div className="flex-shrink-0 touch-target" style={{ minWidth: '44px', minHeight: '44px' }}>
               <Logo 
-                size={48} 
+                size={getAdaptiveLogoSize()} 
                 className="hover:scale-105 transition-transform duration-300 cursor-pointer" 
                 onClick={handleLogoClick}
               />
@@ -152,8 +319,9 @@ const Navigation = () => {
             <Button
               variant="ghost"
               size="icon"
-              className="bg-white/90 backdrop-blur-xl border border-gray-200/50 rounded-full shadow-lg flex-shrink-0 ml-4"
+              className="bg-white/90 backdrop-blur-xl border border-gray-200/50 rounded-full shadow-lg flex-shrink-0 touch-target"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              style={{ minWidth: '44px', minHeight: '44px' }}
             >
               {isMobileMenuOpen ? (
                 <X className="h-5 w-5 text-gray-600" />
@@ -163,6 +331,122 @@ const Navigation = () => {
             </Button>
           </div>
         </div>
+
+        {/* Mobile Navigation Menu with Touch Gestures */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <>
+              {/* Backdrop */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40"
+                onClick={() => setIsMobileMenuOpen(false)}
+              />
+              
+              {/* Mobile Menu */}
+              <motion.div
+                ref={menuRef}
+                initial={{ x: "100%", opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={{ x: "100%", opacity: 0 }}
+                transition={{ 
+                  type: "spring", 
+                  damping: 25, 
+                  stiffness: 200,
+                  duration: 0.3 
+                }}
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.2}
+                onPanEnd={handlePanEnd}
+                className="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white/95 backdrop-blur-xl border-l border-gray-200/50 shadow-2xl z-50"
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
+              >
+                {/* Menu Header */}
+                <div className="flex items-center justify-between p-6 border-b border-gray-100">
+                  <div className="flex items-center space-x-3">
+                    <Logo size={40} />
+                    <span className="text-lg font-semibold text-gray-800">Menu</span>
+                  </div>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="rounded-full hover:bg-gray-100 touch-target"
+                    style={{ minWidth: '44px', minHeight: '44px' }}
+                  >
+                    <X className="h-5 w-5" />
+                  </Button>
+                </div>
+
+                {/* Navigation Items */}
+                <div className="py-6">
+                  {navigationItems.map((item, index) => {
+                    const IconComponent = item.icon;
+                    const isActive = activeNavItem === item.section;
+                    
+                    return (
+                      <motion.button
+                        key={item.section}
+                        initial={{ x: 50, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        transition={{ 
+                          delay: index * 0.1,
+                          type: "spring",
+                          damping: 20,
+                          stiffness: 300
+                        }}
+                        onClick={() => scrollToSection(item.section)}
+                        className={`
+                          w-full flex items-center space-x-4 px-6 py-4 text-left transition-all duration-200 touch-target
+                          ${isActive 
+                            ? 'bg-primary-custom/10 border-r-4 border-primary-custom text-primary-custom' 
+                            : 'text-gray-700 hover:bg-gray-50 hover:text-primary-custom'
+                          }
+                        `}
+                        style={{ minHeight: '56px' }}
+                      >
+                        <div className={`
+                          p-2 rounded-full transition-colors duration-200
+                          ${isActive 
+                            ? 'bg-primary-custom text-white' 
+                            : 'bg-gray-100 text-gray-600 group-hover:bg-primary-custom/20'
+                          }
+                        `}>
+                          <IconComponent className="h-5 w-5" />
+                        </div>
+                        <span className="text-lg font-medium">{item.label}</span>
+                        
+                        {/* Active indicator */}
+                        {isActive && (
+                          <motion.div
+                            layoutId="activeIndicator"
+                            className="ml-auto w-2 h-2 bg-primary-custom rounded-full"
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                          />
+                        )}
+                      </motion.button>
+                    );
+                  })}
+                </div>
+
+                {/* Bottom Section */}
+                <div className="absolute bottom-0 left-0 right-0 p-6 border-t border-gray-100 bg-white/50">
+                  <p className="text-sm text-gray-500 text-center">
+                    Swipe left to close menu
+                  </p>
+                </div>
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>
 
         {/* Mobile Navigation Menu */}
         {isMobileMenuOpen && (
