@@ -1,0 +1,47 @@
+PROFESSIONAL EXPERIENCE
+   Mettles Solution LLC - Associated Client: Centers for Medicare & Medicaid Services (CMS)                                               Remote
+   Software Developer                                                                                                                                                                       Oct 2024 - Present
+•	Developed an AI-powered medical document review system that allowed patients, doctors, and hospitals to submit documents for CMS-compliant analysis using OCR and machine learning models.
+•	Built a Python-based rule-checking agent leveraging ML models to evaluate documents against CMS guidelines, producing detailed compliance reports for end users.
+•	Designed and deployed scalable RESTful APIs using Flask, containerized with Docker, integrated with Jenkins CI/CD pipelines, orchestrated them with Kubernetes for scalable and reliable cloud infrastructure, and connected to AWS services including S3, SQS, SNS, and CloudWatch.
+•	Created an AI tool for Review Contractors to track submissions, visualize document review statuses, and generate insights on document flow and volume.
+•	Automated workflows for document ingestion, virus scanning, and OCR processing; implemented embedding-based logic for intelligent document classification and used AWS CloudWatch for system monitoring.
+•	Conducted rigorous security checks using SonarQube and ZAP/OWASP, resolving approximately 100–150 code smells and bugs to ensure high code quality.
+•	Utilized Datadog and CloudWatch for log aggregation and monitoring, ensuring system reliability and quick issue resolution.
+•	Developed front-end interfaces using ReactJS for streamlined document management and review workflows.
+Varenya Inc      	   Remote
+Software Engineer                                                                                                                                                                     Jun 2024 – Sept 2024
+●	Analyzed 10M+ patient records using SQL and Python to extract key metrics like ALOS, cost per patient, and readmission rates, improving operational efficiency by 15%.
+●	Built data pipelines in AWS Redshift and automated workflows with Python, creating predictive models that achieved 75% accuracy in forecasting readmission likelihood and optimized resource allocation.
+●	Developed machine learning models (logistic regression, random forests) with data science teams, improving readmission prediction accuracy by 20% and reducing hospital readmissions by 10%.
+●	Automated data extraction from 50+ diverse sources and developed 5 dynamic Power BI dashboards, enabling data-driven insights that led to a $5M reduction in costs through strategic care management.
+Free Float LLC                                                                                                                                                                                Boston, MA, USA
+Business Intelligence Analyst | Apprenticeship at Northeastern University                                                            April 2023 – July 2023
+•	Developed a predictive model to assess board of directors performance based on individual influence and company metrics, contributing to a deeper understanding of the relationship between past and future performance with an accuracy of 88%.
+•	Conducted comprehensive research on director performance traits and their impact on board effectiveness, providing valuable insights into the dynamics of boardrooms and their influence on company outcomes.
+Everyday Chemist Inc                                                                                                                                                                Boston, MA, USA
+Business Intelligence Analyst | Apprenticeship at Northeastern University	Jan 2023 – Mar 2023
+●	Designed and deployed 20+ dashboards, reducing decision-making time and saving 500+ man-hours annually through optimized queries and data modeling.
+●	Analyzed large datasets with SQL, Python, and statistical methods to boost campaign conversion rates by 10%, while building ETL pipelines with Azure Data Factory to enhance data accuracy and reduce redundancy.
+●	Led A/B testing and predictive analytics, driving a 10% increase in conversions, 20% sales growth, and 15% improved pipeline visibility through integrated Salesforce and Azure data updates.
+Northeastern University                                                                                                                                                           Boston, MA, USA
+Event Specialist                                                                                                                                                                           Feb 2023 - July 2023
+•	Streamlined event operations by organizing schedules, managing registrations, and coordinating logistics across multiple campus departments.
+•	Maintained and updated internal tracking systems using Excel and simple automation scripts to reduce manual work and improve accuracy in attendance and resource planning.
+•	Took initiative to analyze event feedback data, identifying trends and sharing insights with the team to help improve future planning and student engagement.
+Global Shala                                                                                                                                                                                                      Remote
+Data Analyst Intern 	   Jun 2021 - July 2021
+●	Automated data extraction and transformation using Python, integrating SQL databases with Salesforce to improve reporting accuracy and business decision-making.
+●	Analyzed sales growth, customer retention, and profitability using Python, enabling data-driven strategies and improved outcomes.
+●	Developed dynamic Power BI dashboards with Python-enhanced insights, highlighting sales trends and driving stakeholder engagement.
+Vedamrit Technology Solutions Private Limited
+Engineering Intern                                                                                                                                                                    Aug 2019 – Sep 2019 
+●	Designed and implemented Python-based automation tools to support embedded system development, including data logging, sensor simulation, and testing workflows.
+●	Gained hands-on experience with microcontrollers (e.g., Arduino, STM32) by writing and debugging C/C++ code, interfacing with peripherals like sensors, actuators, and communication modules (UART, SPI, I2C).
+●	Participated in hardware-software integration tasks, performed real-time debugging, and optimized performance for embedded applications in a cross- functional engineering team
+Bharat Sanchar Nigam Limited
+Student Intern                                                                                                                                                                                                  Dec 2018
+●	Worked with BSNL's GSM (Global System for Mobile Communications) infrastructure, gaining hands-on experience in mobile network operations, including BTS (Base Transceiver Station), BSC (Base Station Controller), and MSC (Mobile Switching Center) architecture.
+●	Assisted in network monitoring and fault management using telecom-grade software tools, analyzing performance logs, and scripting automation tasks in Python to streamline network diagnostics and reporting.
+●	Developed and tested automation scripts for SIM activation workflows and subscriber data processing, enhancing the efficiency of provisioning services through interaction with HLR (Home Location Register) databases.
+●	Collaborated with engineers to understand signaling protocols (SS7, MAP) and implemented simulations of call setup and SMS delivery processes using tools like Wireshark and custom packet inspection scripts.

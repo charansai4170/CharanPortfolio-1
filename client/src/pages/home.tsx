@@ -4,8 +4,10 @@ import Navigation from "@/components/Navigation";
 import Hero3D from "@/components/Hero3D";
 import ScrollDriftElements from "@/components/ScrollDriftElements";
 import SkillBar from "@/components/SkillBar";
-import ExperienceCard from "@/components/ExperienceCard";
+import TimelineExperience from "@/components/TimelineExperience";
 import ProjectCard from "@/components/ProjectCard";
+import WebGLBackground from "@/components/WebGLBackground";
+import AchievementVisualizations from "@/components/AchievementVisualizations";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -37,42 +39,7 @@ const Home = () => {
     ],
   };
 
-  const experiences = [
-    {
-      title: "Software Developer",
-      company: "Mettles Solution LLC - CMS Client",
-      location: "Remote",
-      duration: "Oct 2024 - Present",
-      responsibilities: [
-        "Developed AI-powered medical document review system for CMS-compliant analysis using OCR and ML models",
-        "Built scalable RESTful APIs with Flask, Docker, Kubernetes, and AWS services (S3, SQS, SNS, CloudWatch)",
-        "Conducted security checks using SonarQube and OWASP, resolving 100-150 code smells and bugs",
-        "Created AI tool for Review Contractors to track submissions and visualize document review statuses",
-      ],
-      isCurrentRole: true,
-    },
-    {
-      title: "Software Engineer",
-      company: "Varenya Inc",
-      location: "Remote",
-      duration: "Jun 2024 - Sept 2024",
-      responsibilities: [
-        "Analyzed 10M+ patient records using SQL and Python, improving operational efficiency by 15%",
-        "Built predictive models achieving 75% accuracy in readmission forecasting, reducing costs by $5M",
-        "Developed machine learning models improving readmission prediction accuracy by 20%",
-      ],
-    },
-    {
-      title: "Business Intelligence Analyst",
-      company: "Free Float LLC - Northeastern University",
-      location: "Boston, MA",
-      duration: "Apr 2023 - Jul 2023",
-      responsibilities: [
-        "Developed predictive model for board of directors performance with 88% accuracy",
-        "Conducted comprehensive research on director performance traits and board effectiveness",
-      ],
-    },
-  ];
+
 
   const projects = [
     {
@@ -118,7 +85,8 @@ const Home = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white relative">
+      <WebGLBackground />
       <Navigation />
       <ScrollDriftElements />
 
@@ -228,24 +196,8 @@ const Home = () => {
                 I've successfully worked across the stack—backend APIs, automation workflows, and frontend interfaces—delivering measurable impact including <span className="text-primary-custom font-semibold">$5M cost reductions</span> and <span className="text-primary-custom font-semibold">15% operational efficiency improvements</span>.
               </p>
               
-              <div className="grid grid-cols-2 gap-6 pt-6">
-                <div className="text-center p-4 bg-neutral-custom rounded-xl">
-                  <div className="text-2xl font-bold text-primary-custom">2.5+</div>
-                  <div className="text-sm text-gray-600">Years Experience</div>
-                </div>
-                <div className="text-center p-4 bg-neutral-custom rounded-xl">
-                  <div className="text-2xl font-bold text-primary-custom">10M+</div>
-                  <div className="text-sm text-gray-600">Records Analyzed</div>
-                </div>
-                <div className="text-center p-4 bg-neutral-custom rounded-xl">
-                  <div className="text-2xl font-bold text-primary-custom">$5M</div>
-                  <div className="text-sm text-gray-600">Cost Reduction</div>
-                </div>
-                <div className="text-center p-4 bg-neutral-custom rounded-xl">
-                  <div className="text-2xl font-bold text-primary-custom">90%+</div>
-                  <div className="text-sm text-gray-600">ML Accuracy</div>
-                </div>
-              </div>
+              {/* Achievement Visualizations */}
+              <AchievementVisualizations className="pt-6" />
             </div>
             
             <div className="relative">
@@ -266,26 +218,7 @@ const Home = () => {
       </section>
 
       {/* Experience Section */}
-      <section id="experience" className="py-20 bg-neutral-custom">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-text mb-4">Professional Experience</h2>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              A journey through impactful roles in software engineering, machine learning, and data analytics
-            </p>
-          </div>
-          
-          <div className="max-w-4xl mx-auto">
-            {experiences.map((experience, index) => (
-              <ExperienceCard
-                key={index}
-                {...experience}
-                delay={index * 200}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
+      <TimelineExperience />
 
       {/* Skills Section */}
       <section id="skills" className="py-20 bg-white">

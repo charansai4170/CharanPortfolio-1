@@ -178,6 +178,15 @@
   }
 }
 
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
 .animate-slide-in {
   animation: slideIn 0.6s ease-out forwards;
 }
