@@ -1,5 +1,5 @@
 import { motion, useInView, useAnimation } from 'framer-motion';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { MapPin, Calendar, Building, Briefcase, GraduationCap } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 
@@ -35,14 +35,14 @@ const TimelineExperience = () => {
       type: 'full-time',
       isCurrentRole: true,
       responsibilities: [
-        'Developed an AI-powered medical document review system that allowed patients, doctors, and hospitals to submit documents for CMS-compliant analysis using OCR and machine learning models.',
-        'Built a Python-based rule-checking agent leveraging ML models to evaluate documents against CMS guidelines, producing detailed compliance reports for end users.',
-        'Designed and deployed scalable RESTful APIs using Flask, containerized with Docker, integrated with Jenkins CI/CD pipelines, orchestrated them with Kubernetes for scalable and reliable cloud infrastructure, and connected to AWS services including S3, SQS, SNS, and CloudWatch.',
-        'Created an AI tool for Review Contractors to track submissions, visualize document review statuses, and generate insights on document flow and volume.',
-        'Automated workflows for document ingestion, virus scanning, and OCR processing; implemented embedding-based logic for intelligent document classification and used AWS CloudWatch for system monitoring.',
-        'Conducted rigorous security checks using SonarQube and ZAP/OWASP, resolving approximately 100–150 code smells and bugs to ensure high code quality.',
-        'Utilized Datadog and CloudWatch for log aggregation and monitoring, ensuring system reliability and quick issue resolution.',
-        'Developed front-end interfaces using ReactJS for streamlined document management and review workflows.'
+        'AI-powered medical document review system with OCR and ML models',
+        'Python rule-checking agent for CMS compliance evaluation',
+        'Scalable RESTful APIs with Flask, Docker, Kubernetes, and AWS services',
+        'AI tool for submission tracking and document review insights',
+        'Automated workflows for document processing and classification',
+        'Security checks with SonarQube/OWASP (resolved 100-150 issues)',
+        'System monitoring with Datadog and CloudWatch',
+        'ReactJS frontend for document management workflows'
       ]
     },
     {
@@ -53,10 +53,10 @@ const TimelineExperience = () => {
       duration: 'Jun 2024 – Sept 2024',
       type: 'full-time',
       responsibilities: [
-        'Analyzed 10M+ patient records using SQL and Python to extract key metrics like ALOS, cost per patient, and readmission rates, improving operational efficiency by 15%.',
-        'Built data pipelines in AWS Redshift and automated workflows with Python, creating predictive models that achieved 75% accuracy in forecasting readmission likelihood and optimized resource allocation.',
-        'Developed machine learning models (logistic regression, random forests) with data science teams, improving readmission prediction accuracy by 20% and reducing hospital readmissions by 10%.',
-        'Automated data extraction from 50+ diverse sources and developed 5 dynamic Power BI dashboards, enabling data-driven insights that led to a $5M reduction in costs through strategic care management.'
+        'Analyzed 10M+ patient records with SQL/Python (15% efficiency improvement)',
+        'Built AWS Redshift data pipelines and predictive models (75% accuracy)',
+        'ML models for readmission prediction (20% accuracy improvement, 10% reduction)',
+        'Automated data extraction from 50+ sources with Power BI dashboards ($5M cost savings)'
       ]
     },
     {
@@ -67,8 +67,8 @@ const TimelineExperience = () => {
       duration: 'April 2023 – July 2023',
       type: 'apprenticeship',
       responsibilities: [
-        'Developed a predictive model to assess board of directors performance based on individual influence and company metrics, contributing to a deeper understanding of the relationship between past and future performance with an accuracy of 88%.',
-        'Conducted comprehensive research on director performance traits and their impact on board effectiveness, providing valuable insights into the dynamics of boardrooms and their influence on company outcomes.'
+        'Predictive model for board performance assessment (88% accuracy)',
+        'Research on director performance traits and board effectiveness dynamics'
       ]
     },
     {
@@ -79,9 +79,10 @@ const TimelineExperience = () => {
       duration: 'Jan 2023 – Mar 2023',
       type: 'apprenticeship',
       responsibilities: [
-        'Designed and deployed 20+ dashboards, reducing decision-making time and saving 500+ man-hours annually through optimized queries and data modeling.',
-        'Analyzed large datasets with SQL, Python, and statistical methods to boost campaign conversion rates by 10%, while building ETL pipelines with Azure Data Factory to enhance data accuracy and reduce redundancy.',
-        'Led A/B testing and predictive analytics, driving a 10% increase in conversions, 20% sales growth, and 15% improved pipeline visibility through integrated Salesforce and Azure data updates.'
+        'Designed 20+ dashboards (saved 500+ man-hours annually)',
+        'Data analysis with SQL/Python (10% conversion rate boost)',
+        'ETL pipelines with Azure Data Factory for enhanced accuracy',
+        'A/B testing and analytics (10% conversions, 20% sales growth)'
       ]
     },
     {
@@ -92,9 +93,9 @@ const TimelineExperience = () => {
       duration: 'Feb 2023 - July 2023',
       type: 'full-time',
       responsibilities: [
-        'Streamlined event operations by organizing schedules, managing registrations, and coordinating logistics across multiple campus departments.',
-        'Maintained and updated internal tracking systems using Excel and simple automation scripts to reduce manual work and improve accuracy in attendance and resource planning.',
-        'Took initiative to analyze event feedback data, identifying trends and sharing insights with the team to help improve future planning and student engagement.'
+        'Streamlined event operations and logistics coordination',
+        'Automated tracking systems with Excel scripts',
+        'Event feedback analysis for improved planning and engagement'
       ]
     },
     {
@@ -105,9 +106,9 @@ const TimelineExperience = () => {
       duration: 'Jun 2021 - July 2021',
       type: 'internship',
       responsibilities: [
-        'Automated data extraction and transformation using Python, integrating SQL databases with Salesforce to improve reporting accuracy and business decision-making.',
-        'Analyzed sales growth, customer retention, and profitability using Python, enabling data-driven strategies and improved outcomes.',
-        'Developed dynamic Power BI dashboards with Python-enhanced insights, highlighting sales trends and driving stakeholder engagement.'
+        'Automated data extraction/transformation with Python and SQL-Salesforce integration',
+        'Sales growth and customer retention analysis for data-driven strategies',
+        'Dynamic Power BI dashboards with Python-enhanced insights'
       ]
     },
     {
@@ -118,9 +119,9 @@ const TimelineExperience = () => {
       duration: 'Aug 2019 – Sep 2019',
       type: 'internship',
       responsibilities: [
-        'Designed and implemented Python-based automation tools to support embedded system development, including data logging, sensor simulation, and testing workflows.',
-        'Gained hands-on experience with microcontrollers (e.g., Arduino, STM32) by writing and debugging C/C++ code, interfacing with peripherals like sensors, actuators, and communication modules (UART, SPI, I2C).',
-        'Participated in hardware-software integration tasks, performed real-time debugging, and optimized performance for embedded applications in a cross-functional engineering team.'
+        'Python automation tools for embedded system development and testing',
+        'Microcontroller programming (Arduino, STM32) with C/C++ and peripheral interfaces',
+        'Hardware-software integration and real-time debugging optimization'
       ]
     },
     {
@@ -131,10 +132,10 @@ const TimelineExperience = () => {
       duration: 'Dec 2018',
       type: 'internship',
       responsibilities: [
-        'Worked with BSNL\'s GSM (Global System for Mobile Communications) infrastructure, gaining hands-on experience in mobile network operations, including BTS (Base Transceiver Station), BSC (Base Station Controller), and MSC (Mobile Switching Center) architecture.',
-        'Assisted in network monitoring and fault management using telecom-grade software tools, analyzing performance logs, and scripting automation tasks in Python to streamline network diagnostics and reporting.',
-        'Developed and tested automation scripts for SIM activation workflows and subscriber data processing, enhancing the efficiency of provisioning services through interaction with HLR (Home Location Register) databases.',
-        'Collaborated with engineers to understand signaling protocols (SS7, MAP) and implemented simulations of call setup and SMS delivery processes using tools like Wireshark and custom packet inspection scripts.'
+        'GSM infrastructure experience with BTS, BSC, and MSC architecture',
+        'Network monitoring and Python automation for diagnostics/reporting',
+        'SIM activation scripts and HLR database provisioning services',
+        'Signaling protocols (SS7, MAP) and call/SMS process simulations with Wireshark'
       ]
     }
   ];
@@ -178,6 +179,114 @@ const TimelineExperience = () => {
           badgeVariant: 'default' as const
         };
     }
+  };
+
+  const GlareCard = ({ experience, typeConfig }: {
+    experience: ExperienceItem;
+    typeConfig: any;
+  }) => {
+    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+    const [isHovered, setIsHovered] = useState(false);
+    const cardRef = useRef<HTMLDivElement>(null);
+
+    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+      if (!cardRef.current) return;
+      
+      const rect = cardRef.current.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      setMousePosition({ x, y });
+    };
+
+    const handleMouseEnter = () => setIsHovered(true);
+    const handleMouseLeave = () => setIsHovered(false);
+
+    return (
+      <div
+        ref={cardRef}
+        className={`
+          relative p-6 rounded-2xl border-2 shadow-lg hover:shadow-xl transition-all duration-300 bg-white overflow-hidden cursor-pointer
+          ${typeConfig.borderColor}
+          ${experience.isCurrentRole ? 'ring-2 ring-blue-400 ring-opacity-50' : ''}
+        `}
+        onMouseMove={handleMouseMove}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        {/* Glare Effect */}
+        {isHovered && (
+          <div
+            className="absolute pointer-events-none rounded-full bg-white opacity-20 transition-opacity duration-300"
+            style={{
+              left: mousePosition.x - 100,
+              top: mousePosition.y - 100,
+              width: '200px',
+              height: '200px',
+              background: `radial-gradient(circle, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.3) 30%, transparent 70%)`,
+              filter: 'blur(20px)',
+            }}
+          />
+        )}
+
+        {/* Current Role Indicator */}
+        {experience.isCurrentRole && (
+          <div className="absolute -top-2 -right-2 z-10">
+            <div className="bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-full">
+              Current
+            </div>
+          </div>
+        )}
+
+        {/* Header */}
+        <div className="mb-4 relative z-10">
+          <div className="flex items-center justify-between mb-2">
+            <Badge variant={typeConfig.badgeVariant} className="mb-2">
+              {typeConfig.badge}
+            </Badge>
+            <div className="flex items-center text-sm text-gray-500">
+              <Calendar className="h-4 w-4 mr-1" />
+              {experience.duration}
+            </div>
+          </div>
+          
+          <h3 className="text-xl font-bold text-gray-900 mb-1">
+            {experience.title}
+          </h3>
+          
+          <div className="flex items-center text-gray-700 mb-2">
+            <Building className="h-4 w-4 mr-2 flex-shrink-0" />
+            <span className="font-medium">{experience.company}</span>
+          </div>
+          
+          <div className="flex items-center text-gray-600">
+            <MapPin className="h-4 w-4 mr-2 flex-shrink-0" />
+            <span>{experience.location}</span>
+          </div>
+        </div>
+
+        {/* Responsibilities */}
+        <div className="space-y-3 relative z-10">
+          {experience.responsibilities.map((responsibility, idx) => (
+            <div key={idx} className="flex items-start space-x-3">
+              <div 
+                className="w-2 h-2 rounded-full mt-2 flex-shrink-0"
+                style={{ backgroundColor: typeConfig.color }}
+              />
+              <p className="text-gray-700 text-sm leading-relaxed">
+                {responsibility}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* Decorative Corner */}
+        <div 
+          className="absolute top-0 right-0 w-20 h-20 opacity-10 rounded-bl-full"
+          style={{ backgroundColor: typeConfig.color }}
+        />
+      </div>
+    );
   };
 
   return (
@@ -264,68 +373,10 @@ const TimelineExperience = () => {
                       w-full md:w-5/12 ml-20 md:ml-0
                       ${isLeft ? 'md:mr-auto md:pr-12' : 'md:ml-auto md:pl-12'}
                     `}>
-                      <div className={`
-                        relative p-6 rounded-2xl border-2 shadow-lg hover:shadow-xl transition-all duration-300 bg-white
-                        ${typeConfig.borderColor}
-                        ${experience.isCurrentRole ? 'ring-2 ring-blue-400 ring-opacity-50' : ''}
-                      `}>
-                        {/* Current Role Indicator */}
-                        {experience.isCurrentRole && (
-                          <div className="absolute -top-2 -right-2">
-                            <div className="bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-full">
-                              Current
-                            </div>
-                          </div>
-                        )}
-
-                        {/* Header */}
-                        <div className="mb-4">
-                          <div className="flex items-center justify-between mb-2">
-                            <Badge variant={typeConfig.badgeVariant} className="mb-2">
-                              {typeConfig.badge}
-                            </Badge>
-                            <div className="flex items-center text-sm text-gray-500">
-                              <Calendar className="h-4 w-4 mr-1" />
-                              {experience.duration}
-                            </div>
-                          </div>
-                          
-                          <h3 className="text-xl font-bold text-gray-900 mb-1">
-                            {experience.title}
-                          </h3>
-                          
-                          <div className="flex items-center text-gray-700 mb-2">
-                            <Building className="h-4 w-4 mr-2 flex-shrink-0" />
-                            <span className="font-medium">{experience.company}</span>
-                          </div>
-                          
-                          <div className="flex items-center text-gray-600">
-                            <MapPin className="h-4 w-4 mr-2 flex-shrink-0" />
-                            <span>{experience.location}</span>
-                          </div>
-                        </div>
-
-                        {/* Responsibilities */}
-                        <div className="space-y-3">
-                          {experience.responsibilities.map((responsibility, idx) => (
-                            <div key={idx} className="flex items-start space-x-3">
-                              <div 
-                                className="w-2 h-2 rounded-full mt-2 flex-shrink-0"
-                                style={{ backgroundColor: typeConfig.color }}
-                              />
-                              <p className="text-gray-700 text-sm leading-relaxed">
-                                {responsibility}
-                              </p>
-                            </div>
-                          ))}
-                        </div>
-
-                        {/* Decorative Corner */}
-                        <div 
-                          className="absolute top-0 right-0 w-20 h-20 opacity-10 rounded-bl-full"
-                          style={{ backgroundColor: typeConfig.color }}
-                        />
-                      </div>
+                      <GlareCard 
+                        experience={experience} 
+                        typeConfig={typeConfig}
+                      />
                     </div>
                   </motion.div>
                 );

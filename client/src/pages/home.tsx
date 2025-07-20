@@ -6,8 +6,6 @@ import ScrollDriftElements from "@/components/ScrollDriftElements";
 import SkillBar from "@/components/SkillBar";
 import TimelineExperience from "@/components/TimelineExperience";
 import ProjectCard from "@/components/ProjectCard";
-import WebGLBackground from "@/components/WebGLBackground";
-import AchievementVisualizations from "@/components/AchievementVisualizations";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -85,8 +83,7 @@ const Home = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white relative">
-      <WebGLBackground />
+    <div className="min-h-screen bg-white">
       <Navigation />
       <ScrollDriftElements />
 
@@ -196,8 +193,24 @@ const Home = () => {
                 I've successfully worked across the stack—backend APIs, automation workflows, and frontend interfaces—delivering measurable impact including <span className="text-primary-custom font-semibold">$5M cost reductions</span> and <span className="text-primary-custom font-semibold">15% operational efficiency improvements</span>.
               </p>
               
-              {/* Achievement Visualizations */}
-              <AchievementVisualizations className="pt-6" />
+              <div className="grid grid-cols-2 gap-6 pt-6">
+                <div className="text-center p-4 bg-neutral-custom rounded-xl">
+                  <div className="text-2xl font-bold text-primary-custom">2.5+</div>
+                  <div className="text-sm text-gray-600">Years Experience</div>
+                </div>
+                <div className="text-center p-4 bg-neutral-custom rounded-xl">
+                  <div className="text-2xl font-bold text-primary-custom">10M+</div>
+                  <div className="text-sm text-gray-600">Records Analyzed</div>
+                </div>
+                <div className="text-center p-4 bg-neutral-custom rounded-xl">
+                  <div className="text-2xl font-bold text-primary-custom">$5M</div>
+                  <div className="text-sm text-gray-600">Cost Reduction</div>
+                </div>
+                <div className="text-center p-4 bg-neutral-custom rounded-xl">
+                  <div className="text-2xl font-bold text-primary-custom">90%+</div>
+                  <div className="text-sm text-gray-600">ML Accuracy</div>
+                </div>
+              </div>
             </div>
             
             <div className="relative">
