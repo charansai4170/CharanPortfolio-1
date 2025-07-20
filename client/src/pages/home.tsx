@@ -124,17 +124,56 @@ const Home = () => {
               </div>
             </div>
             
-            <div className="relative">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-                <img 
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=600&fit=crop&crop=face" 
-                  alt="Charan Thota"
-                  className="w-full h-auto object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary-custom/20 to-transparent"></div>
-              </div>
-              <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-gradient-to-r from-primary-custom to-accent-custom rounded-full flex items-center justify-center shadow-xl animate-pulse">
-                <span className="text-white text-2xl">🚀</span>
+            <div className="relative flex justify-center items-center h-96">
+              {/* 3D Floating Elements Container */}
+              <div className="relative w-80 h-80">
+                {/* Central Core */}
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-gradient-to-r from-primary-custom to-accent-custom rounded-xl shadow-2xl animate-pulse">
+                  <div className="flex items-center justify-center h-full text-white text-2xl font-bold">AI</div>
+                </div>
+
+                {/* Floating Tech Icons */}
+                <div className="absolute top-8 left-12 w-12 h-12 bg-blue-500 rounded-lg shadow-lg flex items-center justify-center text-white animate-bounce" style={{ animationDelay: '0s', animationDuration: '3s' }}>
+                  <span className="text-lg">⚙️</span>
+                </div>
+                
+                <div className="absolute top-16 right-8 w-14 h-14 bg-green-500 rounded-full shadow-lg flex items-center justify-center text-white animate-bounce" style={{ animationDelay: '0.5s', animationDuration: '2.5s' }}>
+                  <span className="text-lg">🚀</span>
+                </div>
+                
+                <div className="absolute bottom-20 left-8 w-10 h-10 bg-purple-500 rounded-lg shadow-lg flex items-center justify-center text-white animate-bounce" style={{ animationDelay: '1s', animationDuration: '2.8s' }}>
+                  <span className="text-sm">💻</span>
+                </div>
+                
+                <div className="absolute bottom-12 right-16 w-16 h-16 bg-orange-500 rounded-xl shadow-lg flex items-center justify-center text-white animate-bounce" style={{ animationDelay: '1.5s', animationDuration: '3.2s' }}>
+                  <span className="text-lg">🧠</span>
+                </div>
+
+                <div className="absolute top-1/3 right-4 w-8 h-8 bg-red-500 rounded-full shadow-lg flex items-center justify-center text-white animate-bounce" style={{ animationDelay: '2s', animationDuration: '2.2s' }}>
+                  <span className="text-xs">☁️</span>
+                </div>
+
+                <div className="absolute bottom-1/3 left-4 w-12 h-12 bg-teal-500 rounded-lg shadow-lg flex items-center justify-center text-white animate-bounce" style={{ animationDelay: '2.5s', animationDuration: '2.7s' }}>
+                  <span className="text-sm">📊</span>
+                </div>
+
+                {/* Orbital Rings */}
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 border-2 border-primary-custom/20 rounded-full animate-spin" style={{ animationDuration: '20s' }}></div>
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 border border-accent-custom/10 rounded-full animate-spin" style={{ animationDuration: '30s', animationDirection: 'reverse' }}></div>
+
+                {/* Floating Particles */}
+                {[...Array(8)].map((_, i) => (
+                  <div
+                    key={i}
+                    className="absolute w-2 h-2 bg-primary-custom rounded-full opacity-60 animate-pulse"
+                    style={{
+                      top: `${20 + Math.sin(i * 0.8) * 30}%`,
+                      left: `${20 + Math.cos(i * 0.8) * 30}%`,
+                      animationDelay: `${i * 0.3}s`,
+                      animationDuration: `${2 + (i % 3)}s`
+                    }}
+                  />
+                ))}
               </div>
             </div>
           </div>
