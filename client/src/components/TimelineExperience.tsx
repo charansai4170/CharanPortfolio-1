@@ -230,7 +230,7 @@ const TimelineExperience = () => {
           
           <div className="flex items-center text-gray-700 mb-2">
             <Building className="h-4 w-4 mr-2 flex-shrink-0" />
-            <span className="font-medium text-blue-600">{experience.company}</span>
+            <span className="font-medium" style={{ color: typeConfig.color }}>{experience.company}</span>
           </div>
           
           <div className="flex items-center text-gray-600">
