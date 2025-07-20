@@ -62,83 +62,54 @@ const LogoAnimation = ({ onComplete }: LogoAnimationProps) => {
           } : {}}
           transition={{ duration: 1.2, ease: "easeOut" }}
         >
-          {/* SVG Logo */}
-          <svg width="200" height="80" viewBox="0 0 200 80" className="relative z-10">
-            <defs>
-              {/* Gold Metallic Gradient */}
-              <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#FFD700" />
-                <stop offset="25%" stopColor="#FFA500" />
-                <stop offset="50%" stopColor="#FFD700" />
-                <stop offset="75%" stopColor="#B8860B" />
-                <stop offset="100%" stopColor="#DAA520" />
-              </linearGradient>
-              
-              {/* Silver Metallic Gradient */}
-              <linearGradient id="silverGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#F8F8FF" />
-                <stop offset="25%" stopColor="#E6E6FA" />
-                <stop offset="50%" stopColor="#C0C0C0" />
-                <stop offset="75%" stopColor="#A9A9A9" />
-                <stop offset="100%" stopColor="#808080" />
-              </linearGradient>
-
-              {/* Dynamic Glare Effect */}
-              <linearGradient id="glareEffect" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="rgba(255,255,255,0)" />
-                <stop offset="45%" stopColor="rgba(255,255,255,0)" />
-                <stop offset="50%" stopColor="rgba(255,255,255,0.9)" />
-                <stop offset="55%" stopColor="rgba(255,255,255,0)" />
-                <stop offset="100%" stopColor="rgba(255,255,255,0)" />
-              </linearGradient>
-            </defs>
-
-            {/* Main Logo Text */}
-            <text
-              x="100"
-              y="45"
-              textAnchor="middle"
-              fill="url(#goldGradient)"
+          {/* Logo with Charan Thota branding */}
+          <div className="flex flex-col items-center">
+            {/* Main Logo */}
+            <motion.div
+              className="text-6xl font-bold text-center mb-2"
               style={{
-                fontSize: '48px',
-                fontWeight: 'bold',
-                fontFamily: 'Inter, sans-serif',
-                filter: 'drop-shadow(0 0 20px rgba(255, 215, 0, 0.6))'
-              }}
-            >
-              NNA
-            </text>
-            
-            {/* Subtitle */}
-            <text
-              x="100"
-              y="65"
-              textAnchor="middle"
-              fill="url(#silverGradient)"
-              style={{
-                fontSize: '12px',
-                letterSpacing: '2px',
+                background: 'linear-gradient(135deg, #FFD700 0%, #FFA500 25%, #FFD700 50%, #B8860B 75%, #DAA520 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                filter: 'drop-shadow(0 0 20px rgba(255, 215, 0, 0.6))',
                 fontFamily: 'Inter, sans-serif'
               }}
             >
-              PORTFOLIO
-            </text>
+              Charan Thota
+            </motion.div>
             
+            {/* Subtitle */}
+            <motion.div
+              className="text-sm tracking-widest text-center"
+              style={{
+                background: 'linear-gradient(45deg, #F8F8FF 0%, #E6E6FA 25%, #C0C0C0 50%, #A9A9A9 75%, #808080 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                filter: 'drop-shadow(0 0 10px rgba(192, 192, 192, 0.4))',
+                fontFamily: 'Inter, sans-serif'
+              }}
+            >
+              SOFTWARE & ML ENGINEER
+            </motion.div>
+
             {/* Glare Sweep Overlay */}
             {animationPhase === 'glare' && (
-              <motion.rect
-                x="-20"
-                y="0"
-                width="40"
-                height="80"
-                fill="url(#glareEffect)"
-                transform="skewX(-20deg)"
-                initial={{ x: -220 }}
-                animate={{ x: 220 }}
+              <motion.div
+                className="absolute inset-0 pointer-events-none"
+                initial={{ x: -300, opacity: 0 }}
+                animate={{ x: 300, opacity: 1 }}
                 transition={{ duration: 1, ease: "easeInOut" }}
+                style={{
+                  background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.8) 50%, transparent 100%)',
+                  transform: 'skewX(-20deg)',
+                  width: '60px',
+                  height: '100%'
+                }}
               />
             )}
-          </svg>
+          </div>
 
           {/* Particles Effect */}
           <AnimatePresence>

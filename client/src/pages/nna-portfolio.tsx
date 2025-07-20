@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import LogoAnimation from "@/components/LogoAnimation";
-import NNAHeader from "@/components/NNAHeader";
+import CharanHeader from "@/components/NNAHeader";
 import HiddenSidebar from "@/components/HiddenSidebar";
 import IntelligentSearch from "@/components/IntelligentSearch";
 import DynamicContentCanvas from "@/components/DynamicContentCanvas";
 
-const NNAPortfolio = () => {
+const CharanPortfolio = () => {
   const [showLogo, setShowLogo] = useState(true);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(true);
@@ -72,7 +72,7 @@ const NNAPortfolio = () => {
             transition={{ duration: 0.8 }}
           >
             {/* Header */}
-            <NNAHeader
+            <CharanHeader
               onMenuClick={() => setSidebarOpen(true)}
               darkMode={darkMode}
               onThemeToggle={() => setDarkMode(!darkMode)}
@@ -105,4 +105,4 @@ const NNAPortfolio = () => {
   );
 };
 
-export default NNAPortfolio;
+export default CharanPortfolio;

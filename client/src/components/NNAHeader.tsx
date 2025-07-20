@@ -3,13 +3,13 @@ import { motion } from "framer-motion";
 import { Menu, Settings, Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-interface NNAHeaderProps {
+interface CharanHeaderProps {
   onMenuClick: () => void;
   darkMode: boolean;
   onThemeToggle: () => void;
 }
 
-const NNAHeader = ({ onMenuClick, darkMode, onThemeToggle }: NNAHeaderProps) => {
+const CharanHeader = ({ onMenuClick, darkMode, onThemeToggle }: CharanHeaderProps) => {
   const [logoHovered, setLogoHovered] = useState(false);
 
   return (
@@ -37,9 +37,9 @@ const NNAHeader = ({ onMenuClick, darkMode, onThemeToggle }: NNAHeaderProps) => 
             ⚡
           </motion.div>
           
-          {/* NNA Text with Gradient */}
+          {/* Charan Thota Text with Gradient */}
           <motion.div
-            className="text-xl font-bold bg-gradient-to-r from-yellow-400 via-orange-500 to-yellow-400 bg-clip-text text-transparent"
+            className="text-lg font-bold bg-gradient-to-r from-yellow-400 via-orange-500 to-yellow-400 bg-clip-text text-transparent"
             animate={logoHovered ? {
               backgroundPosition: ['-200% 0', '200% 0']
             } : {}}
@@ -49,7 +49,7 @@ const NNAHeader = ({ onMenuClick, darkMode, onThemeToggle }: NNAHeaderProps) => 
               filter: logoHovered ? 'drop-shadow(0 0 10px rgba(255, 215, 0, 0.5))' : 'none'
             }}
           >
-            NNA
+            Charan Thota
           </motion.div>
         </motion.div>
 
@@ -100,4 +100,4 @@ const NNAHeader = ({ onMenuClick, darkMode, onThemeToggle }: NNAHeaderProps) => 
   );
 };
 
-export default NNAHeader;
+export default CharanHeader;
