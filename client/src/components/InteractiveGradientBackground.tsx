@@ -20,10 +20,10 @@ const InteractiveGradientBackground = ({
 }: InteractiveGradientBackgroundProps) => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [gradientColors, setGradientColors] = useState<GradientColor[]>([
-    { r: 251, g: 146, b: 60 },   // Orange
-    { r: 239, g: 68, b: 68 },    // Red
-    { r: 245, g: 158, b: 11 },   // Amber
-    { r: 236, g: 72, b: 153 }    // Pink
+    { r: 99, g: 102, b: 241 },   // Violet
+    { r: 139, g: 92, b: 246 },   // Purple
+    { r: 168, g: 85, b: 247 },   // Purple
+    { r: 59, g: 130, b: 246 }    // Blue
   ]);
   const [scrollY, setScrollY] = useState(0);
   const [time, setTime] = useState(0);
@@ -31,34 +31,34 @@ const InteractiveGradientBackground = ({
   // Warm and vibrant color palette presets for different interactions
   const colorPalettes = {
     default: [
-      { r: 251, g: 146, b: 60 },   // Orange
-      { r: 239, g: 68, b: 68 },    // Red
-      { r: 245, g: 158, b: 11 },   // Amber
-      { r: 236, g: 72, b: 153 }    // Pink
+      { r: 99, g: 102, b: 241 },   // Violet
+      { r: 139, g: 92, b: 246 },   // Purple
+      { r: 168, g: 85, b: 247 },   // Purple
+      { r: 59, g: 130, b: 246 }    // Blue
     ],
     topLeft: [
       { r: 168, g: 85, b: 247 },   // Purple
-      { r: 236, g: 72, b: 153 },   // Pink
-      { r: 251, g: 113, b: 133 },  // Rose
-      { r: 239, g: 68, b: 68 }     // Red
+      { r: 139, g: 92, b: 246 },   // Purple
+      { r: 99, g: 102, b: 241 },   // Violet
+      { r: 79, g: 70, b: 229 }     // Indigo
     ],
     topRight: [
-      { r: 245, g: 158, b: 11 },   // Amber
-      { r: 251, g: 146, b: 60 },   // Orange
-      { r: 252, g: 176, b: 64 },   // Yellow
-      { r: 34, g: 197, b: 94 }     // Green
+      { r: 59, g: 130, b: 246 },   // Blue
+      { r: 37, g: 99, b: 235 },    // Blue
+      { r: 29, g: 78, b: 216 },    // Blue
+      { r: 6, g: 182, b: 212 }     // Cyan
     ],
     bottomLeft: [
-      { r: 34, g: 197, b: 94 },    // Green
-      { r: 16, g: 185, b: 129 },   // Emerald
       { r: 6, g: 182, b: 212 },    // Cyan
+      { r: 8, g: 145, b: 178 },    // Cyan
+      { r: 14, g: 165, b: 233 },   // Sky
       { r: 59, g: 130, b: 246 }    // Blue
     ],
     bottomRight: [
       { r: 168, g: 85, b: 247 },   // Purple
+      { r: 139, g: 92, b: 246 },   // Purple
       { r: 99, g: 102, b: 241 },   // Violet
-      { r: 59, g: 130, b: 246 },   // Blue
-      { r: 6, g: 182, b: 212 }     // Cyan
+      { r: 79, g: 70, b: 229 }     // Indigo
     ]
   };
 
@@ -180,11 +180,11 @@ const InteractiveGradientBackground = ({
         className="fixed inset-0 z-[-1]"
         animate={{
           background: [
-            'linear-gradient(135deg, #fb923c 0%, #ef4444 25%, #f59e0b 50%, #ec4899 100%)',
-            'linear-gradient(225deg, #ef4444 0%, #f59e0b 25%, #ec4899 50%, #fb923c 100%)',
-            'linear-gradient(315deg, #f59e0b 0%, #ec4899 25%, #fb923c 50%, #ef4444 100%)',
-            'linear-gradient(45deg, #ec4899 0%, #fb923c 25%, #ef4444 50%, #f59e0b 100%)',
-            'linear-gradient(135deg, #fb923c 0%, #ef4444 25%, #f59e0b 50%, #ec4899 100%)'
+            'linear-gradient(135deg, #6366f1 0%, #8b5cf6 25%, #a855f7 50%, #3b82f6 100%)',
+            'linear-gradient(225deg, #8b5cf6 0%, #a855f7 25%, #3b82f6 50%, #6366f1 100%)',
+            'linear-gradient(315deg, #a855f7 0%, #3b82f6 25%, #6366f1 50%, #8b5cf6 100%)',
+            'linear-gradient(45deg, #3b82f6 0%, #6366f1 25%, #8b5cf6 50%, #a855f7 100%)',
+            'linear-gradient(135deg, #6366f1 0%, #8b5cf6 25%, #a855f7 50%, #3b82f6 100%)'
           ]
         }}
         transition={{
@@ -199,7 +199,7 @@ const InteractiveGradientBackground = ({
       <motion.div
         className="fixed inset-0 z-[-1] pointer-events-none"
         style={{
-          background: `radial-gradient(circle 400px at ${mousePosition.x * 100}% ${mousePosition.y * 100}%, rgba(251, 146, 60, 0.8) 0%, rgba(239, 68, 68, 0.4) 30%, transparent 70%)`,
+          background: `radial-gradient(circle 400px at ${mousePosition.x * 100}% ${mousePosition.y * 100}%, rgba(99, 102, 241, 0.8) 0%, rgba(139, 92, 246, 0.4) 30%, transparent 70%)`,
           opacity: 0.8
         }}
         animate={{
@@ -260,9 +260,9 @@ const InteractiveGradientBackground = ({
         className="fixed inset-0 z-[-1] opacity-10"
         style={{
           background: `
-            radial-gradient(circle at 20% 80%, rgba(251, 146, 60, 0.1) 0%, transparent 50%),
-            radial-gradient(circle at 80% 20%, rgba(239, 68, 68, 0.1) 0%, transparent 50%),
-            radial-gradient(circle at 40% 40%, rgba(236, 72, 153, 0.1) 0%, transparent 50%)
+            radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 40% 40%, rgba(168, 85, 247, 0.1) 0%, transparent 50%)
           `
         }}
       />
