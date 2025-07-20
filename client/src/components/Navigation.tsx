@@ -362,7 +362,7 @@ const Navigation = () => {
                 dragConstraints={{ left: 0, right: 0 }}
                 dragElastic={0.1}
                 onPanEnd={handlePanEnd}
-                className="fixed top-16 right-4 w-56 bg-white/90 rounded-xl shadow-xl border border-white/20 z-50"
+                className="fixed top-16 right-1 w-56 bg-white/90 rounded-xl shadow-xl border border-white/20 z-50"
                 style={{
                   maxHeight: 'calc(100vh - 100px)',
                   backdropFilter: 'none'
