@@ -58,7 +58,43 @@ const Navigation = () => {
   return (
     <nav className="fixed top-0 w-full z-50 transition-all duration-300">
       <div className="container mx-auto px-6 py-6">
-        <div className="flex justify-center items-center">
+        <div className="flex justify-between items-center">
+          {/* Logo */}
+          <div 
+            className="flex items-center cursor-pointer hover:opacity-80 transition-opacity"
+            onClick={() => scrollToSection("home")}
+          >
+            <div className="w-10 h-10 mr-3">
+              <div style={{
+                position: 'relative',
+                width: '100%',
+                height: '100%',
+                overflow: 'hidden',
+                borderRadius: '8px',
+                backgroundColor: 'transparent'
+              }}>
+                <iframe 
+                  loading="lazy" 
+                  style={{
+                    position: 'absolute',
+                    width: '100%',
+                    height: '100%',
+                    top: 0,
+                    left: 0,
+                    border: 'none',
+                    padding: 0,
+                    margin: 0,
+                    backgroundColor: 'transparent'
+                  }}
+                  src="https://www.canva.com/design/DAGtrExVUlI/-KAUc08Ihfh18TuSHn7Jdw/view?embed" 
+                  allowFullScreen
+                  allow="fullscreen"
+                />
+              </div>
+            </div>
+            <span className="text-lg font-bold gradient-text">Charan Thota</span>
+          </div>
+
           {/* Pill-shaped Navigation Container */}
           <div 
             ref={navRef} 
@@ -103,19 +139,57 @@ const Navigation = () => {
             })}
           </div>
 
-          {/* Mobile Menu Button */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden bg-white/80 backdrop-blur-xl border border-gray-200/50 rounded-full shadow-lg"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? (
-              <X className="h-5 w-5 text-gray-600" />
-            ) : (
-              <Menu className="h-5 w-5 text-gray-600" />
-            )}
-          </Button>
+          <div className="md:hidden flex items-center space-x-3">
+            {/* Mobile Logo */}
+            <div 
+              className="flex items-center cursor-pointer hover:opacity-80 transition-opacity"
+              onClick={() => scrollToSection("home")}
+            >
+              <div className="w-8 h-8 mr-2">
+                <div style={{
+                  position: 'relative',
+                  width: '100%',
+                  height: '100%',
+                  overflow: 'hidden',
+                  borderRadius: '6px',
+                  backgroundColor: 'transparent'
+                }}>
+                  <iframe 
+                    loading="lazy" 
+                    style={{
+                      position: 'absolute',
+                      width: '100%',
+                      height: '100%',
+                      top: 0,
+                      left: 0,
+                      border: 'none',
+                      padding: 0,
+                      margin: 0,
+                      backgroundColor: 'transparent'
+                    }}
+                    src="https://www.canva.com/design/DAGtrExVUlI/-KAUc08Ihfh18TuSHn7Jdw/view?embed" 
+                    allowFullScreen
+                    allow="fullscreen"
+                  />
+                </div>
+              </div>
+              <span className="text-sm font-bold gradient-text">Charan</span>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <Button
+              variant="ghost"
+              size="icon"
+              className="bg-white/80 backdrop-blur-xl border border-gray-200/50 rounded-full shadow-lg"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              {isMobileMenuOpen ? (
+                <X className="h-5 w-5 text-gray-600" />
+              ) : (
+                <Menu className="h-5 w-5 text-gray-600" />
+              )}
+            </Button>
+          </div>
         </div>
 
         {/* Mobile Navigation Menu */}
