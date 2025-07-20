@@ -22,25 +22,21 @@ const Home = () => {
   useEffect(() => {
     setIsVisible(true);
 
-    const words = [
-      "Software Engineer",
-      "Machine Learning Engineer", 
-      "DevOps Engineer",
-      "Cloud Engineer",
-      "Data Engineer",
-      "Data Scientist"
-    ];
+    const prefixes = ["Software", "Machine Learning", "DevOps", "Cloud", "Data"];
+    const specialCase = "Data Scientist";
 
     let timeout;
 
     const typeEffect = () => {
-      const currentWord = words[currentIndex];
+      // Determine if we're showing the special case (Data Scientist)
+      const isSpecialCase = currentIndex >= prefixes.length;
+      const currentWord = isSpecialCase ? specialCase : `${prefixes[currentIndex]} Engineer`;
       
       if (isPaused) {
         timeout = setTimeout(() => {
           setIsPaused(false);
           setIsDeleting(true);
-        }, 2000);
+        }, 800); // Shorter pause
         return;
       }
 
@@ -48,7 +44,7 @@ const Home = () => {
         // Typing
         if (currentText.length < currentWord.length) {
           setCurrentText(currentWord.substring(0, currentText.length + 1));
-          timeout = setTimeout(typeEffect, 100);
+          timeout = setTimeout(typeEffect, 60); // Faster typing
         } else {
           // Finished typing, pause
           setIsPaused(true);
@@ -58,18 +54,24 @@ const Home = () => {
         // Deleting
         if (currentText.length > 0) {
           setCurrentText(currentWord.substring(0, currentText.length - 1));
-          timeout = setTimeout(typeEffect, 50);
+          timeout = setTimeout(typeEffect, 30); // Faster deleting
         } else {
           // Finished deleting, move to next word
           setIsDeleting(false);
-          setCurrentIndex((prev) => (prev + 1) % words.length);
-          timeout = setTimeout(typeEffect, 300);
+          if (isSpecialCase) {
+            // After "Data Scientist", restart from beginning
+            setCurrentIndex(0);
+          } else {
+            // Move to next prefix, or to special case after "Data"
+            setCurrentIndex((prev) => prev + 1);
+          }
+          timeout = setTimeout(typeEffect, 200); // Shorter pause between words
         }
       }
     };
 
     // Start animation after component mounts
-    timeout = setTimeout(typeEffect, 1000);
+    timeout = setTimeout(typeEffect, 500);
 
     return () => clearTimeout(timeout);
   }, [currentText, currentIndex, isDeleting, isPaused]);

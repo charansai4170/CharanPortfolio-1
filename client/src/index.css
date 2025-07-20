@@ -443,13 +443,13 @@ nav .container {
 }
 
 .gradient-text-animated {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
-  background-size: 300% 300%;
+  background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff9ff3, #54a0ff);
+  background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: gradient-flow 4s ease-in-out infinite;
-  transition: all 0.2s ease;
+  animation: gradient-flow 3s linear infinite;
+  transition: all 0.1s ease;
 }
 
 .cursor-blink {
@@ -460,21 +460,14 @@ nav .container {
 }
 
 @keyframes gradient-flow {
-  0%, 100% { 
+  0% { 
     background-position: 0% 50%; 
-    filter: hue-rotate(0deg);
-  }
-  25% { 
-    background-position: 100% 50%; 
-    filter: hue-rotate(90deg);
   }
   50% { 
-    background-position: 200% 50%; 
-    filter: hue-rotate(180deg);
-  }
-  75% { 
     background-position: 100% 50%; 
-    filter: hue-rotate(270deg);
+  }
+  100% { 
+    background-position: 200% 50%; 
   }
 }
 
