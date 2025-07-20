@@ -105,5 +105,7 @@ The application follows a monorepo structure with clear separation between clien
 - Cleaned up CSS animations and removed floating/glow effects
 - Organized content flow: Home → About → Experience → Projects → Skills → Contact
 - Ensured consistent white background styling across all pages and sections
+- **Enhanced Typewriter Animation**: Rebuilt from scratch using React state management with faster timing (25ms typing, 15ms deleting), vibrant 7-color gradient, and smooth transitions through job titles ending with "Data Scientist"
+- **Logo Click Functionality**: Added clickable logo that scrolls to absolute top of homepage with page refresh, works on both desktop and mobile, and displays properly when hosted using inline SVG
 
 The architecture now prioritizes clean design, readability, and performance while maintaining type safety and developer experience. The portfolio presents a professional, minimal aesthetic suitable for showcasing technical expertise without distracting visual effects.
