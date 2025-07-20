@@ -36,7 +36,7 @@ const Home = () => {
         timeout = setTimeout(() => {
           setIsPaused(false);
           setIsDeleting(true);
-        }, 600); // Faster pause
+        }, 300); // Much faster pause
         return;
       }
 
@@ -44,7 +44,7 @@ const Home = () => {
         // Typing only the prefix part
         if (currentText.length < targetPrefix.length) {
           setCurrentText(targetPrefix.substring(0, currentText.length + 1));
-          timeout = setTimeout(typeEffect, 40); // Much faster typing
+          timeout = setTimeout(typeEffect, 25); // Ultra fast typing
         } else {
           // Finished typing, pause
           setIsPaused(true);
@@ -54,7 +54,7 @@ const Home = () => {
         // Deleting only the prefix part (keeping "Engineer" constant)
         if (currentText.length > 0) {
           setCurrentText(targetPrefix.substring(0, currentText.length - 1));
-          timeout = setTimeout(typeEffect, 20); // Much faster deleting
+          timeout = setTimeout(typeEffect, 15); // Ultra fast deleting
         } else {
           // Finished deleting, move to next word
           setIsDeleting(false);
@@ -65,13 +65,13 @@ const Home = () => {
             // Move to next prefix, or to special case after "Data"
             setCurrentIndex((prev) => prev + 1);
           }
-          timeout = setTimeout(typeEffect, 150); // Faster pause between words
+          timeout = setTimeout(typeEffect, 100); // Ultra fast pause between words
         }
       }
     };
 
     // Start animation after component mounts
-    timeout = setTimeout(typeEffect, 300);
+    timeout = setTimeout(typeEffect, 200);
 
     return () => clearTimeout(timeout);
   }, [currentText, currentIndex, isDeleting, isPaused]);
