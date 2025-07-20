@@ -332,60 +332,63 @@ const Navigation = () => {
           </div>
         </div>
 
-        {/* Mobile Navigation Menu with Touch Gestures */}
+        {/* Compact Mobile Menu with Touch Gestures */}
         <AnimatePresence>
           {isMobileMenuOpen && (
             <>
-              {/* Backdrop */}
+              {/* Invisible Backdrop - No blur or tint */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40"
+                className="fixed inset-0 z-40"
                 onClick={() => setIsMobileMenuOpen(false)}
               />
               
-              {/* Mobile Menu */}
+              {/* Compact Glass Menu */}
               <motion.div
                 ref={menuRef}
-                initial={{ x: "100%", opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                exit={{ x: "100%", opacity: 0 }}
+                initial={{ x: 300, opacity: 0, scale: 0.95 }}
+                animate={{ x: 0, opacity: 1, scale: 1 }}
+                exit={{ x: 300, opacity: 0, scale: 0.95 }}
                 transition={{ 
                   type: "spring", 
-                  damping: 25, 
-                  stiffness: 200,
-                  duration: 0.3 
+                  damping: 20, 
+                  stiffness: 300,
+                  duration: 0.4 
                 }}
                 drag="x"
                 dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={0.2}
+                dragElastic={0.1}
                 onPanEnd={handlePanEnd}
-                className="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-black/5 backdrop-blur-sm border-l border-black/5 z-50"
+                className="fixed top-20 right-4 w-64 bg-white/90 rounded-2xl shadow-2xl border border-white/20 z-50"
+                style={{
+                  maxHeight: 'calc(100vh - 120px)',
+                  backdropFilter: 'none'
+                }}
                 onTouchStart={handleTouchStart}
                 onTouchMove={handleTouchMove}
                 onTouchEnd={handleTouchEnd}
               >
-                {/* Menu Header */}
-                <div className="flex items-center justify-between p-4 border-b border-black/10">
-                  <div className="flex items-center space-x-3">
-                    <Logo size={36} />
-                    <span className="text-lg font-semibold text-gray-900">Menu</span>
+                {/* Compact Menu Header */}
+                <div className="flex items-center justify-between p-3 border-b border-gray-200/50">
+                  <div className="flex items-center space-x-2">
+                    <Logo size={28} />
+                    <span className="text-base font-semibold text-gray-900">Menu</span>
                   </div>
                   <Button
                     variant="ghost"
-                    size="icon"
+                    size="sm"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="rounded-full hover:bg-black/10 touch-target text-gray-900 hover:text-gray-700"
-                    style={{ minWidth: '44px', minHeight: '44px' }}
+                    className="rounded-full hover:bg-gray-100/50 p-1 text-gray-600 hover:text-gray-900"
                   >
-                    <X className="h-5 w-5" />
+                    <X className="h-4 w-4" />
                   </Button>
                 </div>
 
-                {/* Navigation Items */}
-                <div className="py-4 px-2">
+                {/* Compact Navigation Items */}
+                <div className="py-2 px-2">
                   {navigationItems.map((item, index) => {
                     const IconComponent = item.icon;
                     const isActive = activeNavItem === item.section;
@@ -393,60 +396,60 @@ const Navigation = () => {
                     return (
                       <motion.div
                         key={item.section}
-                        initial={{ x: 30, opacity: 0, scale: 0.9 }}
+                        initial={{ x: 20, opacity: 0, scale: 0.95 }}
                         animate={{ x: 0, opacity: 1, scale: 1 }}
                         transition={{ 
-                          delay: index * 0.08,
+                          delay: index * 0.06,
                           type: "spring",
-                          damping: 25,
-                          stiffness: 400
+                          damping: 20,
+                          stiffness: 350
                         }}
-                        className="mb-2"
+                        className="mb-1"
                       >
                         <motion.button
                           onClick={() => scrollToSection(item.section)}
                           whileHover={{ 
                             scale: 1.02,
-                            x: 5
+                            x: 3
                           }}
                           whileTap={{ 
                             scale: 0.98,
-                            x: 8
+                            x: 5
                           }}
                           className={`
-                            w-full flex items-center justify-start space-x-4 px-4 py-3 text-left transition-all duration-200 touch-target rounded-xl
+                            w-full flex items-center justify-start space-x-3 px-3 py-2.5 text-left transition-all duration-200 rounded-lg
                             ${isActive 
-                              ? 'bg-white/30 border-l-4 border-primary-custom text-primary-custom shadow-lg' 
-                              : 'text-gray-900 hover:bg-white/15 hover:text-primary-custom hover:shadow-md'
+                              ? 'bg-primary-custom/10 border-l-3 border-primary-custom text-primary-custom shadow-sm' 
+                              : 'text-gray-800 hover:bg-gray-100/50 hover:text-primary-custom'
                             }
                           `}
-                          style={{ minHeight: '56px' }}
+                          style={{ minHeight: '44px' }}
                         >
                           <motion.div 
                             className={`
-                              p-2 rounded-full transition-all duration-200
+                              p-1.5 rounded-lg transition-all duration-200
                               ${isActive 
-                                ? 'bg-primary-custom text-white shadow-lg' 
-                                : 'bg-white/25 text-gray-700'
+                                ? 'bg-primary-custom text-white shadow-sm' 
+                                : 'bg-gray-100/70 text-gray-600'
                               }
                             `}
                             whileHover={{ 
-                              scale: 1.1,
-                              rotate: isActive ? 0 : 5
+                              scale: 1.05,
+                              rotate: isActive ? 0 : 3
                             }}
                           >
-                            <IconComponent className="h-5 w-5" />
+                            <IconComponent className="h-4 w-4" />
                           </motion.div>
-                          <span className="text-lg font-medium flex-1 text-left">{item.label}</span>
+                          <span className="text-sm font-medium flex-1 text-left">{item.label}</span>
                           
                           {/* Active indicator */}
                           {isActive && (
                             <motion.div
-                              layoutId="mobileActiveIndicator"
-                              className="w-2 h-2 bg-primary-custom rounded-full"
+                              layoutId="compactActiveIndicator"
+                              className="w-1.5 h-1.5 bg-primary-custom rounded-full"
                               initial={{ scale: 0 }}
                               animate={{ scale: 1 }}
-                              transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                              transition={{ type: "spring", stiffness: 300, damping: 20 }}
                             />
                           )}
                         </motion.button>
