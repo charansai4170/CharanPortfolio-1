@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import logoImage from "@assets/ChatGPT Image Jul 20, 2025, 01_27_37 AM_1753041763555.png";
 
 interface LogoAnimationProps {
   onComplete?: () => void;
@@ -74,7 +75,7 @@ const LogoAnimation = ({ onComplete }: LogoAnimationProps) => {
               transition={{ duration: 2, ease: "easeInOut" }}
             >
               <img 
-                src="/logo.png"
+                src={logoImage}
                 alt="Charan Thota Logo"
                 className="w-full h-full object-contain"
                 style={{

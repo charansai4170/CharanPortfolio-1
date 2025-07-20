@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Menu, Settings, Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import logoImage from "@assets/ChatGPT Image Jul 20, 2025, 01_27_37 AM_1753041763555.png";
 
 interface CharanHeaderProps {
   onMenuClick: () => void;
@@ -38,7 +39,7 @@ const CharanHeader = ({ onMenuClick, darkMode, onThemeToggle }: CharanHeaderProp
             transition={{ duration: 0.3 }}
           >
             <img 
-              src="/logo.png"
+              src={logoImage}
               alt="Charan Thota Logo"
               className="w-full h-full object-contain"
               style={{ filter: logoHovered ? 'drop-shadow(0 0 10px rgba(255, 215, 0, 0.5))' : 'none' }}
