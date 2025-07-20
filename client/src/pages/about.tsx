@@ -1,10 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { User, Award, Code } from "lucide-react";
-import InteractiveGradientBackground from "@/components/InteractiveGradientBackground";
-
 export default function About() {
   return (
-    <InteractiveGradientBackground>
       <div className="min-h-screen py-20">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
@@ -72,6 +69,5 @@ export default function About() {
           </div>
         </div>
       </div>
-    </InteractiveGradientBackground>
   );
 }
