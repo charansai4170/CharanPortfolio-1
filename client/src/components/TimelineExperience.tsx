@@ -9,7 +9,7 @@ interface ExperienceItem {
   company: string;
   location: string;
   duration: string;
-  type: 'full-time' | 'internship' | 'apprenticeship';
+  type: 'full-time' | 'internship' | 'apprenticeship' | 'part-time';
   responsibilities: string[];
   isCurrentRole?: boolean;
 }
@@ -91,7 +91,7 @@ const TimelineExperience = () => {
       company: 'Northeastern University',
       location: 'Boston, MA, USA',
       duration: 'Feb 2023 - July 2023',
-      type: 'full-time',
+      type: 'part-time',
       responsibilities: [
         'Streamlined event operations and logistics coordination',
         'Automated tracking systems with Excel scripts',
@@ -151,6 +151,15 @@ const TimelineExperience = () => {
           badge: 'Full-time',
           badgeVariant: 'default' as const
         };
+      case 'part-time':
+        return {
+          color: '#7C3AED',
+          bgColor: 'bg-purple-50',
+          borderColor: 'border-purple-200',
+          icon: <Briefcase className="h-5 w-5" />,
+          badge: 'Part-time',
+          badgeVariant: 'secondary' as const
+        };
       case 'apprenticeship':
         return {
           color: '#0EA5E9',
@@ -181,70 +190,18 @@ const TimelineExperience = () => {
     }
   };
 
-  const GlareCard = ({ experience, typeConfig }: {
+  const ExperienceCard = ({ experience, typeConfig }: {
     experience: ExperienceItem;
     typeConfig: any;
   }) => {
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-    const [isHovered, setIsHovered] = useState(false);
-    const cardRef = useRef<HTMLDivElement>(null);
-
-    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-      if (!cardRef.current) return;
-      
-      const rect = cardRef.current.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      
-      setMousePosition({ x, y });
-    };
-
-    const handleMouseEnter = () => setIsHovered(true);
-    const handleMouseLeave = () => setIsHovered(false);
-
     return (
       <div
-        ref={cardRef}
         className={`
-          relative p-6 rounded-2xl border-2 shadow-lg hover:shadow-2xl transition-all duration-500 bg-white overflow-hidden cursor-pointer hover:scale-[1.02]
+          relative p-6 rounded-2xl border-2 shadow-lg hover:shadow-xl transition-all duration-300 bg-white
           ${typeConfig.borderColor}
           ${experience.isCurrentRole ? 'ring-2 ring-blue-400 ring-opacity-50' : ''}
         `}
-        onMouseMove={handleMouseMove}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
       >
-        {/* Enhanced Glare Effect */}
-        {isHovered && (
-          <>
-            {/* Primary glare with accent color */}
-            <div
-              className="absolute pointer-events-none transition-all duration-300 ease-out"
-              style={{
-                left: mousePosition.x - 150,
-                top: mousePosition.y - 150,
-                width: '300px',
-                height: '300px',
-                background: `radial-gradient(circle, rgba(14, 165, 233, 0.4) 0%, rgba(14, 165, 233, 0.2) 25%, rgba(255,255,255,0.3) 40%, transparent 70%)`,
-                filter: 'blur(40px)',
-                borderRadius: '50%',
-              }}
-            />
-            {/* Secondary white shine */}
-            <div
-              className="absolute pointer-events-none transition-all duration-200 ease-out"
-              style={{
-                left: mousePosition.x - 75,
-                top: mousePosition.y - 75,
-                width: '150px',
-                height: '150px',
-                background: `radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.4) 30%, transparent 60%)`,
-                filter: 'blur(15px)',
-                borderRadius: '50%',
-              }}
-            />
-          </>
-        )}
 
         {/* Current Role Indicator */}
         {experience.isCurrentRole && (
@@ -273,7 +230,7 @@ const TimelineExperience = () => {
           
           <div className="flex items-center text-gray-700 mb-2">
             <Building className="h-4 w-4 mr-2 flex-shrink-0" />
-            <span className="font-medium">{experience.company}</span>
+            <span className="font-medium text-blue-600">{experience.company}</span>
           </div>
           
           <div className="flex items-center text-gray-600">
@@ -303,17 +260,7 @@ const TimelineExperience = () => {
           style={{ backgroundColor: typeConfig.color }}
         />
 
-        {/* Subtle border shimmer on hover */}
-        {isHovered && (
-          <div 
-            className="absolute inset-0 rounded-2xl pointer-events-none transition-opacity duration-500"
-            style={{
-              background: `linear-gradient(45deg, transparent 30%, rgba(14, 165, 233, 0.3) 50%, transparent 70%)`,
-              backgroundSize: '200% 200%',
-              animation: 'shimmer-border 2s ease-in-out infinite',
-            }}
-          />
-        )}
+
       </div>
     );
   };
@@ -399,10 +346,10 @@ const TimelineExperience = () => {
 
                     {/* Content Card */}
                     <div className={`
-                      w-full md:w-5/12 ml-20 md:ml-0
-                      ${isLeft ? 'md:mr-auto md:pr-12' : 'md:ml-auto md:pl-12'}
+                      w-full md:w-5/12 ml-16 md:ml-0
+                      ${isLeft ? 'md:mr-auto md:pr-8' : 'md:ml-auto md:pl-8'}
                     `}>
-                      <GlareCard 
+                      <ExperienceCard 
                         experience={experience} 
                         typeConfig={typeConfig}
                       />
