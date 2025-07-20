@@ -7,8 +7,6 @@ import SkillBar from "@/components/SkillBar";
 import TimelineExperience from "@/components/TimelineExperience";
 import ProjectCard from "@/components/ProjectCard";
 import AchievementsVisualization from "@/components/AchievementsVisualization";
-import WhimsicalLoader from "@/components/WhimsicalLoader";
-import InteractiveGradientBackground from "@/components/InteractiveGradientBackground";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -17,15 +15,10 @@ import { Badge } from "@/components/ui/badge";
 
 const Home = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
-
-  const handleLoadingComplete = () => {
-    setIsLoading(false);
-  };
 
   const skills = {
     programming: [
@@ -91,13 +84,9 @@ const Home = () => {
   ];
 
   return (
-    <>
-      <WhimsicalLoader isVisible={isLoading} onComplete={handleLoadingComplete} />
-      
-      <InteractiveGradientBackground>
-        <div className="min-h-screen">
-          <Navigation />
-          <ScrollDriftElements />
+    <div className="min-h-screen">
+      <Navigation />
+      <ScrollDriftElements />
 
           {/* Hero Section */}
       <section id="home" className="min-h-screen flex items-center tech-grid relative overflow-hidden">
@@ -571,26 +560,24 @@ const Home = () => {
         </div>
       </section>
 
-          {/* Achievements Section */}
-          <AchievementsVisualization />
+      {/* Achievements Section */}
+      <AchievementsVisualization />
 
-          {/* Footer */}
-          <footer className="bg-text text-white py-8">
-            <div className="container mx-auto px-6">
-              <div className="flex flex-col md:flex-row justify-between items-center">
-                <div className="mb-4 md:mb-0">
-                  <p className="text-gray-400">&copy; 2024 Charan Thota. All rights reserved.</p>
-                </div>
-                <div className="flex space-x-6">
-                  <a href="#" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
-                  <a href="#" className="text-gray-400 hover:text-white transition-colors">Terms of Service</a>
-                </div>
-              </div>
+      {/* Footer */}
+      <footer className="bg-text text-white py-8">
+        <div className="container mx-auto px-6">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="mb-4 md:mb-0">
+              <p className="text-gray-400">&copy; 2024 Charan Thota. All rights reserved.</p>
             </div>
-          </footer>
+            <div className="flex space-x-6">
+              <a href="#" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors">Terms of Service</a>
+            </div>
+          </div>
         </div>
-      </InteractiveGradientBackground>
-    </>
+      </footer>
+    </div>
   );
 };
 
