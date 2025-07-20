@@ -77,58 +77,58 @@ const Navigation = () => {
   return (
     <nav className="fixed top-0 w-full z-50 transition-all duration-300">
       <div className="container mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <div className="hidden md:block mr-8">
-            <Logo size={72} className="hover:scale-105 transition-transform duration-300" />
-          </div>
-          
-          {/* Pill-shaped Navigation Container */}
-          <div 
-            ref={navRef} 
-            className="hidden md:flex items-center bg-white/80 backdrop-blur-xl border border-gray-200/50 rounded-full px-2 py-2 shadow-lg relative mx-auto"
-            style={{
-              boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.2)'
-            }}
-          >
-            {/* Dynamic hover background */}
-            <div
-              className="absolute bg-primary-custom rounded-full transition-all duration-300 ease-out pointer-events-none"
-              style={{
-                left: `${hoverPosition.x + 8}px`,
-                width: `${hoverPosition.width - 16}px`,
-                height: '36px',
-                top: '8px',
-                opacity: hoverPosition.opacity * 0.15,
-                transform: hoverPosition.opacity > 0 ? 'scale(1)' : 'scale(0.8)',
-              }}
-            />
+        <div className="flex items-center justify-center">
+          {/* Centered Logo and Navigation Container */}
+          <div className="hidden md:flex items-center space-x-8">
+            {/* Logo */}
+            <div>
+              <Logo size={72} className="hover:scale-105 transition-transform duration-300" />
+            </div>
             
-            {navigationItems.map((item, index) => {
-              const IconComponent = item.icon;
-              const isActive = activeNavItem === item.section;
+            {/* Pill-shaped Navigation Container */}
+            <div 
+              ref={navRef} 
+              className="flex items-center bg-white/80 backdrop-blur-xl border border-gray-200/50 rounded-full px-2 py-2 shadow-lg relative"
+              style={{
+                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.2)'
+              }}
+            >
+              {/* Dynamic hover background */}
+              <div
+                className="absolute bg-primary-custom rounded-full transition-all duration-300 ease-out pointer-events-none"
+                style={{
+                  left: `${hoverPosition.x + 8}px`,
+                  width: `${hoverPosition.width - 16}px`,
+                  height: '36px',
+                  top: '8px',
+                  opacity: hoverPosition.opacity * 0.15,
+                  transform: hoverPosition.opacity > 0 ? 'scale(1)' : 'scale(0.8)',
+                }}
+              />
               
-              return (
-                <button
-                  key={item.section}
-                  onClick={() => scrollToSection(item.section)}
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-                  className={`relative flex items-center space-x-2 px-4 py-2 rounded-full transition-all duration-300 font-medium z-10 ${
-                    isActive 
-                      ? 'text-primary-custom bg-primary-custom/10' 
-                      : 'text-gray-600 hover:text-primary-custom hover:bg-gray-50'
-                  }`}
-                >
-                  <IconComponent className="h-4 w-4" />
-                  <span className="text-sm">{item.label}</span>
-                </button>
-              );
-            })}
+              {navigationItems.map((item, index) => {
+                const IconComponent = item.icon;
+                const isActive = activeNavItem === item.section;
+                
+                return (
+                  <button
+                    key={item.section}
+                    onClick={() => scrollToSection(item.section)}
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                    className={`relative flex items-center space-x-2 px-4 py-2 rounded-full transition-all duration-300 font-medium z-10 ${
+                      isActive 
+                        ? 'text-primary-custom bg-primary-custom/10' 
+                        : 'text-gray-600 hover:text-primary-custom hover:bg-gray-50'
+                    }`}
+                  >
+                    <IconComponent className="h-4 w-4" />
+                    <span className="text-sm">{item.label}</span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
-
-          {/* Empty spacer for mobile layout balance */}
-          <div className="flex-1"></div>
           
           {/* Mobile Logo and Menu */}
           <div className="md:hidden flex items-center justify-between w-full">
