@@ -11,11 +11,15 @@ import {
   Calendar,
   ExternalLink,
   Github,
-  Linkedin
+  Linkedin,
+  Download
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import SkillBar from "@/components/SkillBar";
+import TimelineExperience from "@/components/TimelineExperience";
+import ProjectCard from "@/components/ProjectCard";
 
 interface ContentCanvasProps {
   query: string;
@@ -31,267 +35,141 @@ const DynamicContentCanvas = ({ query, contentType }: ContentCanvasProps) => {
     return () => clearTimeout(timer);
   }, [query, contentType]);
 
+  const skills = {
+    programming: [
+      { name: "Python", level: 95 },
+      { name: "JavaScript/TypeScript", level: 85 },
+      { name: "Java/C++", level: 80 },
+    ],
+    cloud: [
+      { name: "AWS", level: 90 },
+      { name: "Docker/Kubernetes", level: 85 },
+      { name: "Jenkins/CI/CD", level: 80 },
+    ],
+    ml: [
+      { name: "LLMs/RAG", level: 90 },
+      { name: "TensorFlow/PyTorch", level: 85 },
+      { name: "Vector Databases", level: 80 },
+    ],
+  };
+
   const renderSkillsContent = () => (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="space-y-8">
       {/* Programming Skills */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
+        className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-xl p-6"
       >
-        <Card className="bg-white/10 backdrop-blur-xl border-white/20">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-white">
-              <Code2 className="h-5 w-5 text-blue-400" />
-              Programming
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            {[
-              { name: "Python", level: 95, color: "bg-green-500" },
-              { name: "JavaScript/TypeScript", level: 85, color: "bg-yellow-500" },
-              { name: "Java/C++", level: 80, color: "bg-red-500" }
-            ].map((skill, index) => (
-              <div key={skill.name} className="space-y-2">
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-300">{skill.name}</span>
-                  <span className="text-blue-400">{skill.level}%</span>
-                </div>
-                <div className="w-full bg-gray-700 rounded-full h-2">
-                  <motion.div
-                    className={`h-2 rounded-full ${skill.color}`}
-                    initial={{ width: 0 }}
-                    animate={{ width: `${skill.level}%` }}
-                    transition={{ delay: 0.2 + index * 0.1, duration: 0.8 }}
-                  />
-                </div>
-              </div>
-            ))}
-          </CardContent>
-        </Card>
+        <h3 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
+          <Code2 className="h-5 w-5 text-blue-400" />
+          Programming Languages
+        </h3>
+        <div className="space-y-4">
+          {skills.programming.map((skill, index) => (
+            <SkillBar key={skill.name} skill={skill.name} level={skill.level} delay={index * 0.2} />
+          ))}
+        </div>
       </motion.div>
 
       {/* Cloud & DevOps */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
+        className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-xl p-6"
       >
-        <Card className="bg-white/10 backdrop-blur-xl border-white/20">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-white">
-              <Award className="h-5 w-5 text-purple-400" />
-              Cloud & DevOps
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            {[
-              { name: "AWS", level: 90, color: "bg-orange-500" },
-              { name: "Docker/Kubernetes", level: 85, color: "bg-blue-500" },
-              { name: "Jenkins/CI/CD", level: 80, color: "bg-purple-500" }
-            ].map((skill, index) => (
-              <div key={skill.name} className="space-y-2">
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-300">{skill.name}</span>
-                  <span className="text-purple-400">{skill.level}%</span>
-                </div>
-                <div className="w-full bg-gray-700 rounded-full h-2">
-                  <motion.div
-                    className={`h-2 rounded-full ${skill.color}`}
-                    initial={{ width: 0 }}
-                    animate={{ width: `${skill.level}%` }}
-                    transition={{ delay: 0.2 + index * 0.1, duration: 0.8 }}
-                  />
-                </div>
-              </div>
-            ))}
-          </CardContent>
-        </Card>
+        <h3 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
+          <Award className="h-5 w-5 text-purple-400" />
+          Cloud & DevOps
+        </h3>
+        <div className="space-y-4">
+          {skills.cloud.map((skill, index) => (
+            <SkillBar key={skill.name} skill={skill.name} level={skill.level} delay={index * 0.2} />
+          ))}
+        </div>
       </motion.div>
 
-      {/* AI & ML */}
+      {/* AI & Machine Learning */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
+        className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-xl p-6"
       >
-        <Card className="bg-white/10 backdrop-blur-xl border-white/20">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-white">
-              <GraduationCap className="h-5 w-5 text-green-400" />
-              AI & Machine Learning
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            {[
-              { name: "LLMs/RAG", level: 90, color: "bg-green-500" },
-              { name: "TensorFlow/PyTorch", level: 85, color: "bg-red-500" },
-              { name: "Vector Databases", level: 80, color: "bg-indigo-500" }
-            ].map((skill, index) => (
-              <div key={skill.name} className="space-y-2">
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-300">{skill.name}</span>
-                  <span className="text-green-400">{skill.level}%</span>
-                </div>
-                <div className="w-full bg-gray-700 rounded-full h-2">
-                  <motion.div
-                    className={`h-2 rounded-full ${skill.color}`}
-                    initial={{ width: 0 }}
-                    animate={{ width: `${skill.level}%` }}
-                    transition={{ delay: 0.2 + index * 0.1, duration: 0.8 }}
-                  />
-                </div>
-              </div>
-            ))}
-          </CardContent>
-        </Card>
+        <h3 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
+          <GraduationCap className="h-5 w-5 text-green-400" />
+          AI & Machine Learning
+        </h3>
+        <div className="space-y-4">
+          {skills.ml.map((skill, index) => (
+            <SkillBar key={skill.name} skill={skill.name} level={skill.level} delay={index * 0.2} />
+          ))}
+        </div>
       </motion.div>
     </div>
   );
 
+  const projects = [
+    {
+      title: "AI-Powered USCIS Chatbot",
+      description: "RAG-based Python web application providing intelligent responses to USCIS Manual queries using LangChain and vector databases.",
+      technologies: ["Python", "LangChain", "Streamlit", "FAISS", "Llama 3.1"],
+      category: "AI/ML",
+      highlights: [
+        "Embedded USCIS manual into vector database for semantic search",
+        "Integrated Llama 3.1 (8B model) for lightweight local inference",
+        "Advanced design module for custom-trained model deployment",
+      ],
+    },
+    {
+      title: "EHR Query Assistant",
+      description: "Intelligent RAG-based system for querying electronic health records using natural language processing and Bedrock embeddings.",
+      technologies: ["AWS Bedrock", "FAISS", "Streamlit", "Claude", "OpenSearch"],
+      category: "AI/ML",
+      highlights: [
+        "Reduced query time from 20 minutes to under 10 seconds",
+        "90%+ accuracy in clinical decision support",
+        "Document chunking and embedding pipelines for contextual responses",
+      ],
+    },
+    {
+      title: "Home Healthcare Platform",
+      description: "Agile-developed web application supporting home healthcare services with comprehensive project management and documentation.",
+      technologies: ["React", "Node.js", "JIRA", "Confluence", "Agile"],
+      category: "Web",
+      highlights: [
+        "Led Agile development with iterative sprints and daily stand-ups",
+        "Comprehensive project documentation and stakeholder feedback integration",
+        "Prioritized product backlog with user stories and project scope definition",
+      ],
+    },
+  ];
+
   const renderProjectsContent = () => (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-      {[
-        {
-          title: "AI-Powered USCIS Chatbot",
-          description: "RAG-based Python web application providing intelligent responses to USCIS Manual queries using LangChain and vector databases.",
-          technologies: ["Python", "LangChain", "Streamlit", "FAISS", "Llama 3.1"],
-          category: "AI/ML",
-          color: "from-blue-500 to-purple-600"
-        },
-        {
-          title: "Healthcare Data Pipeline",
-          description: "Scalable ETL pipeline processing 1M+ medical records with 99.5% accuracy and automated compliance validation.",
-          technologies: ["AWS", "Python", "Docker", "PostgreSQL"],
-          category: "Healthcare",
-          color: "from-green-500 to-blue-500"
-        },
-        {
-          title: "Intelligent Document OCR",
-          description: "ML-powered document processing system with custom OCR models achieving 95% accuracy on medical forms.",
-          technologies: ["TensorFlow", "OpenCV", "FastAPI", "AWS"],
-          category: "Computer Vision",
-          color: "from-purple-500 to-pink-500"
-        },
-        {
-          title: "Real-time Analytics Dashboard",
-          description: "Interactive Power BI dashboard providing real-time insights for healthcare operations with automated reporting.",
-          technologies: ["Power BI", "Azure", "SQL Server", "Python"],
-          category: "Analytics",
-          color: "from-orange-500 to-red-500"
-        }
-      ].map((project, index) => (
+    <div className="grid grid-cols-1 gap-6">
+      {projects.map((project, index) => (
         <motion.div
           key={project.title}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: index * 0.1 }}
         >
-          <Card className="bg-white/10 backdrop-blur-xl border-white/20 hover:border-white/40 transition-all duration-300 group">
-            <CardHeader>
-              <div className="flex items-start justify-between">
-                <div>
-                  <CardTitle className="text-white mb-2">{project.title}</CardTitle>
-                  <Badge className={`bg-gradient-to-r ${project.color} text-white`}>
-                    {project.category}
-                  </Badge>
-                </div>
-                <Button variant="ghost" size="icon" className="opacity-0 group-hover:opacity-100 transition-opacity">
-                  <ExternalLink className="h-4 w-4 text-gray-400" />
-                </Button>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <CardDescription className="text-gray-300 mb-4">
-                {project.description}
-              </CardDescription>
-              <div className="flex flex-wrap gap-2">
-                {project.technologies.map((tech) => (
-                  <Badge key={tech} variant="outline" className="border-gray-600 text-gray-300">
-                    {tech}
-                  </Badge>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
+          <ProjectCard {...project} index={index} />
         </motion.div>
       ))}
     </div>
   );
 
   const renderExperienceContent = () => (
-    <div className="space-y-6">
-      {[
-        {
-          company: "Mettles Solution LLC",
-          role: "Data Scientist",
-          period: "Jan 2022 - Present",
-          location: "Remote",
-          achievements: [
-            "Built RAG-based AI chatbot reducing query response time by 70%",
-            "Developed OCR pipeline processing 10K+ documents daily with 95% accuracy",
-            "Optimized AWS infrastructure reducing costs by $50K annually"
-          ]
-        },
-        {
-          company: "Centers for Medicare & Medicaid Services",
-          role: "Software Engineer (Contract)",
-          period: "Mar 2021 - Dec 2021",
-          location: "Baltimore, MD",
-          achievements: [
-            "Implemented healthcare data validation system with 99.5% accuracy",
-            "Built real-time dashboard serving 500+ concurrent users",
-            "Automated compliance reporting saving 40 hours/week"
-          ]
-        }
-      ].map((exp, index) => (
-        <motion.div
-          key={exp.company}
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: index * 0.2 }}
-        >
-          <Card className="bg-white/10 backdrop-blur-xl border-white/20">
-            <CardHeader>
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                <div>
-                  <CardTitle className="text-white">{exp.role}</CardTitle>
-                  <CardDescription className="text-blue-400 font-medium">
-                    {exp.company}
-                  </CardDescription>
-                </div>
-                <div className="flex flex-col md:items-end gap-1">
-                  <div className="flex items-center gap-2 text-gray-400">
-                    <Calendar className="h-4 w-4" />
-                    <span>{exp.period}</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-gray-400">
-                    <MapPin className="h-4 w-4" />
-                    <span>{exp.location}</span>
-                  </div>
-                </div>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <ul className="space-y-3">
-                {exp.achievements.map((achievement, achieveIndex) => (
-                  <motion.li
-                    key={achieveIndex}
-                    className="flex items-start gap-3 text-gray-300"
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.2 + achieveIndex * 0.1 }}
-                  >
-                    <div className="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0" />
-                    {achievement}
-                  </motion.li>
-                ))}
-              </ul>
-            </CardContent>
-          </Card>
-        </motion.div>
-      ))}
-    </div>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="bg-white/5 backdrop-blur-xl border border-white/20 rounded-xl p-6"
+    >
+      <TimelineExperience />
+    </motion.div>
   );
 
   const renderAboutContent = () => (
@@ -352,7 +230,7 @@ const DynamicContentCanvas = ({ query, contentType }: ContentCanvasProps) => {
             Ready to discuss opportunities or collaborate on innovative projects
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Button className="bg-blue-600 hover:bg-blue-700 text-white justify-start">
               <Mail className="h-4 w-4 mr-2" />
@@ -367,9 +245,30 @@ const DynamicContentCanvas = ({ query, contentType }: ContentCanvasProps) => {
               GitHub Profile
             </Button>
             <Button className="bg-green-600 hover:bg-green-700 text-white justify-start">
-              <MapPin className="h-4 w-4 mr-2" />
-              Available Remotely
+              <Download className="h-4 w-4 mr-2" />
+              Download Resume
             </Button>
+          </div>
+          
+          {/* Microsoft Certifications */}
+          <div className="mt-6">
+            <h4 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+              <Award className="h-5 w-5 text-yellow-400" />
+              Certifications
+            </h4>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              {[
+                "Microsoft Azure Data Engineer Associate",
+                "Microsoft Power BI Data Analyst Associate", 
+                "Microsoft Azure Data Fundamentals",
+                "Microsoft Azure Fundamentals"
+              ].map((cert, index) => (
+                <div key={index} className="flex items-center gap-3 p-3 bg-white/5 border border-white/10 rounded-lg">
+                  <GraduationCap className="h-4 w-4 text-blue-400 flex-shrink-0" />
+                  <span className="text-gray-300 text-sm">{cert}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </CardContent>
       </Card>
