@@ -6,7 +6,7 @@ import ScrollDriftElements from "@/components/ScrollDriftElements";
 import SkillBar from "@/components/SkillBar";
 import TimelineExperience from "@/components/TimelineExperience";
 import ProjectCard from "@/components/ProjectCard";
-import AchievementsVisualization from "@/components/AchievementsVisualization";
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -560,8 +560,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Achievements Section */}
-      <AchievementsVisualization />
+
 
       {/* Footer */}
       <footer className="bg-text text-white py-8">
