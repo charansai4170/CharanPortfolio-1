@@ -2,22 +2,41 @@ import { useState, useEffect, useRef } from "react";
 import { Link } from "wouter";
 import { Menu, X, Home, User, Briefcase, FolderOpen, Settings, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Logo from "./Logo";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeNavItem, setActiveNavItem] = useState("about");
+  const [activeNavItem, setActiveNavItem] = useState("home");
   const navRef = useRef<HTMLDivElement>(null);
   const [hoverPosition, setHoverPosition] = useState({ x: 0, width: 0, opacity: 0 });
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
+      
+      // Update active section based on scroll position
+      const sections = ["home", "about", "experience", "projects", "skills", "contact"];
+      const currentSection = sections.find(section => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          return rect.top <= 100 && rect.bottom >= 100;
+        }
+        return false;
+      });
+      
+      if (currentSection && currentSection !== activeNavItem) {
+        setActiveNavItem(currentSection);
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
+    // Initial check
+    handleScroll();
+    
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [activeNavItem]);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -59,6 +78,11 @@ const Navigation = () => {
     <nav className="fixed top-0 w-full z-50 transition-all duration-300">
       <div className="container mx-auto px-6 py-6">
         <div className="flex justify-center items-center">
+          {/* Logo */}
+          <div className="absolute left-6 hidden md:block">
+            <Logo size={36} className="hover:scale-110 transition-transform duration-300" />
+          </div>
+          
           {/* Pill-shaped Navigation Container */}
           <div 
             ref={navRef} 
@@ -82,7 +106,7 @@ const Navigation = () => {
             
             {navigationItems.map((item, index) => {
               const IconComponent = item.icon;
-              const isActive = activeNavItem === item.section || (item.section === "about" && activeNavItem === "");
+              const isActive = activeNavItem === item.section;
               
               return (
                 <button
@@ -103,19 +127,22 @@ const Navigation = () => {
             })}
           </div>
 
-          {/* Mobile Menu Button */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden bg-white/80 backdrop-blur-xl border border-gray-200/50 rounded-full shadow-lg"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? (
-              <X className="h-5 w-5 text-gray-600" />
-            ) : (
-              <Menu className="h-5 w-5 text-gray-600" />
-            )}
-          </Button>
+          {/* Mobile Logo and Menu */}
+          <div className="md:hidden flex items-center justify-between w-full">
+            <Logo size={32} className="hover:scale-110 transition-transform duration-300" />
+            <Button
+              variant="ghost"
+              size="icon"
+              className="bg-white/80 backdrop-blur-xl border border-gray-200/50 rounded-full shadow-lg"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              {isMobileMenuOpen ? (
+                <X className="h-5 w-5 text-gray-600" />
+              ) : (
+                <Menu className="h-5 w-5 text-gray-600" />
+              )}
+            </Button>
+          </div>
         </div>
 
         {/* Mobile Navigation Menu */}
@@ -125,7 +152,7 @@ const Navigation = () => {
               <div className="flex flex-col space-y-2">
                 {navigationItems.map((item) => {
                   const IconComponent = item.icon;
-                  const isActive = activeNavItem === item.section || (item.section === "about" && activeNavItem === "");
+                  const isActive = activeNavItem === item.section;
                   
                   return (
                     <button
