@@ -89,8 +89,8 @@ const Home = () => {
           {/* Hero Section */}
       <section id="home" className="min-h-screen flex items-center relative overflow-hidden bg-white">
         <div className="container mx-auto px-6">
-          <div className="flex justify-center">
-            <div className={`${isVisible ? "fade-in-up" : "opacity-0"} text-center max-w-4xl`}>
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className={`${isVisible ? "fade-in-up" : "opacity-0"}`}>
               <h1 className="text-4xl md:text-6xl font-bold text-text mb-6 leading-tight">
                 Charan Thota
               </h1>
@@ -121,6 +121,20 @@ const Home = () => {
                 <Button variant="ghost" size="icon" className="text-gray-400 hover:text-primary-custom">
                   <Mail className="h-5 w-5" />
                 </Button>
+              </div>
+            </div>
+            
+            <div className="relative">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                <img 
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=600&fit=crop&crop=face" 
+                  alt="Charan Thota"
+                  className="w-full h-auto object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary-custom/20 to-transparent"></div>
+              </div>
+              <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-gradient-to-r from-primary-custom to-accent-custom rounded-full flex items-center justify-center shadow-xl animate-pulse">
+                <span className="text-white text-2xl">🚀</span>
               </div>
             </div>
           </div>
