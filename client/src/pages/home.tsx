@@ -89,8 +89,8 @@ const Home = () => {
           {/* Hero Section */}
       <section id="home" className="min-h-screen flex items-center relative overflow-hidden bg-white">
         <div className="container mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className={`${isVisible ? "fade-in-up" : "opacity-0"}`}>
+          <div className="flex justify-center">
+            <div className={`${isVisible ? "fade-in-up" : "opacity-0"} text-center max-w-4xl`}>
               <h1 className="text-4xl md:text-6xl font-bold text-text mb-6 leading-tight">
                 Charan Thota
               </h1>
@@ -123,48 +123,6 @@ const Home = () => {
                 </Button>
               </div>
             </div>
-            <div className="hidden lg:block floating-animation">
-              <div className="w-full max-w-md mx-auto relative">
-                {/* Background glow effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary-custom to-accent-custom rounded-2xl shadow-2xl blur-xl opacity-20 animate-pulse"></div>
-                
-                {/* Main card with 3D effects */}
-                <div className="relative aspect-square bg-gradient-to-br from-primary-custom to-accent-custom rounded-2xl shadow-2xl p-8 flex items-center justify-center tech-card-3d glass-card overflow-hidden">
-                  {/* Animated background particles */}
-                  <div className="absolute inset-0">
-                    {[...Array(12)].map((_, i) => (
-                      <div
-                        key={i}
-                        className="absolute w-1 h-1 bg-white rounded-full animate-pulse"
-                        style={{
-                          top: `${Math.random() * 100}%`,
-                          left: `${Math.random() * 100}%`,
-                          animationDelay: `${i * 0.3}s`,
-                          animationDuration: `${2 + Math.random() * 2}s`
-                        }}
-                      />
-                    ))}
-                  </div>
-                  
-                  {/* Content */}
-                  <div className="text-white text-center relative z-10">
-                    <div className="text-6xl mb-4 animate-morph">👨‍💻</div>
-                    <div className="text-xl font-semibold mb-2">AI/ML Engineer</div>
-                    <div className="text-sm opacity-90 mb-4">Building Intelligent Systems</div>
-                    
-                    {/* 3D Code symbols floating around */}
-                    <div className="flex justify-center space-x-4 text-xs opacity-60">
-                      <span className="animate-bounce" style={{ animationDelay: '0s' }}>{'<>'}</span>
-                      <span className="animate-bounce" style={{ animationDelay: '0.2s' }}>{'{ }'}</span>
-                      <span className="animate-bounce" style={{ animationDelay: '0.4s' }}>{'[ ]'}</span>
-                    </div>
-                  </div>
-                  
-                  {/* Border animation */}
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-white/20 via-transparent to-white/20 animate-spin opacity-30" style={{ animationDuration: '8s' }}></div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </section>
@@ -190,6 +148,31 @@ const Home = () => {
               <p className="text-gray-600 text-lg leading-relaxed">
                 I've successfully worked across the stack—backend APIs, automation workflows, and frontend interfaces—delivering measurable impact including <span className="text-primary-custom font-semibold">$5M cost reductions</span> and <span className="text-primary-custom font-semibold">15% operational efficiency improvements</span>.
               </p>
+              
+              {/* Education Section */}
+              <div className="mt-8">
+                <h3 className="text-xl font-bold text-text mb-4 flex items-center">
+                  <GraduationCap className="text-primary-custom mr-3" />
+                  Education
+                </h3>
+                <div className="space-y-4">
+                  <div className="border-l-4 border-primary-custom pl-4">
+                    <h4 className="font-bold text-text">Master's in Analytics</h4>
+                    <p className="text-primary-custom font-medium">Northeastern University</p>
+                    <p className="text-gray-500">Boston, MA • July 2023</p>
+                  </div>
+                  <div className="border-l-4 border-accent-custom pl-4">
+                    <h4 className="font-bold text-text">Graduate Certificate in Agile Project Management</h4>
+                    <p className="text-accent-custom font-medium">Northeastern University</p>
+                    <p className="text-gray-500">Boston, MA • March 2024</p>
+                  </div>
+                  <div className="border-l-4 border-gray-400 pl-4">
+                    <h4 className="font-bold text-text">Bachelor of Engineering - Electronics & Communication</h4>
+                    <p className="text-gray-600 font-medium">Sathyabama Institute of Science & Technology</p>
+                    <p className="text-gray-500">Chennai, India</p>
+                  </div>
+                </div>
+              </div>
               
               <div className="grid grid-cols-2 gap-6 pt-6">
                 <div className="text-center p-4 bg-neutral-custom rounded-xl">
@@ -232,7 +215,7 @@ const Home = () => {
       <TimelineExperience />
 
       {/* Skills Section */}
-      <section id="skills" className="py-20 bg-white">
+      <section id="skills" className="py-20 bg-gray-50">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-text mb-4">Technical Expertise</h2>
@@ -372,11 +355,31 @@ const Home = () => {
               </CardContent>
             </Card>
           </div>
+
+          {/* Certifications at the end of Skills Section */}
+          <div className="mt-16">
+            <div className="text-center mb-8">
+              <h3 className="text-2xl font-bold text-text mb-4">Professional Certifications</h3>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
+              {certifications.map((cert, index) => (
+                <div key={index} className="flex items-center p-4 bg-white rounded-lg border border-gray-100 shadow-sm">
+                  <div className="bg-blue-600 p-2 rounded mr-3 flex-shrink-0">
+                    <div className="text-white text-sm font-bold">MS</div>
+                  </div>
+                  <div>
+                    <p className="font-medium text-text text-sm">{cert}</p>
+                    <p className="text-xs text-gray-500">Microsoft</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-20 bg-gray-50">
+      <section id="projects" className="py-20 bg-white">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-text mb-4">Featured Projects</h2>
@@ -393,70 +396,6 @@ const Home = () => {
                 delay={index * 200}
               />
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Education & Certifications */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-text mb-4">Education & Certifications</h2>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Academic foundation and professional certifications in analytics, cloud technologies, and project management
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {/* Education */}
-            <Card className="bg-neutral-custom border border-gray-100">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-text mb-6 flex items-center">
-                  <GraduationCap className="text-primary-custom mr-3" />
-                  Education
-                </h3>
-                <div className="space-y-6">
-                  <div className="border-l-4 border-primary-custom pl-4">
-                    <h4 className="font-bold text-text">Master's in Analytics</h4>
-                    <p className="text-primary-custom font-medium">Northeastern University</p>
-                    <p className="text-gray-500">Boston, MA • July 2023</p>
-                  </div>
-                  <div className="border-l-4 border-accent-custom pl-4">
-                    <h4 className="font-bold text-text">Graduate Certificate in Agile Project Management</h4>
-                    <p className="text-accent-custom font-medium">Northeastern University</p>
-                    <p className="text-gray-500">Boston, MA • March 2024</p>
-                  </div>
-                  <div className="border-l-4 border-gray-400 pl-4">
-                    <h4 className="font-bold text-text">Bachelor of Engineering - Electronics & Communication</h4>
-                    <p className="text-gray-600 font-medium">Sathyabama Institute of Science & Technology</p>
-                    <p className="text-gray-500">Chennai, India</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Certifications */}
-            <Card className="bg-neutral-custom border border-gray-100">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-text mb-6 flex items-center">
-                  <Award className="text-accent-custom mr-3" />
-                  Certifications
-                </h3>
-                <div className="space-y-4">
-                  {certifications.map((cert, index) => (
-                    <div key={index} className="flex items-center p-3 bg-white rounded-lg border border-gray-100">
-                      <div className="bg-blue-600 p-2 rounded mr-3">
-                        <div className="text-white text-sm">MS</div>
-                      </div>
-                      <div>
-                        <p className="font-medium text-text">{cert}</p>
-                        <p className="text-sm text-gray-500">Microsoft</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
           </div>
         </div>
       </section>
