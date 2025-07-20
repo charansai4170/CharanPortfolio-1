@@ -153,8 +153,14 @@ const Home = () => {
               </h1>
               <h2 className="text-2xl md:text-3xl font-semibold mb-6 h-12 flex items-center">
                 <span className="gradient-text-animated">{currentText}</span>
-                {currentIndex < 5 && <span className="text-text"> Engineer</span>}
-                <span className="cursor-blink ml-1">|</span>
+                {currentIndex < 5 && (
+                  <>
+                    <span className="gradient-text-animated"> </span>
+                    <span className="cursor-blink">|</span>
+                    <span className="gradient-text-animated">Engineer</span>
+                  </>
+                )}
+                {currentIndex >= 5 && <span className="cursor-blink ml-1">|</span>}
               </h2>
               <p className="text-gray-600 text-lg leading-relaxed mb-8 max-w-lg">
                 Results-driven engineer with 2.5+ years building scalable, AI-driven platforms and cloud-native applications. 
