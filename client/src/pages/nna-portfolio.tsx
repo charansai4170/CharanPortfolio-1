@@ -5,6 +5,8 @@ import CharanHeader from "@/components/NNAHeader";
 import HiddenSidebar from "@/components/HiddenSidebar";
 import IntelligentSearch from "@/components/IntelligentSearch";
 import DynamicContentCanvas from "@/components/DynamicContentCanvas";
+import LogoTransition from "@/components/LogoTransition";
+import usePageTransition from "@/hooks/usePageTransition";
 
 const CharanPortfolio = () => {
   const [showLogo, setShowLogo] = useState(true);
@@ -13,6 +15,7 @@ const CharanPortfolio = () => {
   const [searchHistory, setSearchHistory] = useState<string[]>([]);
   const [currentQuery, setCurrentQuery] = useState("");
   const [contentType, setContentType] = useState<'skills' | 'projects' | 'experience' | 'about' | 'contact' | 'general'>('general');
+  const { isTransitioning, fromPage, toPage, navigateWithTransition } = usePageTransition();
 
   // Query processing to determine content type
   const parseIntent = (query: string): typeof contentType => {
@@ -101,6 +104,17 @@ const CharanPortfolio = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Logo Transition Overlay */}
+      <LogoTransition
+        isTransitioning={isTransitioning}
+        fromPage={fromPage}
+        toPage={toPage}
+        onComplete={() => {
+          // Transition complete callback
+          console.log(`Transition from ${fromPage} to ${toPage} completed`);
+        }}
+      />
     </div>
   );
 };

@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Menu, Settings, Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logoImage from "@assets/ChatGPT Image Jul 20, 2025, 01_27_37 AM_1753041763555.png";
+import usePageTransition from "@/hooks/usePageTransition";
 
 interface CharanHeaderProps {
   onMenuClick: () => void;
@@ -12,6 +13,7 @@ interface CharanHeaderProps {
 
 const CharanHeader = ({ onMenuClick, darkMode, onThemeToggle }: CharanHeaderProps) => {
   const [logoHovered, setLogoHovered] = useState(false);
+  const { navigateWithTransition } = usePageTransition();
 
   return (
     <motion.header
@@ -28,6 +30,7 @@ const CharanHeader = ({ onMenuClick, darkMode, onThemeToggle }: CharanHeaderProp
           onHoverEnd={() => setLogoHovered(false)}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
+          onClick={() => navigateWithTransition("/legacy", "Home", "Legacy Portfolio")}
         >
           {/* Logo Icon */}
           <motion.div
@@ -84,10 +87,11 @@ const CharanHeader = ({ onMenuClick, darkMode, onThemeToggle }: CharanHeaderProp
 
         {/* Right Actions */}
         <div className="flex items-center gap-2">
-          {/* Settings Button */}
+          {/* Settings/Demo Button */}
           <Button
             variant="ghost"
             size="icon"
+            onClick={() => navigateWithTransition("/legacy", "Home", "Legacy Portfolio")}
             className="text-gray-400 hover:text-white hover:bg-white/10 transition-all duration-300"
           >
             <Settings className="h-5 w-5" />

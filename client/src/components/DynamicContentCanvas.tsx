@@ -12,7 +12,8 @@ import {
   ExternalLink,
   Github,
   Linkedin,
-  Download
+  Download,
+  Zap
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -20,6 +21,7 @@ import { Badge } from "@/components/ui/badge";
 import SkillBar from "@/components/SkillBar";
 import TimelineExperience from "@/components/TimelineExperience";
 import ProjectCard from "@/components/ProjectCard";
+import usePageTransition from "@/hooks/usePageTransition";
 
 interface ContentCanvasProps {
   query: string;
@@ -28,6 +30,7 @@ interface ContentCanvasProps {
 
 const DynamicContentCanvas = ({ query, contentType }: ContentCanvasProps) => {
   const [isVisible, setIsVisible] = useState(false);
+  const { navigateWithTransition } = usePageTransition();
 
   useEffect(() => {
     setIsVisible(false);
@@ -275,6 +278,59 @@ const DynamicContentCanvas = ({ query, contentType }: ContentCanvasProps) => {
     </motion.div>
   );
 
+  const renderGeneralContent = () => (
+    <div className="text-center py-12 space-y-6">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.6 }}
+      >
+        <h2 className="text-3xl font-bold text-white mb-4">Welcome to My Portfolio</h2>
+        <p className="text-gray-300 max-w-2xl mx-auto leading-relaxed">
+          I'm Charan Thota, a passionate Software and Machine Learning Engineer with expertise in
+          building scalable cloud solutions and intelligent systems. Explore my skills, projects,
+          and professional journey by asking specific questions or using the search above.
+        </p>
+      </motion.div>
+      
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3, duration: 0.6 }}
+        className="flex flex-wrap gap-3 justify-center max-w-lg mx-auto"
+      >
+        {["Skills", "Projects", "Experience", "About Me", "Contact"].map((item) => (
+          <Badge
+            key={item}
+            variant="secondary"
+            className="px-4 py-2 bg-white/10 text-gray-200 border-white/20 hover:bg-white/20 transition-all cursor-pointer"
+          >
+            {item}
+          </Badge>
+        ))}
+      </motion.div>
+
+      {/* Demo Logo Transition Button */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.6, duration: 0.6 }}
+        className="pt-8"
+      >
+        <Button
+          onClick={() => navigateWithTransition("/legacy", "Modern Portfolio", "Legacy Portfolio")}
+          className="bg-gradient-to-r from-yellow-600 to-orange-600 hover:from-yellow-500 hover:to-orange-500 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
+        >
+          <Zap className="w-5 h-5 mr-2" />
+          Demo Logo Transition
+        </Button>
+        <p className="text-xs text-gray-400 mt-2">
+          Experience advanced logo transitions between pages
+        </p>
+      </motion.div>
+    </div>
+  );
+
   const renderContent = () => {
     switch (contentType) {
       case 'skills':
@@ -287,8 +343,10 @@ const DynamicContentCanvas = ({ query, contentType }: ContentCanvasProps) => {
         return renderAboutContent();
       case 'contact':
         return renderContactContent();
+      case 'general':
+        return renderGeneralContent();
       default:
-        return renderAboutContent();
+        return renderGeneralContent();
     }
   };
 
