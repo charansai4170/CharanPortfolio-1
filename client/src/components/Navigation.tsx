@@ -362,33 +362,17 @@ const Navigation = () => {
                 dragConstraints={{ left: 0, right: 0 }}
                 dragElastic={0.1}
                 onPanEnd={handlePanEnd}
-                className="fixed top-20 right-4 w-64 bg-white/90 rounded-2xl shadow-2xl border border-white/20 z-50"
+                className="fixed top-16 right-4 w-56 bg-white/90 rounded-xl shadow-xl border border-white/20 z-50"
                 style={{
-                  maxHeight: 'calc(100vh - 120px)',
+                  maxHeight: 'calc(100vh - 100px)',
                   backdropFilter: 'none'
                 }}
                 onTouchStart={handleTouchStart}
                 onTouchMove={handleTouchMove}
                 onTouchEnd={handleTouchEnd}
               >
-                {/* Compact Menu Header */}
-                <div className="flex items-center justify-between p-3 border-b border-gray-200/50">
-                  <div className="flex items-center space-x-2">
-                    <Logo size={28} />
-                    <span className="text-base font-semibold text-gray-900">Menu</span>
-                  </div>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="rounded-full hover:bg-gray-100/50 p-1 text-gray-600 hover:text-gray-900"
-                  >
-                    <X className="h-4 w-4" />
-                  </Button>
-                </div>
-
-                {/* Compact Navigation Items */}
-                <div className="py-2 px-2">
+                {/* Ultra Compact Navigation Items */}
+                <div className="py-3 px-3">
                   {navigationItems.map((item, index) => {
                     const IconComponent = item.icon;
                     const isActive = activeNavItem === item.section;
@@ -420,17 +404,17 @@ const Navigation = () => {
                             x: 5
                           }}
                           className={`
-                            w-full flex items-center justify-start space-x-3 px-3 py-2.5 text-left transition-all duration-200 rounded-lg
+                            w-full flex items-center justify-start space-x-2.5 px-2.5 py-2 text-left transition-all duration-200 rounded-lg
                             ${isActive 
                               ? 'bg-primary-custom/10 border-l-3 border-primary-custom text-primary-custom shadow-sm' 
                               : 'text-gray-800 hover:bg-gray-100/50 hover:text-primary-custom'
                             }
                           `}
-                          style={{ minHeight: '44px' }}
+                          style={{ minHeight: '40px' }}
                         >
                           <motion.div 
                             className={`
-                              p-1.5 rounded-lg transition-all duration-200
+                              p-1 rounded-md transition-all duration-200
                               ${isActive 
                                 ? 'bg-primary-custom text-white shadow-sm' 
                                 : 'bg-gray-100/70 text-gray-600'
@@ -441,7 +425,7 @@ const Navigation = () => {
                               rotate: isActive ? 0 : 3
                             }}
                           >
-                            <IconComponent className="h-4 w-4" />
+                            <IconComponent className="h-3.5 w-3.5" />
                           </motion.div>
                           <span className="text-sm font-medium flex-1 text-left">{item.label}</span>
                           
