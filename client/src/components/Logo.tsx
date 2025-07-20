@@ -1,12 +1,14 @@
 interface LogoProps {
   className?: string;
   size?: number;
+  onClick?: () => void;
 }
 
-const Logo = ({ className = "", size = 64 }: LogoProps) => {
+const Logo = ({ className = "", size = 64, onClick }: LogoProps) => {
   return (
     <div 
       className={`relative ${className}`}
+      onClick={onClick}
       style={{ 
         width: size, 
         height: size,

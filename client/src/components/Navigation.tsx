@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Menu, X, Home, User, Briefcase, FolderOpen, Settings, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Logo from "./Logo";
+import { useLocation } from "wouter";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -9,6 +10,7 @@ const Navigation = () => {
   const [activeNavItem, setActiveNavItem] = useState("home");
   const navRef = useRef<HTMLDivElement>(null);
   const [hoverPosition, setHoverPosition] = useState({ x: 0, width: 0, opacity: 0 });
+  const [location, setLocation] = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -64,6 +66,14 @@ const Navigation = () => {
     setHoverPosition(prev => ({ ...prev, opacity: 0 }));
   };
 
+  const handleLogoClick = () => {
+    // Navigate to home page and refresh
+    setLocation('/');
+    setTimeout(() => {
+      window.location.reload();
+    }, 100);
+  };
+
   const navigationItems = [
     { label: "Home", section: "home", icon: Home, route: "/" },
     { label: "About", section: "about", icon: User, route: "#about" },
@@ -81,7 +91,11 @@ const Navigation = () => {
           <div className="hidden md:flex items-center space-x-8">
             {/* Logo */}
             <div>
-              <Logo size={72} className="hover:scale-105 transition-transform duration-300" />
+              <Logo 
+                size={72} 
+                className="hover:scale-105 transition-transform duration-300 cursor-pointer" 
+                onClick={handleLogoClick}
+              />
             </div>
             
             {/* Pill-shaped Navigation Container */}
@@ -131,7 +145,11 @@ const Navigation = () => {
           
           {/* Mobile Logo and Menu */}
           <div className="md:hidden flex items-center justify-between w-full">
-            <Logo size={56} className="hover:scale-105 transition-transform duration-300" />
+            <Logo 
+              size={56} 
+              className="hover:scale-105 transition-transform duration-300 cursor-pointer" 
+              onClick={handleLogoClick}
+            />
             <Button
               variant="ghost"
               size="icon"
