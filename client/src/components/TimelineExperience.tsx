@@ -2,7 +2,7 @@ import { motion, useInView, useAnimation } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import { MapPin, Calendar, Building, Briefcase, GraduationCap } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
-import ProfessionalBackground from '@/components/ProfessionalBackground';
+
 
 interface ExperienceItem {
   id: string;

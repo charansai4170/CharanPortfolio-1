@@ -77,7 +77,7 @@ const DynamicContentCanvas = ({ query, contentType }: ContentCanvasProps) => {
         </h3>
         <div className="space-y-4">
           {skills.programming.map((skill, index) => (
-            <SkillBar key={skill.name} skill={skill.name} level={skill.level} delay={index * 0.2} />
+            <SkillBar key={skill.name} skill={skill.name} percentage={skill.level} delay={index * 200} />
           ))}
         </div>
       </motion.div>
@@ -95,7 +95,7 @@ const DynamicContentCanvas = ({ query, contentType }: ContentCanvasProps) => {
         </h3>
         <div className="space-y-4">
           {skills.cloud.map((skill, index) => (
-            <SkillBar key={skill.name} skill={skill.name} level={skill.level} delay={index * 0.2} />
+            <SkillBar key={skill.name} skill={skill.name} percentage={skill.level} delay={index * 200} />
           ))}
         </div>
       </motion.div>
@@ -113,7 +113,7 @@ const DynamicContentCanvas = ({ query, contentType }: ContentCanvasProps) => {
         </h3>
         <div className="space-y-4">
           {skills.ml.map((skill, index) => (
-            <SkillBar key={skill.name} skill={skill.name} level={skill.level} delay={index * 0.2} />
+            <SkillBar key={skill.name} skill={skill.name} percentage={skill.level} delay={index * 200} />
           ))}
         </div>
       </motion.div>
@@ -165,7 +165,7 @@ const DynamicContentCanvas = ({ query, contentType }: ContentCanvasProps) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: index * 0.1 }}
         >
-          <ProjectCard {...project} index={index} />
+          <ProjectCard {...project} />
         </motion.div>
       ))}
     </div>

@@ -112,7 +112,7 @@ const CharanPortfolio = () => {
         toPage={toPage}
         onComplete={() => {
           // Transition complete callback
-          console.log(`Transition from ${fromPage} to ${toPage} completed`);
+
         }}
       />
     </div>

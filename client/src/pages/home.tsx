@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Download, Mail, Phone, MapPin, Linkedin, Github, Award, GraduationCap, Send } from "lucide-react";
-import Navigation from "@/components/Navigation";
-import ProfessionalBackground from "@/components/ProfessionalBackground";
+
 
 import SkillBar from "@/components/SkillBar";
 import TimelineExperience from "@/components/TimelineExperience";
