@@ -29,6 +29,15 @@ interface ContentCanvasProps {
 const DynamicContentCanvas = ({ query, contentType }: ContentCanvasProps) => {
   const [isVisible, setIsVisible] = useState(false);
 
+  // Dynamic greeting based on time of day
+  const getTimeBasedGreeting = () => {
+    const hour = new Date().getHours();
+    if (hour >= 5 && hour < 12) return "Good morning";
+    if (hour >= 12 && hour < 17) return "Good afternoon";
+    if (hour >= 17 && hour < 22) return "Good evening";
+    return "Good night";
+  };
+
   useEffect(() => {
     setIsVisible(false);
     const timer = setTimeout(() => setIsVisible(true), 100);
@@ -282,7 +291,7 @@ const DynamicContentCanvas = ({ query, contentType }: ContentCanvasProps) => {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6 }}
       >
-        <h2 className="text-3xl font-bold text-white mb-4">Charan Thota</h2>
+        <h2 className="text-3xl font-bold text-white mb-4">{getTimeBasedGreeting()}, Welcome to My Portfolio</h2>
         <p className="text-gray-300 max-w-2xl mx-auto leading-relaxed">
           Software and Machine Learning Engineer with expertise in
           building scalable cloud solutions and intelligent systems. Explore my skills, projects,
@@ -342,19 +351,21 @@ const DynamicContentCanvas = ({ query, contentType }: ContentCanvasProps) => {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3 }}
             >
-              <div className="mb-8">
-                <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
-                  {query || "Portfolio"}
-                </h1>
-                <p className="text-gray-400">
-                  {contentType === 'skills' && "Here are my technical skills and expertise"}
-                  {contentType === 'projects' && "Explore my recent projects and work"}
-                  {contentType === 'experience' && "My professional journey and achievements"}
-                  {contentType === 'about' && "Get to know more about me"}
-                  {contentType === 'contact' && "Let's connect and collaborate"}
-                  {contentType === 'general' && "Explore my work, skills, and experience"}
-                </p>
-              </div>
+              {/* Only show header for specific searches, not for general content */}
+              {query && contentType !== 'general' && (
+                <div className="mb-8">
+                  <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
+                    {query}
+                  </h1>
+                  <p className="text-gray-400">
+                    {contentType === 'skills' && "Here are my technical skills and expertise"}
+                    {contentType === 'projects' && "Explore my recent projects and work"}
+                    {contentType === 'experience' && "My professional journey and achievements"}
+                    {contentType === 'about' && "Get to know more about me"}
+                    {contentType === 'contact' && "Let's connect and collaborate"}
+                  </p>
+                </div>
+              )}
               {renderContent()}
             </motion.div>
           )}
