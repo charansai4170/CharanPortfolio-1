@@ -12,8 +12,7 @@ import {
   ExternalLink,
   Github,
   Linkedin,
-  Download,
-  Zap
+  Download
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -21,7 +20,6 @@ import { Badge } from "@/components/ui/badge";
 import SkillBar from "@/components/SkillBar";
 import TimelineExperience from "@/components/TimelineExperience";
 import ProjectCard from "@/components/ProjectCard";
-import usePageTransition from "@/hooks/usePageTransition";
 
 interface ContentCanvasProps {
   query: string;
@@ -30,16 +28,6 @@ interface ContentCanvasProps {
 
 const DynamicContentCanvas = ({ query, contentType }: ContentCanvasProps) => {
   const [isVisible, setIsVisible] = useState(false);
-  const { navigateWithTransition } = usePageTransition();
-
-  // Dynamic greeting based on time of day
-  const getTimeBasedGreeting = () => {
-    const hour = new Date().getHours();
-    if (hour >= 5 && hour < 12) return "Good morning";
-    if (hour >= 12 && hour < 17) return "Good afternoon";
-    if (hour >= 17 && hour < 22) return "Good evening";
-    return "Good night";
-  };
 
   useEffect(() => {
     setIsVisible(false);
@@ -294,9 +282,9 @@ const DynamicContentCanvas = ({ query, contentType }: ContentCanvasProps) => {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6 }}
       >
-        <h2 className="text-3xl font-bold text-white mb-4">{getTimeBasedGreeting()}, I'm Charan Thota</h2>
+        <h2 className="text-3xl font-bold text-white mb-4">Charan Thota</h2>
         <p className="text-gray-300 max-w-2xl mx-auto leading-relaxed">
-          A passionate Software and Machine Learning Engineer with expertise in
+          Software and Machine Learning Engineer with expertise in
           building scalable cloud solutions and intelligent systems. Explore my skills, projects,
           and professional journey by asking specific questions or using the search above.
         </p>
@@ -319,24 +307,7 @@ const DynamicContentCanvas = ({ query, contentType }: ContentCanvasProps) => {
         ))}
       </motion.div>
 
-      {/* Demo Logo Transition Button */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.6, duration: 0.6 }}
-        className="pt-8"
-      >
-        <Button
-          onClick={() => navigateWithTransition("/legacy", "Modern Portfolio", "Legacy Portfolio")}
-          className="bg-gradient-to-r from-yellow-600 to-orange-600 hover:from-yellow-500 hover:to-orange-500 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
-        >
-          <Zap className="w-5 h-5 mr-2" />
-          Demo Logo Transition
-        </Button>
-        <p className="text-xs text-gray-400 mt-2">
-          Experience advanced logo transitions between pages
-        </p>
-      </motion.div>
+
     </div>
   );
 
@@ -373,7 +344,7 @@ const DynamicContentCanvas = ({ query, contentType }: ContentCanvasProps) => {
             >
               <div className="mb-8">
                 <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
-                  {query || `${getTimeBasedGreeting()}, Welcome to My Portfolio`}
+                  {query || "Portfolio"}
                 </h1>
                 <p className="text-gray-400">
                   {contentType === 'skills' && "Here are my technical skills and expertise"}
@@ -381,7 +352,7 @@ const DynamicContentCanvas = ({ query, contentType }: ContentCanvasProps) => {
                   {contentType === 'experience' && "My professional journey and achievements"}
                   {contentType === 'about' && "Get to know more about me"}
                   {contentType === 'contact' && "Let's connect and collaborate"}
-                  {contentType === 'general' && "I'm ready to showcase my work, skills, and professional journey"}
+                  {contentType === 'general' && "Explore my work, skills, and experience"}
                 </p>
               </div>
               {renderContent()}
