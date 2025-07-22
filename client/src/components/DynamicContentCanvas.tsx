@@ -32,6 +32,15 @@ const DynamicContentCanvas = ({ query, contentType }: ContentCanvasProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const { navigateWithTransition } = usePageTransition();
 
+  // Dynamic greeting based on time of day
+  const getTimeBasedGreeting = () => {
+    const hour = new Date().getHours();
+    if (hour >= 5 && hour < 12) return "Good morning";
+    if (hour >= 12 && hour < 17) return "Good afternoon";
+    if (hour >= 17 && hour < 22) return "Good evening";
+    return "Good night";
+  };
+
   useEffect(() => {
     setIsVisible(false);
     const timer = setTimeout(() => setIsVisible(true), 100);
@@ -285,9 +294,9 @@ const DynamicContentCanvas = ({ query, contentType }: ContentCanvasProps) => {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6 }}
       >
-        <h2 className="text-3xl font-bold text-white mb-4">Welcome to My Portfolio</h2>
+        <h2 className="text-3xl font-bold text-white mb-4">{getTimeBasedGreeting()}, I'm Charan Thota</h2>
         <p className="text-gray-300 max-w-2xl mx-auto leading-relaxed">
-          I'm Charan Thota, a passionate Software and Machine Learning Engineer with expertise in
+          A passionate Software and Machine Learning Engineer with expertise in
           building scalable cloud solutions and intelligent systems. Explore my skills, projects,
           and professional journey by asking specific questions or using the search above.
         </p>
@@ -364,7 +373,7 @@ const DynamicContentCanvas = ({ query, contentType }: ContentCanvasProps) => {
             >
               <div className="mb-8">
                 <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
-                  {query || "Welcome to my portfolio"}
+                  {query || `${getTimeBasedGreeting()}, Welcome to My Portfolio`}
                 </h1>
                 <p className="text-gray-400">
                   {contentType === 'skills' && "Here are my technical skills and expertise"}
@@ -372,7 +381,7 @@ const DynamicContentCanvas = ({ query, contentType }: ContentCanvasProps) => {
                   {contentType === 'experience' && "My professional journey and achievements"}
                   {contentType === 'about' && "Get to know more about me"}
                   {contentType === 'contact' && "Let's connect and collaborate"}
-                  {contentType === 'general' && "Discover my work, skills, and experience"}
+                  {contentType === 'general' && "I'm ready to showcase my work, skills, and professional journey"}
                 </p>
               </div>
               {renderContent()}
